@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excercices &#8212; Communications numériques</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/jbvinc.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/.ipynb_checkpoints/jbvinc-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/eyediag.js"></script>
+    <script src="../_static/js/spetsi.js"></script>
+    <script src="../_static/js/huffman.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Travaux pratiques" href="tp.html" />
+    <link rel="prev" title="Diagramme de l’œil" href="diagramme-oeil.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Communications numériques</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface.html">
+   Avant-propos
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Généralités
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chaine.html">
+   Chaîne de communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chiffrement.html">
+   Chiffrement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/multiplexage.html">
+   Multiplexage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/canal.html">
+   Canal de transmission
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Modulation &amp; démodulation
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mod-bb.html">
+   Modulation en bande de base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mod-porteuse.html">
+   Modulation sur porteuse
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demod-canal-bruit%C3%A9.html">
+   Démodulation en présence de bruit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demod-bande-limit%C3%A9e.html">
+   Démodulation dans le cas d’un canal à bande limitée
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="diagramme-oeil.html">
+   Diagramme de l’œil
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Excercices
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="tp.html">
+   Travaux pratiques
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpc.html">
+     Correction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Codage source
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/information.html">
+   Mesure de l’information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/codage.html">
+   Codage d’une source sans mémoire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../codage-source/tp.html">
+   Travaux pratiques
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codage-source/tpc.html">
+     Correction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Codage canal
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/bloc.html">
+   Codes en bloc
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/conv.html">
+   Codes convolutifs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../codage-canal/tp.html">
+   Travaux pratiques
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../codage-canal/tpc.html">
+     Correction
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://moodle3.unistra.fr/course/view.php?id=22048">
+   Moodle
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../refs.html">
+   Références
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../licence.html">
+   Licence
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/modulation/td.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-1">
+   Exercice 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-2">
+   Exercice 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-3">
+   Exercice 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-4">
+   Exercice 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-5">
+   Exercice 5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-6">
+   Exercice 6
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-7">
+   Exercice 7
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="excercices">
+<h1>Excercices<a class="headerlink" href="#excercices" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercice-1">
+<h2>Exercice 1<a class="headerlink" href="#exercice-1" title="Permalink to this headline">¶</a></h2>
+<p>L’<a class="reference external" href="https://en.wikipedia.org/w/index.php?title=List_of_ITU-T_V-series_recommendations&amp;oldid=658869531">article Wikipédia</a>
+sur les recommandations de transfert de données sur le réseau téléphonique présente la norme V.32
+(utilisée par les modems dans les années 1980 et 1990) ainsi :</p>
+<blockquote>
+<div><p>V.32 is an ITU-T recommendation for a modem operating as full-duplex on a 4-wire circuit,
+or half-duplex on a two-wire circuit, allowing bidirectional data transfer at either 9.6 kbit/s or 4.8 kbit/s
+at a symbol rate of 2,400 baud.</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Quelle est la rapidité de modulation ?</p></li>
+<li><p>Quel est le débit binaire ?</p></li>
+<li><p>Quelle est la taille en bits des symboles émis ?</p></li>
+</ol>
+</div>
+<div class="section" id="exercice-2">
+<h2>Exercice 2<a class="headerlink" href="#exercice-2" title="Permalink to this headline">¶</a></h2>
+<p>Représentez la séquence binaire <code>01011</code> modulée en NRZ bipolaire, Manchester et AMI.</p>
+</div>
+<div class="section" id="exercice-3">
+<h2>Exercice 3<a class="headerlink" href="#exercice-3" title="Permalink to this headline">¶</a></h2>
+<p>Représentez les constellations des modulations suivantes :</p>
+<ul>
+<li><p>OOK (<em>on-off keying</em>) définie dans <a class="reference external" href="https://en.wikipedia.org/w/index.php?title=On-off_keying&amp;oldid=669950443">Wikipédia</a> par :</p>
+<blockquote>
+<div><p>On-off keying (OOK) denotes the simplest form of amplitude-shift keying (ASK) modulation
+that represents digital data as the presence or absence of a carrier wave.
+In its simplest form, the presence of a carrier for a specific duration represents a binary one,
+while its absence for the same duration represents a binary zero.</p>
+</div></blockquote>
+</li>
+<li><p>4-ASK ;</p></li>
+<li><p>2-PSK (appelée aussi BPSK pour <em>binary PSK</em>) ;</p></li>
+<li><p>8-QAM.</p></li>
+</ul>
+<!-- ## Exercice 
+%
+% \begin{questions}
+%   \item Quelle est le type de modulation dont la constellation est représentée ci-dessous~?
+%   \item En utilisant dans la mesure du possible un code de Gray,
+%   donnez les symboles associés à chaque point de la constellation.
+% \end{questions}
+% \begin{center}
+%   \psset{unit=5mm}
+%   \begin{pspicture}(-4,-4)(4,4)
+%     \psaxes[labels=none,linewidth=.5pt]{->}(0,0)(-3.999,-3.999)(3.999,3.999)
+%     \qdisk(-3,+1){1.5pt}
+%     \qdisk(-1,+3){1.5pt}
+%     \qdisk(-3,-3){1.5pt}
+%     \qdisk(-1,-1){1.5pt}
+%     \qdisk(+1,+1){1.5pt}
+%     \qdisk(+3,+3){1.5pt}
+%     \qdisk(+1,-3){1.5pt}
+%     \qdisk(+3,-1){1.5pt}
+%   \end{pspicture}
+% \end{center}
+ -->
+</div>
+<div class="section" id="exercice-4">
+<h2>Exercice 4<a class="headerlink" href="#exercice-4" title="Permalink to this headline">¶</a></h2>
+<p>Les quatre modulations linéaires ci-dessous représentent la séquence binaire <code>011001011100</code>.</p>
+<ol class="simple">
+<li><p>Identifiez les modulations en bande de base et les modulations sur porteuse.</p></li>
+<li><p>Déterminez les valeurs des symboles et les formes d’onde de ces modulations.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/exo-modulation.svg"><img alt="../_images/exo-modulation.svg" class="align-center" src="../_images/exo-modulation.svg" width="100%" /></a>
+</div>
+<div class="section" id="exercice-5">
+<h2>Exercice 5<a class="headerlink" href="#exercice-5" title="Permalink to this headline">¶</a></h2>
+<!-- Joindot, p. 3.9 -->
+<p>La transmission d’un message binaire à un débit <span class="math notranslate nohighlight">\(D=600\)</span> Mbits/s est effectuée en utilisant huit signaux
+<span class="math notranslate nohighlight">\(\{\pm s(t), \pm 3s(t), \pm 5s(t), \pm 7s(t)\}\)</span> où <span class="math notranslate nohighlight">\(s(t)\)</span> est un signal de durée <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<ol class="simple">
+<li><p>Quelle est la rapidité de la modulation ?</p></li>
+<li><p>Est-ce une modulation en bande de base ou sur porteuse ?</p></li>
+</ol>
+<!-- ## Exercice 
+%
+% \begin{questions}
+%   \item Représentez la forme d'onde $h_1(t)$~:
+%   \begin{equation*}
+%     h_1(t) =
+%     \begin{cases}
+%       1       &\text{si $t\in[0,\,T[$}, \\
+%       0       &\text{sinon}.
+%     \end{cases}
+%   \end{equation*}
+%   \item Quelle est la réponse impulsionnelle du filtre de réception associé à $h_1(t)$~?
+%   \item Calculez le signal en sortie du filtre lorsque l'entrée est $h_1(t)$.
+%   \item Mêmes questions pour la forme d'onde
+%   \begin{equation*}
+%     h_2(t) =
+%     \begin{cases}
+%       1       &\text{si $t\in[0,\,T/2[$}, \\
+%       0       &\text{sinon}.
+%     \end{cases}
+%   \end{equation*}
+% \end{questions} -->
+</div>
+<div class="section" id="exercice-6">
+<h2>Exercice 6<a class="headerlink" href="#exercice-6" title="Permalink to this headline">¶</a></h2>
+<!-- Joindot, ex 3.9 -->
+<p>Un message binaire est transmis avec une rapidité de modulation <span class="math notranslate nohighlight">\(R = 300\)</span> Bd.</p>
+<ol class="simple">
+<li><p>Y a-t-il des interférences entre symboles si le canal a une fréquence de coupure de <span class="math notranslate nohighlight">\(100\)</span> Hz ? <!-- (oui) --></p></li>
+<li><p>Y a-t-il des interférences entre symboles si le canal a une fréquence de coupure de <span class="math notranslate nohighlight">\(200\)</span> Hz ? <!-- (on ne sait pas) --></p></li>
+</ol>
+</div>
+<div class="section" id="exercice-7">
+<h2>Exercice 7<a class="headerlink" href="#exercice-7" title="Permalink to this headline">¶</a></h2>
+<p>Déterminez, à partir des diagrammes de l’œil ci-dessous :</p>
+<ol class="simple">
+<li><p>le nombre de symboles du message ;</p></li>
+<li><p>le meilleur instant d’échantillonnage ;</p></li>
+<li><p>la meilleure valeur de seuil ;</p></li>
+<li><p>s’il y a des IES ;</p></li>
+<li><p>s’il y a du bruit.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/TEMP-exodiagoeil1.png"><img alt="../_images/TEMP-exodiagoeil1.png" src="../_images/TEMP-exodiagoeil1.png" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="../_images/TEMP-exodiagoeil2.png"><img alt="../_images/TEMP-exodiagoeil2.png" src="../_images/TEMP-exodiagoeil2.png" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="../_images/TEMP-exodiagoeil3.png"><img alt="../_images/TEMP-exodiagoeil3.png" src="../_images/TEMP-exodiagoeil3.png" style="width: 24%;" /></a>
+<a class="reference internal image-reference" href="../_images/TEMP-exodiagoeil4.png"><img alt="../_images/TEMP-exodiagoeil4.png" src="../_images/TEMP-exodiagoeil4.png" style="width: 24%;" /></a>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./modulation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="diagramme-oeil.html" title="previous page">Diagramme de l’œil</a>
+    <a class='right-next' id="next-link" href="tp.html" title="next page">Travaux pratiques</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Vincent Mazet (Université de Strasbourg)<br/>
+        
+            &copy; Copyright 2020-2021.<br/>
+          <div class="extra_footer">
+            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2020&ndash;2021 &mdash; <a href="licence.html">CC BY-NC 4.0</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

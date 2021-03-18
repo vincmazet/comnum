@@ -1,0 +1,139 @@
+/* Feuille de style perso VM */
+
+
+/* Style général */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+
+@font-face {
+  font-family: "Source Sans Pro SemiBold";
+/*  src: url("fonts/SourceSansPro-SemiBold.ttf"); */
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+/*   src: url("fonts/SourceSansPro-Regular.ttf"); */
+}
+
+body {
+    font-family: "Source Sans Pro";
+    font-size: 16px
+}
+h1, h2, h3, h4, h5, h6 {font-family: "Source Sans Pro SemiBold"}
+h1 {font-size: 2.5em}
+h2 {font-size: 1.5em}
+h3 {font-size: 1.1em}
+
+span.pre {
+  background-color: #eee;
+  padding: 1px 5px;
+  border: 0;
+  color: #000;
+  font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-size: inherit;
+  line-height: 1.3077
+}
+
+
+/* Cadre exemple */
+
+.exemple {
+  background-color: #F7F9FA;
+  padding: 1em;
+  border-left: 2px #c6c9cc solid;
+  margin: 1em 0;
+}
+
+.exemple::before {
+  content: "Exemple";
+  font-weight: bold;
+  color: #9c9ea1;
+}
+
+/* Hack pour faire disparaître les boutons GitHub et Download */
+
+div.dropdown-buttons-trigger {
+    /*display: none;*/
+}
+
+
+/* Hack pour faire disparaître le footer (et mettre le mien à la place) */
+
+.footer p {
+    display: none;
+}
+
+
+/* Style pour l'impression */
+
+@media print {
+  body {
+    font-family: Times;
+    margin: 2cm
+  }
+}
+
+/* Animations */
+
+.spetsi {
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Centrer les images par défaut */
+
+img.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* {toggle} */
+
+@media (min-width: 768px) {
+    button.toggle-button.toggle-button-hidden:before {
+        content: "Afficher";
+        left: -5em;
+    }
+}
+
+/* Tableaux */
+
+.table {
+    /* centrer les tableaux */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: fit-content !important;
+}
+
+.table thead th {
+    /* Lignes du tableau */
+    border-top: 2px solid #7c7e80;
+    border-bottom: 2px solid #7c7e80;
+}
+
+.table tbody tr {
+    /* Lignes du tableau */
+    border-top: 1px solid #7c7e80;
+}
+
+.table {
+    border-bottom: 2px solid #7c7e80;
+}
+
+.table th p, .table tr p  {
+    /* réduire l'interligne */
+    margin-top: -.5rem;
+    margin-bottom: -.5rem;
+}
+
+/* Séquence binaire */
+
+code {
+    color: inherit;
+    letter-spacing: .1rem;
+}
