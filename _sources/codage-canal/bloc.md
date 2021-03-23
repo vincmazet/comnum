@@ -39,7 +39,7 @@ $$
 
 ```{exemple}
 Le code à répétition $C(3,1)$ est tel que $n=3$ et $k=1$.
-Le rendement est donc de $1/3$.
+Le rendement est donc de $1/3$. 
 
 | $m$ | $c$ |
 | --- | --- |
