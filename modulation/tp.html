@@ -347,6 +347,30 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#etude-de-quelques-modulations-numeriques">
+   Étude de quelques modulations numériques
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transmission-en-bande-de-base-sur-un-canal-ideal">
+   Transmission en bande de base sur un canal idéal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transmission-en-bande-de-base-sur-un-canal-a-bande-limitee">
+   Transmission en bande de base sur un canal à bande limitée
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -356,9 +380,162 @@
                 
   <div class="section" id="travaux-pratiques">
 <h1>Travaux pratiques<a class="headerlink" href="#travaux-pratiques" title="Permalink to this headline">¶</a></h1>
-<p>There are many ways to write content in Jupyter Book. This short section
-covers a few tips for how to do so.</p>
+<p>Remarque préliminaire :
+dans la réalité, les signaux qui circulent sur le canal sont analogiques car le canal de communication est physique.
+Comme la chaîne de communications est ici simulée, l’ordinateur traitera toujours des signaux numériques !
+Il sera donc parfois nécessaire de fixer une fréquence d’échantillonnage qui n’a aucune interprétation physique…</p>
+<p>Importation du module <span class="xref myst">comnum</span>
+Utilisez la syntaxe</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">fonction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>pour obtenir l’aide de la fonction <code class="docutils literal notranslate"><span class="pre">fonction</span></code>.</p>
+<div class="section" id="etude-de-quelques-modulations-numeriques">
+<h2>Étude de quelques modulations numériques<a class="headerlink" href="#etude-de-quelques-modulations-numeriques" title="Permalink to this headline">¶</a></h2>
+<p>L’objectif de cet exercice est d’implémenter et de comparer quelques modulations numériques :</p>
+<ul class="simple">
+<li><p>NRZ (<em>non-return-to-zero</em>) binaire ;</p></li>
+<li><p>Manchester ;</p></li>
+<li><p>AMI (<em>bipolar alternate mark inversion</em>) ;</p></li>
+<li><p>BPSK (<em>binary phase-shift keying</em>) ;</p></li>
+<li><p>16-QAM (<em>quadrature amplitude modulation</em>).</p></li>
+</ul>
+<ol class="simple">
+<li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">randmary</span></code>)
+et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">bin2mary</span></code>) :
+vous disposez donc du même message disponible sous deux représentations différentes.
+Affichez-les avec <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p></li>
+<li><p>Appliquez les modulations <code class="docutils literal notranslate"><span class="pre">mod_a</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_b</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_c</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_d</span></code> sur la séquence binaire,
+et <code class="docutils literal notranslate"><span class="pre">mod_e</span></code> sur la séquence hexadécimale.
+Identifiez chacune de ces modulations.</p></li>
+<li><p>L’analyse spectrale des modulations peut être effectuée à l’aide de la densité spectrale de puissance,
+qui est le carré du module de la transformée de Fourier.
+En choisissant un message suffisamment long (<span class="math notranslate nohighlight">\(N\)</span> grand),
+représentez la densité spectrale de puissance de chaque modulation en échelle décimale
+en utilisant la méthode du périodogramme (<code class="docutils literal notranslate"><span class="pre">periodogram</span></code>, les deuxième et troisième arguments de la fonction
+peuvent être laissé libres, le quatrième sera égal à <span class="math notranslate nohighlight">\(100/T\)</span> où <span class="math notranslate nohighlight">\(T\)</span> est la durée d’un bit).</p></li>
+<li><p>Identifiez les modulations en bande de base et les modulations sur porteuse.</p></li>
+<li><p>Comparez les codes en termes de simplicité de mise en œuvre, de largeur de bande,
+de téléalimentation possible, de robustesse au bruit,
+d’inversion de polarité
+et de détection d’interruption de la transmission.</p></li>
+</ol>
+  <!-- de possibilité de synchronisation -->
+<ol>
+<li><p>D’après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes~?</p>
+<ul class="simple">
+<li><p>bus informatique (I2C, SATA…) ou de terrain (ASI, Modbus…) ;</p></li>
+</ul>
+<!--
+I2C : NRZ; PCI : ?; SATA : 8b/10b encoding, ASI : Manchester, Modbus : NRZ ?, KNX : sorte de Manchester,
+HART : FSK binaire superposé au 4-20 mA)
+-->
+<ul class="simple">
+<li><p>liaison Wi-Fi~; <!-- Porteuse (QAM, PSK, ou autre suivant la version de la norme) --></p></li>
+<li><p>périphérique USB et ordinateur ; <!-- Bande de base (NRZI) --></p></li>
+<li><p>téléphone mobile et antenne relais. <!-- Porteuse (GSM = 900 MHz et 1800 MHz, avec variantes) --></p></li>
+</ul>
+</li>
+</ol>
+<!-- sonde spatiale et Terre~;                                             % Porteuse -->
+<!-- communication par laser à l'air libre entre deux bâtiments~;          % OOK ? -->
+<!-- manette de jeu sans fil (fréquences radio) et console de jeu~; % Porteuse -->
+<!-- téléphone fixe d'un abonné et commutateur (liaison classique France Telecom)~; % Bande de base (BHD3 est utilisé pour les liaisons MIC à 2Mbps) -->
+<!-- téléphone fixe d'un abonné et serveur central (liaison par \og{}box\fg{} ADSL)~; % Porteuse (VoIP) -->
+<!-- télécommande infrarouge et téléviseur~; % Bande de base (Manchester, 950 nm) -->
+<!--
+ - largeur de sa plage de fréquences : la plus étroite possible
+  - téléalimentation : peu de puissance aux faibles fréquences, aucune à la fréquence nulle
+  - codage de l'horloge : fréquence suffisante des transitions + synchronisation de l'horloge du récepteur sur le signal reçu
+  - résistance au bruit : espacement des niveaux
+  - complexité du codage : coût et vitesse de codage
+  - dépendance à la polarité : facilité d'installation (Manchester?, AMI, NRZI)
+  - équilibrage :
+      mesure approximative de l'influence du codage sur des symboles successifs
+      Running Digital Sequence : RDS({ak}) = \sum_k ak .
+      DRDS({ak}) = max(abs{RDS({aj}) tel que {aj} sous-suite valide de {ak}}).
+  - les transmissions en bande de base ont le grand intérêt d'être simples à mettre en place
+    et sont donc utilisées dans de nombreux domaines où les communications se font sur de courtes distances.
+ -->
+</div>
+<div class="section" id="transmission-en-bande-de-base-sur-un-canal-ideal">
+<h2>Transmission en bande de base sur un canal idéal<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-ideal" title="Permalink to this headline">¶</a></h2>
+<p>Le principe d’une transmission en bande de base est représenté ci-dessous :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">includegraphics</span><span class="p">{</span><span class="n">transmission</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Un canal est dit idéal si sa largeur de bande est infinie :
+sa réponse impulsionnelle est alors <span class="math notranslate nohighlight">\(g(t)=A\,\delta(t-\tau)\)</span>
+où <span class="math notranslate nohighlight">\(A\)</span> et <span class="math notranslate nohighlight">\(\tau\)</span> sont l’atténuation et le retard du signal reçu
+(sans perdre en généralité, on pourra prendre <span class="math notranslate nohighlight">\(A=1\)</span> et <span class="math notranslate nohighlight">\(\tau=0\)</span>).</p>
+<p>Un filtre adapté permet de détecter les formes d’onde <span class="math notranslate nohighlight">\(h(t)\)</span> dans le signal bruité <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
+<!-- La détection des formes d'onde $h(t)$ dans le signal bruité $y(t)$, -->
+<!-- est effectuée à l'aide d'un filtre adapté de réponse impulsionnelle $r(t) = h(-t)$. -->
+<ul>
+<li><p>Donnez l’expression du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> en fonction du signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> et des caractéristiques du canal.</p>
+<!-- y(t) = A\,x(t-\tau) + b(t) -->
+</li>
+<li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">channel</span></code>).
+On rappelle qu’on considère le canal est idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">Inf</span></code>).
+Observez le signal en entrée du détecteur pour différents niveaux de bruit.</p>
+<!--
+ Dans la fonction channel.m, je préfère définir l'écart-type du bruit plutôt que le RSB, car lors de l'émission
+ d'un signal nul, je ne conserve pas la même puissance du bruit. De plus, on peut toujours calculer le RSB à partir
+ de l'écart-type défini.
+-->
+</li>
+<li><p>Dans un premier temps, on ne tient pas compte du filtre de réception : <span class="math notranslate nohighlight">\(r(t) = \delta(t)\)</span>.
+Échantillonnez (<code class="docutils literal notranslate"><span class="pre">sampling</span></code>) le signal <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span> et appliquez un seuil pour retrouver, tous les <span class="math notranslate nohighlight">\(T\)</span>,
+les symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span> émis.</p>
+<!--
+  En prenant un seuil égal à la moyenne des niveaux hauts et bas du signal émis,
+  cela revient à faire une décision au sens du maximum de vraisemblance.
+-->
+</li>
+<li><p>Dans un deuxième temps, appliquez le filtre de réception.
+Le filtre adapté peut s’implémenter à l’aide d’une corrélation,
+mais on peut montrer qu’il peut également s’écrire comme une convolution
+en utilisant <code class="docutils literal notranslate"><span class="pre">conv</span></code> (précisez le troisième argument <code class="docutils literal notranslate"><span class="pre">'same'</span></code> pour conserver des signaux de même taille).
+La réponse impulsionnelle du filtre adapté peut être obtenue à l’aide de <code class="docutils literal notranslate"><span class="pre">mod\_d</span></code>.
+Effectuez le seuillage et l’échantillonnage comme dans la question précédente.</p></li>
+<li><p>Calculez les taux d’erreurs obtenus avec et sans filtre de détection.
+Comment varie la qualité de la détection en fonction du niveau de bruit ?</p>
+<!--
+  En Matlab, il existe pdist, mais son utilisation est moins évidente (il faut définir une matrice dont les deux
+  colonnes correspondent aux signaux), et cela n'oblige pas les étudiants à comprendre cette distance en la recodant.
+-->
+</li>
+</ul>
+</div>
+<div class="section" id="transmission-en-bande-de-base-sur-un-canal-a-bande-limitee">
+<h2>Transmission en bande de base sur un canal à bande limitée<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-a-bande-limitee" title="Permalink to this headline">¶</a></h2>
+<p>Cette fois, on suppose le canal sans bruit mais à bande limitée.
+On peut alors être en présence d’IES lorsque les valeurs du signal <span class="math notranslate nohighlight">\(z(t)\)</span> aux instants <span class="math notranslate nohighlight">\(T\)</span>
+dépendent de plusieurs symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span>.
+La détection est alors perturbée même s’il n’y a pas de bruit.</p>
+<ul class="simple">
+<li><p>Simulez l’émission d’un message codé en NRZ binaire.
+Observez le signal en entrée du récepteur pour différentes fréquences de coupure du canal.</p></li>
+<li><p>Le diagramme de l’œil correspond aux différentes traces d’un signal affichées sur une période.
+Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><span class="pre">eyediag</span></code>) de <span class="math notranslate nohighlight">\(y(t)\)</span> : que se passe-t-il lorsque la bande passante du canal varie ?</p></li>
+</ul>
+<!--
+  Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
+  Comment se traduit-elle sur la transformée de Fourier de $y(t)$~? % critère de Nyquist
+  En déduire pourquoi une forme d'onde rectangulaire n'est pas adaptée
+  lorsque la bande passante du canal est trop faible.
+-->
+<ul class="simple">
+<li><p>Lorsque la bande passante du canal est trop faible, la forme d’onde rectangulaire n’est pas adaptée.
+Il est préférable d’utiliser une forme d’onde en racine de cosinus surélevé (\vcmd{modnrzrrc}).
+Simulez la transmission du message avec cette nouvelle forme d’onde,
+notamment en observant le diagramme de l’\oe{}il pour plusieurs valeurs de~<span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p>Simulez l’opération de détection en comparant les deux formes d’onde.</p></li>
+</ul>
+<!-- Répartition optimale du filtrage entre l'émission et la réception ? -->
+<!-- Probabilité d'erreur minimale sur un canal à bande limitée ? -->
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 

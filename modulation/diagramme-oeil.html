@@ -358,7 +358,22 @@
 <h1>Diagramme de l’œil<a class="headerlink" href="#diagramme-de-l-oeil" title="Permalink to this headline">¶</a></h1>
 <p>Le diagramme de l’œil est un graphe sur <span class="math notranslate nohighlight">\(\left[-\frac{T}{2}, \frac{T}{2}\right]\)</span>
 qui représente la superposition de plusieurs traces du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
-<p><strong>FIGURE</strong></p>
+<div class="figure align-default" id="f-diagoeil">
+<a class="reference internal image-reference" href="../_images/diagoeil.svg"><img alt="../_images/diagoeil.svg" src="../_images/diagoeil.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Exemple de diagramme de l’œil, ici dans le cas d’un canal non idéal et bruité.</span><a class="headerlink" href="#f-diagoeil" title="Permalink to this image">¶</a></p>
+</div>
+<p>Le diagramme de l’œil permet de voir plusieurs choses.</p>
+<ul class="simple">
+<li><p>L’ouverture de l’œil représente l’intervalle de temps où
+peut se faire l’échantillonnage du signal lors de la démodulation.
+Il vaut mieux que l’œil soit le plus ouvert.</p></li>
+<li><p>La hauteur de l’œil indique la quantité de bruit qui est tolérée pour que la distinction entre les niveaux soit possible.
+Si le rapport signal-à-bruit diminue (ce qui signifie que le bruit augmente), alors l’œil aura tendance à se fermer
+et alors on ne pourra plus distinguer les niveaux représentant les symboles.</p></li>
+<li><p>Les distortions sont dues au bruit mais aussi au filtrage du signal par le canal.</p></li>
+<li><p>L’instant où l’œil est le plus ouvert est le meilleur choix pour effectuer l’échantillonnage,
+puisque c’est à cet instant que les deux niveaux sont le plus éloignés.</p></li>
+</ul>
 <script src="_static/js/eyediag.js"></script>
 <div id="eyediag" class="spetsi"></div>
 <p><a class="btn btn-light" href="td.html#exercice-7" role="button">Exercice 7</a></p>

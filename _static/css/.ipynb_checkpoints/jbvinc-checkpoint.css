@@ -139,6 +139,5 @@ code {
 }
 
 code .pre {
-    /* annuler la valeur letter-spacing pour les commandes `x` */
     letter-spacing: 0;
 }

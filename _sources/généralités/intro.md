@@ -36,38 +36,26 @@ alors on dit que la communication est **M-aire** (ou **binaire** si $M=2$).
 
 La popularité croissante du numérique dans les communications est due à plusieurs facteurs.
 
-```{toggle}
+<!-- ```{toggle} -->
+
 * Le numérique permet le routage (décision du chemin que prennent les messages)
   et l'adressage (procédé de définition et la destination) dans un système multi-utilisateur
   (comme pour le courrier électronique).
-```
 
-```{toggle}
 * Des messages de natures différentes peuvent être transmis via le même canal
   (la fameuse offre _triple-play_ des box internet qui permettent d'acheminer du contenu web,
   des signaux de télévision ou de la voix pour le téléphone).
-```
 
-```{toggle}
 * Le chiffrement de données est plus simple et plus performant qu'en analogique.
-```
 
-```{toggle}
 * Le stockage et la lecture d'information sur un support physique (disque dur SSD par exemple)
   sont à la fois rapides et parfaits en comparaison à leur équivalent analogique (cassette par exemple).
-```
 
-```{toggle}
 * La reconstitution du message pendant le transfert pour limiter sa dégradation est possible
   (par exemple, le premier câble à fibre optique transatlantique [TAT-8](https://en.wikipedia.org/wiki/TAT-8)
   utilisait une centaine de répéteurs sous l'océan).
-```
 
-```{toggle}
 * Les circuits d'électronique numérique sont généralement plus fiables et moins coûteux que les circuits analogiques équivalents.
-```
 
-```{toggle}
 * Les caractéristiques des sytèmes de communication numérique peuvent facilement être mis à jour
   puisqu'il suffit de modifier le logiciel plutôt que le matériel.
-```

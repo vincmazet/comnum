@@ -22,7 +22,7 @@ Modèle simple d'un canal.
 ```
 
 
-Il existe plusieurs familles de canaux, avec leurs caractéristiques proches, qui sont listés ci-dessous.
+Il existe plusieurs familles de canaux, avec leurs caractéristiques propres, qui sont listés ci-dessous.
 
 
 ## Câble électrique
