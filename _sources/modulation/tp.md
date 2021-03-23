@@ -15,6 +15,10 @@ help(fonction)
 
 pour obtenir l'aide de la fonction `fonction`.
 
+https://github.com/vincmazet/comnum/blob/main/_static/comnum/README.md
+
+[ComNum](_static/comnum/README.md)
+
 
 ## Étude de quelques modulations numériques
 
