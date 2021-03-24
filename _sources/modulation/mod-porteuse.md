@@ -58,7 +58,7 @@ tous les symboles sont associés à une sinusoïde de même phase.
 
 Ainsi, si $\alpha_k$ varie et $\beta_k=0$, alors chaque symbole est codé par un cosinus.
 À l'inverse, si $\alpha_k=0$ et $\beta_k$ varie, alors chaque symbole est codé par un sinus.
-En fait, toute constellation dont les points sont alignés est une modulation ASK
+En fait, toute constellation dont les points sont alignés sur une droite passant par l'origine est une modulation ASK
 (cela se vérifie en utilisant les règles de trigonométrie).
 
 ````{div} exemple
@@ -143,8 +143,7 @@ Les symboles du message sont représentés par des sinusoïdes de fréquence dif
 
 ## Code de Gray
 
-Le code de Gray est un code binaire où seul un bit change d'un nombre à l'autre.
-Cela donne par exemple en 8-aire :
+Le code de Gray est un code binaire où seul un bit change d'un nombre à l'autre, par exemple :
 
 | Nombre | Code binaire classique | Code de Gray |
 | ------ | ---------------------- | ------------ |
