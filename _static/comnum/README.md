@@ -1,23 +1,34 @@
-# COMNUM - Module Python pour les communications numériques à Télécom Physique Strasbourg
+# COMNUM
 
-Ce programme est distribué sous licence CeCILL-B (www.cecill.info).
-Copyright Université de Strasbourg 2013-2021 (2021-03-23)
-Contributeur : vincent.mazet@unistra.fr
+Comnum est un module Python pour les TP de communications numériques à [Télécom Physique Strasbourg](http://www.telecom-physique.fr/).
 
+
+## Installation
+
+
+## Documentation
+
+
+### eyediag
 
 `eyediag(t, x, T, alpha=.5)`
 
-    Diagramme de l'oeil.
-    
-    Entrées :
-    t (array)      : temps
-    x (array)      : signal
-    T (scalar)     : durée d'un symbole
-    alpha (scalar) : transparence (0,5 par défaut)
-    
-    Sortie :
-    aucune
-    
+Diagramme de l'oeil.
+
+Entrées :
+> **t** : array
+>   temps
+> **x** (array)
+>   signal
+> **T** (scalar)
+>   durée d'un symbole
+> **alpha** (scalar)
+>   transparence (0,5 par défaut)
+
+Sortie :
+> aucune
+
+
 `randmary(N,p)`
     
     Génération d'une séquence M-aire.
@@ -133,3 +144,9 @@ Contributeur : vincent.mazet@unistra.fr
     t (array) : vecteur temps
     y (array) : signal modulé
 
+
+## Licence
+
+Ce programme est distribué sous licence CeCILL-B (www.cecill.info).
+Copyright Université de Strasbourg 2013-2021 (2021-03-23)
+Contributeur : vincent.mazet@unistra.fr
