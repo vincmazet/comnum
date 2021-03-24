@@ -29,9 +29,9 @@ La modulation 4-QAM est une modulation 4-aire dont le tableau de correspondance 
 
 | $m_k$ | $\alpha_k$ | $\beta_k$ | $A_k=\alpha_k+j\beta_k$ |
 | ----- | ---------- | --------- | ----------------------- |
-| $0$   | $-1$       | $+1$      | $-1+j$                  |
-| $1$   | $+1$       | $+1$      | $1+j$                   |
-| $2$   | $+1$       | $-1$      | $1-j$                   |
+| $0$   | $+1$       | $+1$      | $-1+j$                  |
+| $1$   | $-1$       | $+1$      | $1+j$                   |
+| $2$   | $-1$       | $-1$      | $1-j$                   |
 | $3$   | $+1$       | $-1$      | $-1-j$                  |
 
 La constellation associée est la suivante :
