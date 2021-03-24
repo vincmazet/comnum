@@ -18,6 +18,7 @@ Diagramme de l'oeil.
 Entrées :
 > **t** : array
 >   temps
+>   
 > **x** (array)
 >   signal
 > **T** (scalar)
