@@ -14,7 +14,7 @@ comme pour un {ref}`canal idéal <F:demodulation-bruit-bb>`.
 Le signal reçu et filtré est noté $z(t)$ :
 
 $$
-y(t) = (x*g*r)(t) = \sum_{k=-\infty}^{+\infty} \alpha_k (\underbrace{h*g*r}_{u})(t-kT).
+z(t) = (x*g*r)(t) = \sum_{k=-\infty}^{+\infty} \alpha_k (\underbrace{h*g*r}_{u})(t-kT).
 $$
 
 
@@ -71,7 +71,7 @@ est constant (membre de droite), alors on est assuré qu'il n'y a pas d'IES.
 
 ## Choix des filtres pour éviter les IES
 
-Un signal simple qui répond au critère de Nyquist est le sinus cardinal ({numref}`F:sinc`) $u(t) = \sin(t/T)$ dont le spectre est :
+Un signal simple qui répond au critère de Nyquist est le sinus cardinal ({numref}`F:sinc`) $u(t) = \mathrm{sinc}(t/T)$ dont le spectre est :
 
 $$
 U(f) =

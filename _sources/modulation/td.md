@@ -109,17 +109,18 @@ $\{\pm s(t), \pm 3s(t), \pm 5s(t), \pm 7s(t)\}$ où $s(t)$ est un signal de dur�
 % \end{questions} -->
 
 
-## Exercice 6
+<!-- ## Exercice 6
 
-<!-- Joindot, ex 3.9 -->
+!-- Joindot, ex 3.9 --
 
 Un message binaire est transmis avec une rapidité de modulation $R = 300$ Bd.
 
-1. Y a-t-il des interférences entre symboles si le canal a une fréquence de coupure de $100$ Hz ? <!-- (oui) -->
-1. Y a-t-il des interférences entre symboles si le canal a une fréquence de coupure de $200$ Hz ? <!-- (on ne sait pas) -->
+1. Y a-t-il des interférences entre symboles si le canal a une fréquence de coupure de $100$ Hz ? !-- (oui) --
+1. Y a-t-il des interférences entre symboles si le canal a une fréquence de coupure de $200$ Hz ? !-- (on ne sait pas) --
+-->
 
 
-## Exercice 7
+## Exercice 6
 
 Déterminez, à partir des diagrammes de l'œil ci-dessous :
 

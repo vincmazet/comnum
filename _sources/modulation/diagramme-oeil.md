@@ -29,4 +29,4 @@ Le diagramme de l'œil permet de voir plusieurs choses.
 <script src="_static/js/eyediag.js"></script>
 <div id="eyediag" class="spetsi"></div>
 
-<a class="btn btn-light" href="td.html#exercice-7" role="button">Exercice 7</a>
+<a class="btn btn-light" href="td.html#exercice-6" role="button">Exercice 6</a>

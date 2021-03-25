@@ -392,7 +392,7 @@ comme pour un <a class="reference internal" href="demod-canal-bruit%C3%A9.html#f
 Le signal reçu et filtré est noté <span class="math notranslate nohighlight">\(z(t)\)</span> :</p>
 <div class="math notranslate nohighlight">
 \[
-y(t) = (x*g*r)(t) = \sum_{k=-\infty}^{+\infty} \alpha_k (\underbrace{h*g*r}_{u})(t-kT).
+z(t) = (x*g*r)(t) = \sum_{k=-\infty}^{+\infty} \alpha_k (\underbrace{h*g*r}_{u})(t-kT).
 \]</div>
 <div class="section" id="interferences-entre-symboles">
 <h2>Interférences entre symboles<a class="headerlink" href="#interferences-entre-symboles" title="Permalink to this headline">¶</a></h2>
@@ -438,7 +438,7 @@ est constant (membre de droite), alors on est assuré qu’il n’y a pas d’IE
 </div>
 <div class="section" id="choix-des-filtres-pour-eviter-les-ies">
 <h2>Choix des filtres pour éviter les IES<a class="headerlink" href="#choix-des-filtres-pour-eviter-les-ies" title="Permalink to this headline">¶</a></h2>
-<p>Un signal simple qui répond au critère de Nyquist est le sinus cardinal (<a class="reference internal" href="#f-sinc"><span class="std std-numref">Fig. 12</span></a>) <span class="math notranslate nohighlight">\(u(t) = \sin(t/T)\)</span> dont le spectre est :</p>
+<p>Un signal simple qui répond au critère de Nyquist est le sinus cardinal (<a class="reference internal" href="#f-sinc"><span class="std std-numref">Fig. 12</span></a>) <span class="math notranslate nohighlight">\(u(t) = \mathrm{sinc}(t/T)\)</span> dont le spectre est :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 U(f) =
