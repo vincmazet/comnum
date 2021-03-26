@@ -7,7 +7,7 @@ La transmission est souvent perturbée par deux phénomènes qui limitent la qua
   électromagnétique (dû aux rayons cosmiques) ou des interférences avec d'autres signaux (phénomène de diaphonie) ;
 * des distorsions dues aux limitations physiques du canal ou aux imperfections des équipements :
   - atténuation du signal,
-  - distortion d'amplitude et de phase,
+  - distorsion d'amplitude et de phase,
   - échos (trajets multiples),
   - largeur de bande du canal limité.
 
@@ -32,12 +32,12 @@ On distingue notamment :
 * le câble simple où les deux fils sont côte à côte,
 * la paire torsadée ({numref}`F:paire-torsadee`) où les deux fils sont enroulés l'un sur l'autre : on limite ainsi les interférences et la diaphonie,
   et on utilise ce type de canal pour des communications sur de courtes distances.
-  <!-- BP : plusieurs centaines de kilohertz / distortion amplitude phase diaphonie -->
+  <!-- BP : plusieurs centaines de kilohertz / distorsion amplitude phase diaphonie -->
 * le câble coaxial ({numref}`F:cable-coaxial`) où l'un des deux fils est en fait un treillis qui entoure l'autre fil.
   Ainsi, les interférences avec d'autres dispositifs sont extrêmement réduites.
   Le câble coaxial est utilisé dans certains réseaux Ethernet ou pour transmettre un signal vidéo sur quelques dizaines de mètres.
   Les premiers câbles sous-marin étaient co-axiaux, mais ils sont maintenant largement dépassés par les câbles à fibre optique.
-  <!-- bande passante plusieurs mégahertz distortion amplitude phase application connexion entre centraux téléphoniques  -->
+  <!-- bande passante plusieurs mégahertz distorsion amplitude phase application connexion entre centraux téléphoniques  -->
 
 ```{figure} https://upload.wikimedia.org/wikipedia/commons/f/f3/Futp_cable.jpg
 ---

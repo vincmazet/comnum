@@ -21,7 +21,7 @@ Le diagramme de l'œil permet de voir plusieurs choses.
   Si le rapport signal-à-bruit diminue (ce qui signifie que le bruit augmente), alors l'œil aura tendance à se fermer
   et alors on ne pourra plus distinguer les niveaux représentant les symboles.
   
-* Les distortions sont dues au bruit mais aussi au filtrage du signal par le canal.
+* Les distorsions sont dues au bruit mais aussi au filtrage du signal par le canal.
 
 * L'instant où l'œil est le plus ouvert est le meilleur choix pour effectuer l'échantillonnage,
   puisque c'est à cet instant que les deux niveaux sont le plus éloignés.
