@@ -3,7 +3,7 @@
 Un code source associe à chaque symbole $x_m$ de la source un « mot » formé de $l_m$ symboles issus de l'alphabet du canal.
 Par exemple, le symbole `A` d'une source texte pourra être codé par le mot `01000001` formé de 8 symboles du canal (en l'occurrence, des bits).
 
-On définit la **longueur moyenne d'un code** par la moyenne des longueur de chaque symbole de la source, pondérés par leur probabilité :
+On définit la **longueur moyenne d'un code** par la moyenne des longueurs de chaque symbole de la source, pondérés par leur probabilité :
 
 $$
 L = \sum_{m=1}^M p_m \cdot l_m.
@@ -46,12 +46,12 @@ Malheureusement, ce théorème ne dit pas comment construire un tel code...
 <a class="btn btn-light" href="td.html#exercice-5" role="button">Exercice 5</a>
 
 
-## Codage de Huffman (1952)
+## Codage de Huffman
 
-Le codage de Huffman fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
+Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
 Il peut s'appliquer quel que soit la taille $M$ de l'alphabet du canal.
 
-La procédure construire un code de Huffman dans le cas binaire est la suivante :
+La procédure pour construire un code de Huffman dans le cas binaire est la suivante :
 
 1. ordonner les symboles dans l'ordre des probabilités décroissantes :
 

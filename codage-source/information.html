@@ -47,8 +47,8 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/eyediag.js"></script>
-    <script src="../_static/js/spetsi.js"></script>
     <script src="../_static/js/huffman.js"></script>
+    <script src="../_static/js/spetsi.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Codage d’une source sans mémoire" href="codage.html" />
-    <link rel="prev" title="Correction" href="../modulation/tpc.html" />
+    <link rel="prev" title="Travaux pratiques" href="../modulation/tp.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -171,19 +171,10 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulation/tpc.html">
-     Correction
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -207,19 +198,10 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
   <a class="reference internal" href="tp.html">
    Travaux pratiques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="tpc.html">
-     Correction
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -248,19 +230,10 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
   <a class="reference internal" href="../codage-canal/tp.html">
    Travaux pratiques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../codage-canal/tpc.html">
-     Correction
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -443,29 +416,32 @@ En suivant le principe évoqué ci-avant, l’auto-information devrait donc resp
 <li><p>l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> est nulle si <span class="math notranslate nohighlight">\(p_m=1\)</span>.
 En effet, on est dans ce cas en présence d’une source déterministe qui n’émet que le symbole <span class="math notranslate nohighlight">\(x_m\)</span>.
 Comme on l’a vu précédemment, ce message n’a pas besoin d’être envoyé : il ne contient pas d’information.</p></li>
-<li><p>À l’inverse, l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> tend vers l’infini nulle si <span class="math notranslate nohighlight">\(p_m\)</span> tend vers zéro,
+<li><p>À l’inverse, l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> tend vers l’infini si <span class="math notranslate nohighlight">\(p_m\)</span> tend vers zéro,
 car plus un symbole est rare, plus il est inattendu et donc porte beaucoup d’information.</p></li>
 </ul>
 <p>Par ailleurs, il serait logique que l’information portée par un message constitué des deux symboles <span class="math notranslate nohighlight">\(x_m\)</span> et <span class="math notranslate nohighlight">\(x_n\)</span>
-soit la somme des auto-information des deux symboles : <span class="math notranslate nohighlight">\(I(x_mx_n) = I(x_m) + I(x_n)\)</span>.</p>
+soit la somme des auto-informations des deux symboles : <span class="math notranslate nohighlight">\(I(x_mx_n) = I(x_m) + I(x_n)\)</span>.</p>
 <p>Ainsi, la définition retenue pour l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> est :</p>
 <div class="math notranslate nohighlight">
 \[
-I(x_m) = - \log_2(p_m).
+I(x_m) = - \log_2(p_m)
 \]</div>
-<p>L’auto-information s’exprime en shannon (abbréviation : Sh),
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>On rappelle que :</p>
+<div class="math notranslate nohighlight">
+\[
+\log_2 x = \frac{\log x}{\log 2} = \frac{\ln x}{\ln 2}.
+\]</div>
+</div>
+<p>où <span class="math notranslate nohighlight">\(\log_2\)</span> est le logarithme à base 2 ; l’utilisation d’un logarithme fait que l’information portée deux symboles
+est la somme des auto-informations des symboles (en supposant les symboles indépendants : <span class="math notranslate nohighlight">\(p(x_m,x_n)=p(x_m)p(x_n)\)</span>).
+L’auto-information s’exprime en shannon (abbréviation : Sh),
 et sa représentation graphique est donnée <a class="reference internal" href="#f-auto-information"><span class="std std-numref">Fig. 15</span></a> :
 c’est bien une courbe qui décroit avec la probabilité d’apparition du symbole.</p>
 <div class="figure align-default" id="f-auto-information">
 <img alt="../_images/auto-information.svg" src="../_images/auto-information.svg" /><p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Auto-information.</span><a class="headerlink" href="#f-auto-information" title="Permalink to this image">¶</a></p>
 </div>
-<p>L’utilisation du logarithmique à base 2 fait en sorte que l’information portée deux symboles
-est la somme des auto-informations des symboles (en supposant les symboles indépendants : <span class="math notranslate nohighlight">\(p(x_m,x_n)=p(x_m)p(x_n)\)</span>).
-On rappelle que :</p>
-<div class="math notranslate nohighlight">
-\[
-\log_2 x = \frac{\log x}{\log 2} = \frac{\ln x}{\ln 2}.
-\]</div>
 <p><a class="btn btn-light" href="td.html#exercice-1" role="button">Exercice 1</a></p>
 <!-- Et ainsi :
 
@@ -530,13 +506,13 @@ T_S = D_S \times H(X).
 </div>
 <div class="section" id="debit-canal">
 <h2>Débit canal<a class="headerlink" href="#debit-canal" title="Permalink to this headline">¶</a></h2>
-<p>Le symboles du messages ne sont généralement pas identiques aux symboles qui transitent par le canal.
+<p>Les symboles du message ne sont généralement pas identiques aux symboles qui transitent par le canal.
 Par exemple, un message textuel, dont l’alphabet est constitué de plusieurs dizaines de symboles,
 peut être transmis sur un câble électrique en Morse dont l’alphabet est constitué des trois symboles (trait, point et silence).
 Le <strong>débit canal</strong>, noté <span class="math notranslate nohighlight">\(D_C\)</span>, est le nombre de symboles transmis par le canal en une seconde ;
 il s’exprime donc en symb/s.</p>
 <p>Le débit canal est donc similaire au débit source mais peut avoir une valeur différente.
-D’ailleurs, les unités des débit source et canal sont différentes car elles s’expriment respectivement
+D’ailleurs, les unités des débit source et débit canal sont différentes car elles s’expriment respectivement
 en symboles (de la source) par seconde et en symboles (du canal) par seconde.</p>
 </div>
 <div class="section" id="capacite-canal">
@@ -589,7 +565,7 @@ Il est lié à la transmission de l’information et dit que :</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../modulation/tpc.html" title="previous page">Correction</a>
+    <a class='left-prev' id="prev-link" href="../modulation/tp.html" title="previous page">Travaux pratiques</a>
     <a class='right-next' id="next-link" href="codage.html" title="next page">Codage d’une source sans mémoire</a>
 
     </div>

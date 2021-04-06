@@ -47,8 +47,8 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/eyediag.js"></script>
-    <script src="../_static/js/spetsi.js"></script>
     <script src="../_static/js/huffman.js"></script>
+    <script src="../_static/js/spetsi.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -171,19 +171,10 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../modulation/tpc.html">
-     Correction
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -207,19 +198,10 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
   <a class="reference internal" href="tp.html">
    Travaux pratiques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="tpc.html">
-     Correction
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -248,19 +230,10 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
   <a class="reference internal" href="../codage-canal/tp.html">
    Travaux pratiques
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../codage-canal/tpc.html">
-     Correction
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -363,8 +336,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#codage-de-huffman-1952">
-   Codage de Huffman (1952)
+  <a class="reference internal nav-link" href="#codage-de-huffman">
+   Codage de Huffman
   </a>
  </li>
 </ul>
@@ -382,7 +355,7 @@
 <h1>Codage d’une source sans mémoire<a class="headerlink" href="#codage-d-une-source-sans-memoire" title="Permalink to this headline">¶</a></h1>
 <p>Un code source associe à chaque symbole <span class="math notranslate nohighlight">\(x_m\)</span> de la source un « mot » formé de <span class="math notranslate nohighlight">\(l_m\)</span> symboles issus de l’alphabet du canal.
 Par exemple, le symbole <code class="docutils literal notranslate"><span class="pre">A</span></code> d’une source texte pourra être codé par le mot <code class="docutils literal notranslate"><span class="pre">01000001</span></code> formé de 8 symboles du canal (en l’occurrence, des bits).</p>
-<p>On définit la <strong>longueur moyenne d’un code</strong> par la moyenne des longueur de chaque symbole de la source, pondérés par leur probabilité :</p>
+<p>On définit la <strong>longueur moyenne d’un code</strong> par la moyenne des longueurs de chaque symbole de la source, pondérés par leur probabilité :</p>
 <div class="math notranslate nohighlight">
 \[
 L = \sum_{m=1}^M p_m \cdot l_m.
@@ -418,11 +391,11 @@ car pour décoder <code class="docutils literal notranslate"><span class="pre">C
 <a class="btn btn-light" href="td.html#exercice-4" role="button">Exercice 4</a>
 <a class="btn btn-light" href="td.html#exercice-5" role="button">Exercice 5</a></p>
 </div>
-<div class="section" id="codage-de-huffman-1952">
-<h2>Codage de Huffman (1952)<a class="headerlink" href="#codage-de-huffman-1952" title="Permalink to this headline">¶</a></h2>
-<p>Le codage de Huffman fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
+<div class="section" id="codage-de-huffman">
+<h2>Codage de Huffman<a class="headerlink" href="#codage-de-huffman" title="Permalink to this headline">¶</a></h2>
+<p>Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
 Il peut s’appliquer quel que soit la taille <span class="math notranslate nohighlight">\(M\)</span> de l’alphabet du canal.</p>
-<p>La procédure construire un code de Huffman dans le cas binaire est la suivante :</p>
+<p>La procédure pour construire un code de Huffman dans le cas binaire est la suivante :</p>
 <ol>
 <li><p>ordonner les symboles dans l’ordre des probabilités décroissantes :</p>
 <div class="math notranslate nohighlight">

@@ -42,18 +42,28 @@ En suivant le principe évoqué ci-avant, l'auto-information devrait donc respec
   En effet, on est dans ce cas en présence d'une source déterministe qui n'émet que le symbole $x_m$.
   Comme on l'a vu précédemment, ce message n'a pas besoin d'être envoyé : il ne contient pas d'information.
   
-* À l'inverse, l'auto-information $I(x_m)$ tend vers l'infini nulle si $p_m$ tend vers zéro,
+* À l'inverse, l'auto-information $I(x_m)$ tend vers l'infini si $p_m$ tend vers zéro,
   car plus un symbole est rare, plus il est inattendu et donc porte beaucoup d'information.
   
 Par ailleurs, il serait logique que l'information portée par un message constitué des deux symboles $x_m$ et $x_n$
-soit la somme des auto-information des deux symboles : $I(x_mx_n) = I(x_m) + I(x_n)$.
+soit la somme des auto-informations des deux symboles : $I(x_mx_n) = I(x_m) + I(x_n)$.
 
 Ainsi, la définition retenue pour l'auto-information $I(x_m)$ est :
 
 $$
-I(x_m) = - \log_2(p_m).
+I(x_m) = - \log_2(p_m)
 $$
 
+```{margin}
+On rappelle que :
+
+$$
+\log_2 x = \frac{\log x}{\log 2} = \frac{\ln x}{\ln 2}.
+$$
+```
+
+où $\log_2$ est le logarithme à base 2 ; l'utilisation d'un logarithme fait que l'information portée deux symboles
+est la somme des auto-informations des symboles (en supposant les symboles indépendants : $p(x_m,x_n)=p(x_m)p(x_n)$).
 L'auto-information s'exprime en shannon (abbréviation : Sh),
 et sa représentation graphique est donnée {numref}`F:auto-information` :
 c'est bien une courbe qui décroit avec la probabilité d'apparition du symbole.
@@ -65,13 +75,6 @@ name: F:auto-information
 Auto-information.
 ```
 
-L'utilisation du logarithmique à base 2 fait en sorte que l'information portée deux symboles
-est la somme des auto-informations des symboles (en supposant les symboles indépendants : $p(x_m,x_n)=p(x_m)p(x_n)$).
-On rappelle que :
-
-$$
-\log_2 x = \frac{\log x}{\log 2} = \frac{\ln x}{\ln 2}.
-$$
 
 <a class="btn btn-light" href="td.html#exercice-1" role="button">Exercice 1</a>
 
@@ -153,14 +156,14 @@ $$
 
 ## Débit canal
 
-Le symboles du messages ne sont généralement pas identiques aux symboles qui transitent par le canal.
+Les symboles du message ne sont généralement pas identiques aux symboles qui transitent par le canal.
 Par exemple, un message textuel, dont l'alphabet est constitué de plusieurs dizaines de symboles,
 peut être transmis sur un câble électrique en Morse dont l'alphabet est constitué des trois symboles (trait, point et silence).
 Le **débit canal**, noté $D_C$, est le nombre de symboles transmis par le canal en une seconde ;
 il s'exprime donc en symb/s.
 
 Le débit canal est donc similaire au débit source mais peut avoir une valeur différente.
-D'ailleurs, les unités des débit source et canal sont différentes car elles s'expriment respectivement
+D'ailleurs, les unités des débit source et débit canal sont différentes car elles s'expriment respectivement
 en symboles (de la source) par seconde et en symboles (du canal) par seconde.
 
 
