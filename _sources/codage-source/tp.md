@@ -1,6 +1,26 @@
 # Travaux pratiques
 
 
+````{admonition} Modules Python
+Dans ce TP, en plus des modules
+[numpy](https://numpy.org/doc/stable/reference/index.html),
+[scipy](https://docs.scipy.org/doc/scipy/reference/index.html#api-reference),
+[matplotlib](https://matplotlib.org/stable/api/index.html),
+et
+[comnumfip](https://github.com/vincmazet/comnumfip),
+nous aurons besoin de
+[komm](http://komm.readthedocs.io/)
+et
+[skimage](https://scikit-image.org/docs/stable/api/api.html).
+
+Pour installer `komm`, utilisez l'instruction
+
+```
+pip install komm
+```
+````
+
+
 ## Application de la théorie de l'information à la transmission d'un texte
 
 <!-- bien faire comprendre la différence entre Shannon, bits, codes, symboles, ... -->

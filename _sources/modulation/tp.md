@@ -7,16 +7,15 @@ Comme la chaîne de communications est ici simulée, l'ordinateur traite en fait
 Il sera donc parfois nécessaire de fixer une fréquence d'échantillonnage qui n'a aucune interprétation physique...
 ```
 
-
-## Modules Python
-
+```{admonition} Modules Python
 Les TP nécessitent d'utiliser les modules classiques
 [numpy](https://numpy.org/doc/stable/reference/index.html),
 [scipy](https://docs.scipy.org/doc/scipy/reference/index.html#api-reference),
 [matplotlib](https://matplotlib.org/stable/api/index.html),
 mais également
-[komm](https://komm.readthedocs.io/en/latest/) et
-[comnum](https://github.com/vincmazet/comnum/tree/main/_static/comnum).
+[comnumfip](https://github.com/vincmazet/comnumfip)
+à télécharger et installer dans votre dossier de travail.
+```
 
 
 ## Étude de quelques modulations numériques
@@ -30,12 +29,13 @@ L'objectif de cet exercice est d'implémenter et de comparer quelques modulation
 
 Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.
 
-1. Créez une séquence binaire aléatoire $x_2$ de $N$ bits (`randmary`)
-   et convertissez-la en séquence hexadécimale $x_{16}$ (`bin2mary`) :
+1. Créez une séquence binaire aléatoire $x_2$ de $N$ bits (`comnum.randmary`)
+   et convertissez-la en séquence hexadécimale $x_{16}$ (`comnum.bin2mary`) :
    vous disposez donc du même message disponible sous deux représentations différentes.
    Affichez-les avec `print`.
 
-1. Appliquez les modulations `mod_a`, `mod_b`, `mod_c`, `mod_d` sur la séquence binaire, et `mod_e` sur la séquence hexadécimale.
+1. Appliquez les modulations `comnum.mod_a`, `comnum.mod_b`, `comnum.mod_c`, `comnum.mod_d` sur la séquence binaire,
+   et `comnum.mod_e` sur la séquence hexadécimale.
    Identifiez chacune de ces modulations.
 
 1. L'analyse spectrale des modulations peut être effectuée à l'aide de la densité spectrale de puissance,
@@ -77,6 +77,7 @@ Le principe d'une transmission en bande de base est représenté ci-dessous :
 ```{image} ../figs/transmission.png
 :width: 100%
 ```
+<br />
 
 Un canal est dit idéal si sa largeur de bande est infinie :
 sa réponse impulsionnelle est alors $g(t)=K\,\delta(t-\tau)$ où $K$ et $\tau$ sont l'atténuation et le retard du signal reçu
@@ -87,8 +88,8 @@ Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal br
 1. Donnez l'expression du signal reçu $y(t)$ en fonction du signal émis $x(t)$ et des caractéristiques du canal.
    <!-- y(t) = K\,x(t-\tau) + b(t) -->
 
-1. Simulez la transmission d'un message codé en NRZ binaire (`randmary`, `mod_d`, `channel`).
-   On rappelle qu'on considère le canal est idéal, donc que sa largeur de bande est infinie (`Inf`).
+1. Simulez la transmission d'un message codé en NRZ binaire (`comnum.randmary`, `comnum.mod_d`, `comnum.channel`).
+   On rappelle qu'on considère le canal est idéal, donc que sa largeur de bande est infinie (`numpy.inf`).
    Observez le signal en entrée du détecteur pour différents niveaux de bruit.
    <!--
    Dans la fonction channel.m, je préfère définir l'écart-type du bruit plutôt que le RSB, car lors de l'émission
@@ -97,27 +98,18 @@ Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal br
    -->
 
 1. Dans un premier temps, on ne tient pas compte du filtre de réception : $r(t) = \delta(t)$.
-   Échantillonnez (`sampling`) le signal $z(t)=y(t)$ et appliquez un seuil pour retrouver, tous les $T$,
-   les symboles $\alpha_k$ émis.
-   <!--
-    En prenant un seuil égal à la moyenne des niveaux hauts et bas du signal émis,
-    cela revient à faire une décision au sens du maximum de vraisemblance.
-   -->
+   Échantillonnez et seuillez le signal $z(t)=y(t)$ (`comnum.sample_and_threshold`)
+   pour retrouver, tous les $T$, les symboles $\alpha_k$ émis.
 
 1. Dans un deuxième temps, appliquez le filtre de réception.
    Le filtre adapté peut s'implémenter à l'aide d'une corrélation,
    mais on peut montrer qu'il peut également s'écrire comme une convolution
-   en utilisant `conv` (précisez le troisième argument `'same'` pour conserver des signaux de même taille).
-   La réponse impulsionnelle du filtre adapté peut être obtenue à l'aide de `mod\_d`.
+   en utilisant `numpy.convolve` (choisissez `mode="same"` pour conserver des signaux de même taille).
    Effectuez le seuillage et l'échantillonnage comme dans la question précédente.
 
 1. Calculez les taux d'erreurs obtenus avec et sans filtre de détection.
    Comment varie la qualité de la détection en fonction du niveau de bruit ?
-   <!--
-    En Matlab, il existe pdist, mais son utilisation est moins évidente (il faut définir une matrice dont les deux
-    colonnes correspondent aux signaux), et cela n'oblige pas les étudiants à comprendre cette distance en la recodant.
-   -->
-
+   
 
 ## Transmission en bande de base sur un canal à bande limitée
 
@@ -129,8 +121,7 @@ La détection est alors perturbée même s'il n'y a pas de bruit.
 * Simulez l'émission d'un message codé en NRZ binaire.
   Observez le signal en entrée du récepteur pour différentes fréquences de coupure du canal.
 
-* Le diagramme de l'œil correspond aux différentes traces d'un signal affichées sur une période.
-  Tracez le diagramme de l'œil (`eyediag`) de $y(t)$ : que se passe-t-il lorsque la bande passante du canal varie ?
+* Tracez le diagramme de l'œil (`comnum.eyediag`) de $y(t)$ : que se passe-t-il lorsque la bande passante du canal varie ?
 
 <!--
   Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
@@ -140,9 +131,10 @@ La détection est alors perturbée même s'il n'y a pas de bruit.
 -->
 
 * Lorsque la bande passante du canal est trop faible, la forme d'onde rectangulaire n'est pas adaptée.
-  Il est préférable d'utiliser une forme d'onde en racine de cosinus surélevé (\vcmd{modnrzrrc}).
+  Il est préférable d'utiliser une forme d'onde en racine de cosinus surélevé (`comnum.mod_rrc`).
   Simulez la transmission du message avec cette nouvelle forme d'onde,
-  notamment en observant le diagramme de l'\oe{}il pour plusieurs valeurs de~$\alpha$.
+  notamment en observant le diagramme de l'œil pour plusieurs valeurs du facteur de retombée $a$.
+  L'impulsion en racine de cosinus surélevée est obtenue avec la fonction `comnum.rrc`.
 
 * Simulez l'opération de détection en comparant les deux formes d'onde.
 

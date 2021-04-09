@@ -130,18 +130,18 @@ Déterminez, à partir des diagrammes de l'œil ci-dessous :
 1. s'il y a des IES ;
 1. s'il y a du bruit.
 
-```{image} ../figs/TEMP-exodiagoeil1.png
-:width: 24%
+```{image} ../figs/eyediag1.svg
+:width: 40%
 ```
 
-```{image} ../figs/TEMP-exodiagoeil2.png
-:width: 24%
+```{image} ../figs/eyediag2.svg
+:width: 40%
 ```
 
-```{image} ../figs/TEMP-exodiagoeil3.png
-:width: 24%
+```{image} ../figs/eyediag3.svg
+:width: 40%
 ```
 
-```{image} ../figs/TEMP-exodiagoeil4.png
-:width: 24%
+```{image} ../figs/eyediag4.svg
+:width: 40%
 ```

@@ -47,8 +47,8 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/eyediag.js"></script>
-    <script src="../_static/js/huffman.js"></script>
     <script src="../_static/js/spetsi.js"></script>
+    <script src="../_static/js/huffman.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -326,11 +326,6 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modules-python">
-   Modules Python
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#etude-de-quelques-modulations-numeriques">
    Étude de quelques modulations numériques
   </a>
@@ -364,15 +359,15 @@
 Comme la chaîne de communications est ici simulée, l’ordinateur traite en fait des signaux numériques !
 Il sera donc parfois nécessaire de fixer une fréquence d’échantillonnage qui n’a aucune interprétation physique…</p>
 </div>
-<div class="section" id="modules-python">
-<h2>Modules Python<a class="headerlink" href="#modules-python" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-modules-python admonition">
+<p class="admonition-title">Modules Python</p>
 <p>Les TP nécessitent d’utiliser les modules classiques
 <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html">numpy</a>,
 <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/index.html#api-reference">scipy</a>,
 <a class="reference external" href="https://matplotlib.org/stable/api/index.html">matplotlib</a>,
 mais également
-<a class="reference external" href="https://komm.readthedocs.io/en/latest/">komm</a> et
-<a class="reference external" href="https://github.com/vincmazet/comnum/tree/main/_static/comnum">comnum</a>.</p>
+<a class="reference external" href="https://github.com/vincmazet/comnumfip">comnumfip</a>
+à télécharger et installer dans votre dossier de travail.</p>
 </div>
 <div class="section" id="etude-de-quelques-modulations-numeriques">
 <h2>Étude de quelques modulations numériques<a class="headerlink" href="#etude-de-quelques-modulations-numeriques" title="Permalink to this headline">¶</a></h2>
@@ -386,11 +381,12 @@ mais également
 </ul>
 <p>Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.</p>
 <ol class="simple">
-<li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">randmary</span></code>)
-et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">bin2mary</span></code>) :
+<li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">comnum.randmary</span></code>)
+et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">comnum.bin2mary</span></code>) :
 vous disposez donc du même message disponible sous deux représentations différentes.
 Affichez-les avec <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p></li>
-<li><p>Appliquez les modulations <code class="docutils literal notranslate"><span class="pre">mod_a</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_b</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_c</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_d</span></code> sur la séquence binaire, et <code class="docutils literal notranslate"><span class="pre">mod_e</span></code> sur la séquence hexadécimale.
+<li><p>Appliquez les modulations <code class="docutils literal notranslate"><span class="pre">comnum.mod_a</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_b</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_c</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_d</span></code> sur la séquence binaire,
+et <code class="docutils literal notranslate"><span class="pre">comnum.mod_e</span></code> sur la séquence hexadécimale.
 Identifiez chacune de ces modulations.</p></li>
 <li><p>L’analyse spectrale des modulations peut être effectuée à l’aide de la densité spectrale de puissance,
 qui est le carré du module de la transformée de Fourier.
@@ -427,6 +423,7 @@ Intérêt du code de Gray
 <h2>Transmission en bande de base sur un canal idéal<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-ideal" title="Permalink to this headline">¶</a></h2>
 <p>Le principe d’une transmission en bande de base est représenté ci-dessous :</p>
 <a class="reference internal image-reference" href="../_images/transmission.png"><img alt="../_images/transmission.png" src="../_images/transmission.png" style="width: 100%;" /></a>
+<br />
 <p>Un canal est dit idéal si sa largeur de bande est infinie :
 sa réponse impulsionnelle est alors <span class="math notranslate nohighlight">\(g(t)=K\,\delta(t-\tau)\)</span> où <span class="math notranslate nohighlight">\(K\)</span> et <span class="math notranslate nohighlight">\(\tau\)</span> sont l’atténuation et le retard du signal reçu
 (sans perdre en généralité, on pourra prendre <span class="math notranslate nohighlight">\(K=1\)</span> et <span class="math notranslate nohighlight">\(\tau=0\)</span>).</p>
@@ -435,8 +432,8 @@ sa réponse impulsionnelle est alors <span class="math notranslate nohighlight">
 <li><p>Donnez l’expression du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> en fonction du signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> et des caractéristiques du canal.</p>
 <!-- y(t) = K\,x(t-\tau) + b(t) -->
 </li>
-<li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">channel</span></code>).
-On rappelle qu’on considère le canal est idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">Inf</span></code>).
+<li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">comnum.randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.channel</span></code>).
+On rappelle qu’on considère le canal est idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>).
 Observez le signal en entrée du détecteur pour différents niveaux de bruit.</p>
 <!--
 Dans la fonction channel.m, je préfère définir l'écart-type du bruit plutôt que le RSB, car lors de l'émission
@@ -445,26 +442,15 @@ de l'écart-type défini.
 -->
 </li>
 <li><p>Dans un premier temps, on ne tient pas compte du filtre de réception : <span class="math notranslate nohighlight">\(r(t) = \delta(t)\)</span>.
-Échantillonnez (<code class="docutils literal notranslate"><span class="pre">sampling</span></code>) le signal <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span> et appliquez un seuil pour retrouver, tous les <span class="math notranslate nohighlight">\(T\)</span>,
-les symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span> émis.</p>
-<!--
- En prenant un seuil égal à la moyenne des niveaux hauts et bas du signal émis,
- cela revient à faire une décision au sens du maximum de vraisemblance.
--->
-</li>
+Échantillonnez et seuillez le signal <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span> (<code class="docutils literal notranslate"><span class="pre">comnum.sample_and_threshold</span></code>)
+pour retrouver, tous les <span class="math notranslate nohighlight">\(T\)</span>, les symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span> émis.</p></li>
 <li><p>Dans un deuxième temps, appliquez le filtre de réception.
 Le filtre adapté peut s’implémenter à l’aide d’une corrélation,
 mais on peut montrer qu’il peut également s’écrire comme une convolution
-en utilisant <code class="docutils literal notranslate"><span class="pre">conv</span></code> (précisez le troisième argument <code class="docutils literal notranslate"><span class="pre">'same'</span></code> pour conserver des signaux de même taille).
-La réponse impulsionnelle du filtre adapté peut être obtenue à l’aide de <code class="docutils literal notranslate"><span class="pre">mod\_d</span></code>.
+en utilisant <code class="docutils literal notranslate"><span class="pre">numpy.convolve</span></code> (choisissez <code class="docutils literal notranslate"><span class="pre">mode=&quot;same&quot;</span></code> pour conserver des signaux de même taille).
 Effectuez le seuillage et l’échantillonnage comme dans la question précédente.</p></li>
 <li><p>Calculez les taux d’erreurs obtenus avec et sans filtre de détection.
-Comment varie la qualité de la détection en fonction du niveau de bruit ?</p>
-<!--
- En Matlab, il existe pdist, mais son utilisation est moins évidente (il faut définir une matrice dont les deux
- colonnes correspondent aux signaux), et cela n'oblige pas les étudiants à comprendre cette distance en la recodant.
--->
-</li>
+Comment varie la qualité de la détection en fonction du niveau de bruit ?</p></li>
 </ol>
 </div>
 <div class="section" id="transmission-en-bande-de-base-sur-un-canal-a-bande-limitee">
@@ -476,8 +462,7 @@ La détection est alors perturbée même s’il n’y a pas de bruit.</p>
 <ul class="simple">
 <li><p>Simulez l’émission d’un message codé en NRZ binaire.
 Observez le signal en entrée du récepteur pour différentes fréquences de coupure du canal.</p></li>
-<li><p>Le diagramme de l’œil correspond aux différentes traces d’un signal affichées sur une période.
-Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><span class="pre">eyediag</span></code>) de <span class="math notranslate nohighlight">\(y(t)\)</span> : que se passe-t-il lorsque la bande passante du canal varie ?</p></li>
+<li><p>Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><span class="pre">comnum.eyediag</span></code>) de <span class="math notranslate nohighlight">\(y(t)\)</span> : que se passe-t-il lorsque la bande passante du canal varie ?</p></li>
 </ul>
 <!--
   Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
@@ -487,9 +472,10 @@ Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><spa
 -->
 <ul class="simple">
 <li><p>Lorsque la bande passante du canal est trop faible, la forme d’onde rectangulaire n’est pas adaptée.
-Il est préférable d’utiliser une forme d’onde en racine de cosinus surélevé (\vcmd{modnrzrrc}).
+Il est préférable d’utiliser une forme d’onde en racine de cosinus surélevé (<code class="docutils literal notranslate"><span class="pre">comnum.mod_rrc</span></code>).
 Simulez la transmission du message avec cette nouvelle forme d’onde,
-notamment en observant le diagramme de l’\oe{}il pour plusieurs valeurs de~<span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+notamment en observant le diagramme de l’œil pour plusieurs valeurs du facteur de retombée <span class="math notranslate nohighlight">\(a\)</span>.
+L’impulsion en racine de cosinus surélevée est obtenue avec la fonction <code class="docutils literal notranslate"><span class="pre">comnum.rrc</span></code>.</p></li>
 <li><p>Simulez l’opération de détection en comparant les deux formes d’onde.</p></li>
 </ul>
 <!-- Répartition optimale du filtrage entre l'émission et la réception ? -->
