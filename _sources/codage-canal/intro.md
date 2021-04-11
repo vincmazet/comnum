@@ -21,6 +21,7 @@ alors que l'information supplémentaire présente dans le message avant sa compr
 Il existe deux grandes familles de codage canal.
 * Les **codes en bloc** (_block codes_) consistent à découper le message en petits blocs de symboles,
   pour chacun desquels est associé un code (on peut citer comme exemple le code à parité).
+  Parmi eux, les **codes cycliques** (_cyclic codes_) sont une classe particulière de codes en blocs.
 * Les **codes convolutifs** (_convolutional codes_) où tout le message est codé, sans découpage en blocs :
   le message passe dans un système dont la sortie est le message codé.
   On peut modéliser ce fonctionnement par une convolution.
