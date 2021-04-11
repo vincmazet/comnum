@@ -1,35 +1,35 @@
 # Codes en bloc
 
-<!--
+
 ## Principe
 
 Le codage en bloc consiste à associer, à chaque bloc de $k$ bits du message, un bloc de $n$ bits (avec $n>k$).
-On utilise la notation $C(n,k)$.
-On définit le rendement du code comme étant $k/n$.
+On définit le **rendement du code** comme étant $k/n$.
 
----
+Pour nommer un code en bloc, on utilise la notation $C(n,k)$.
 
-Les opérations de codage et décodage se font, mathématiquement, à l'aide d'additions et de multiplications sur des symboles binaires
+```{div} exemple
 
-| $a$ | $b$ | $a+b$ | $a \cdot b$ |
-| --- | --- | ----- | ----------- |
-|  0  |  0  |   0   |      0      |
-|  0  |  1  |   1   |      0      |
-|  1  |  0  |   1   |      0      |
-|  1  |  1  |   0   |      1      |
+Dans ce chapitre, nous utiliserons comme exemple le code à répétition $C(3,1)$.
+Ce code est très simple puisqu'il consiste à répéter $n=3$ fois chaque bloc de $k=1$ bits du message.
+Il a donc un rendement de $1/3$, ce qui signifie que dans le message codé, seul un tiers n'est pas redondant.
 
-L'opération $+$ est équivalente à un ou exclusif, et l'opération $\cdot$ est équivalente à un et.
+Les blocs possibles et leur code respectif est donc listés dans le tableau ci-dessous :
 
-L'ensemble $\{0,1\}$ muni de cette addition et de cette multiplication est noté $\mathbb{F}_2$
-et s'appelle le corps de Galois de cardinal 2.
+| $m$ | $c$ |
+| --- | --- |
+|  0  | 000 |
+|  1  | 111 |
+
+Pas de quoi casser des briques, mais cet exemple très simple illustrera les concepts des codes en bloc.
+```
 
 
 ## Codage
 
-Plutôt que d'établir une table pour définir les correspondances entre les blocs de $k$ symboles du message et les mots du code,
-on utilise la **matrice génératrice** (_???_) $G\in\mathbb{F}_{k \times n}$.
-
-Chaque mot $c$ du code est calculé à partir d'un bloc $m$ du message par :
+Plutôt que d'établir une table pour définir les correspondances entre les blocs du message et les mots du code,
+on utilise la **matrice génératrice** (_generator matrix_) $G\in\mathbb{F}^{k \times n}$.
+Chaque mot $c$ du code est calculé à partir d'un bloc $m$ du message par l'équation :
 
 $$
 c = mG.
@@ -37,146 +37,209 @@ $$
 
 (Attention, la multiplication matricielle est également à effectuer dans $\mathbb{F}_2$ !).
 
-```{exemple}
-Le code à répétition $C(3,1)$ est tel que $n=3$ et $k=1$.
-Le rendement est donc de $1/3$. 
+```{div} exemple
 
-| $m$ | $c$ |
-| --- | --- |
-|  0  | 000 |
-|  1  | 111 |
-
-Donc
+La matrice génératrice du code à répétition $C(3,1)$ est
 
 $$
-G = \begin{pmatrix}1 & 1 & 1\end{pmatrix}
+G = \begin{pmatrix}1 & 1 & 1\end{pmatrix}.
 $$
 
+En effet :
+
+$$
+\begin{pmatrix}0\end{pmatrix} \begin{pmatrix}1 & 1 & 1\end{pmatrix} = \begin{pmatrix}0 & 0 & 0\end{pmatrix}
+\quad\text{et}\quad
+\begin{pmatrix}1\end{pmatrix} \begin{pmatrix}1 & 1 & 1\end{pmatrix} = \begin{pmatrix}1 & 1 & 1\end{pmatrix}
+$$
 ```
 
-Si le mot du code contient le message $m$, on dit que le code est systémtique.
-Donc :
+Si les mot du code contiennent le message qui les a généré, alors le code est dit **systématique**
+et la matrice génératrice peut s'écrire sous la forme :
 
 $$
-G = \begin{pmatrix} I_k & P \end{pmatrix}
-  = \begin{pmatrix}
-      1 &       & 0 &   \\
-        & \dots &   & P \\
-      0 &       & 1 &   \\
-    \end{pmatrix}
+G = \begin{pmatrix} I_k & | & P \end{pmatrix}
+  = \left(
+    \begin{array}{ccc|c}
+      1 &        & 0 &   \\
+        & \ddots &   & P \\
+      0 &        & 1 &   \\
+    \end{array}
+    \right)
 $$
 
-```{exemple}
-Le code à répétition $C(3,1)$ est systématique.
+où $P\in\mathbb{F}^{k \times n-k}$ est une matrice qui définit les bits à ajouter au message.
 
-$$
-G = \begin{pmatrix}1 & | & 1 & 1\end{pmatrix}
-\qquad\Leftrightarrow\qquad
-P = \begin{pmatrix}1 & 1\end{pmatrix}
-$$
+```{div} exemple
 
+Le code à répétition $C(3,1)$ est systématique et puisque $G = \begin{pmatrix}1 & | & 1 & 1\end{pmatrix}$
+alors $P = \begin{pmatrix}1 & 1\end{pmatrix}$.
 ```
 
 
-### Décodage
+## Interprétation géométrique
 
-À chaque matrice génératrice on peut associer une **matrice de contrôle de parité** (_???_) $H\in\mathbb{F}_2^{n-k \times n}$ telle que
+Les mots du code générés peuvent être considérés comme des points dans un espace à $n$ dimensions.
+Dans le cas où $n \leq 3$, ces points peuvent être représentés.
+
+```{div} exemple
+
+Le code à répétition $C(3,1)$ produit deux mots.
+Le premier, $000$, est représenté par le point aux coordonnées $(0,0,0)$ dans $\mathbb{F}_2^3$.
+Le second, $111$, est représenté par le point aux coordonnées $(1,1,1)$ dans $\mathbb{F}_2^3$.
+Tous les autres mots de trois bits sont également des points spécifiques, mais ils n'appartiennent pas au code.
+
+<font color="red"><b>SCHEMA</b></font>
+```
+
+La **distance de Hamming** (_Hamming distance_) $d(u,v)$ entre deux mots de même longueur $u$ et $v$
+est le nombre de symboles différents entre $u$ et $v$.
+Géométriquement, la distance de Hamming correspond au nombre de segments qui relient les deux mots.
+
+La **distance minimale** $d_\text{min}$ d'un code est la plus petite distance qu'il existe entre deux mots du code.
+
+Dans le cas des codes linéaires, on peut montrer que $d_\text{min}$ est égale au nombre minimal de symboles non nuls
+dans tous les mots du code, à l'exception du mot nul {ref}`[Proakis 2008, p.414]<S:refs>`.
+
+
+## Décodage
+
+À chaque matrice génératrice on peut associer une **matrice de contrôle de parité** (_parity-check matrix_) $H\in\mathbb{F}_2^{n-k \times n}$.
+Cette matrice a la particularité que $cH^T=0$ pour tout mot $c$ du code.
+Si le code est systématique, la matrice de contrôle de parité s'écrit
 
 $$
-H = \begin{pmatrix} P^T & I_{n-k} \end{pmatrix}.
+H = \begin{pmatrix} P^T & | & I_{n-k} \end{pmatrix}.
 $$
 
-```{exemple}
+```{div} exemple
+
 Le code à répétition $C(3,1)$ a pour matrice de contrôle de parité
 
 $$
-P = \begin{pmatrix}1 & 1\end{pmatrix}
-\qquad\Leftrightarrow\qquad
-H = \begin{pmatrix}
-      1 & | & 1 & 0 \\
-      1 & | & 0 & 1 \\
-    \end{pmatrix}
+H = \left(
+    \begin{array}{c|cc}
+      1 & 1 & 0 \\
+      1 & 0 & 1 \\
+    \end{array}
+    \right)
 $$
-
 ```
 
-Le vecteur reçu par le récepteur peut s'écrire :
+À cause des erreurs de transmission, le code reçu par le récepteur n'est pas forcément $c$ et  peut présenter des différences.
+On peut donc considérer que le code reçu $r$ est défini par :
 
 $$
 r = c + e
 $$
 
-où $e$ est un vecteur binaire dont les <code>1</code> indiquent la présence d'une erreur.
+où $e$ est un vecteur binaire dont les `1` indiquent la présence d'une erreur.
 Par exemple, si on émet $c = 0101$ et qu'on reçoit $r=0110$, on a bien $e=0011$.
-On parle de **canal binaire symétrique** (_???_).
+On parle de **canal binaire symétrique** (_binary symmetric channel_).
 
-On définit le **syndrome** (_??_) $s$ par :
-
-$$
-s = rH^T \\
-  = (c+e)H^T \\
-  = cH^T + eH^T \\
-  = mGH^T + eH^T
-$$
-
-Or,
+Le décodage du code reçu $r$ s'effectue en le multipliant par $H^T$.
+Le résultat est appelé **syndrome** (_syndrome_) $s$ :
 
 $$
-GH = \begin{pmatrix} I_k & P \end{pmatrix} \begin{pmatrix} P^T & I_{n-k} \end{pmatrix}^T \\
-   = \begin{pmatrix} I_k & P \end{pmatrix} \begin{pmatrix} P \\ I_{n-k} \end{pmatrix}^T \\
-   = P + P \\
-   = 0
+\begin{align*}
+  s &= rH^T \\
+    &= (c+e)H^T \\
+    &= cH^T + eH^T \\
+    &= mGH^T + eH^T.
+\end{align*}
 $$
 
-(puisque $0+0=0$, et $1+1=0$).
+Or, du fait des règles de l'addition dans le corps de Galois,
 
-Donc :
+$$
+\begin{align*}
+  GH^T &= \begin{pmatrix} I_k & P \end{pmatrix} \begin{pmatrix} P^T & I_{n-k} \end{pmatrix}^T \\
+       &= \begin{pmatrix} I_k & P \end{pmatrix} \begin{pmatrix} P \\ I_{n-k} \end{pmatrix}^T \\
+       &= P + P \\
+       &= 0
+\end{align*}
+$$
+
+Ainsi, $mGH^T = cH^T = 0$ : on retrouve la particularité de la matrice de contrôle de parité évoquée ci-avant.
+Par ailleurs, cela implique que
 
 $$
 s = eH^T.
 $$
 
-Donc, le syndrome est nul si $r$ est un mot du code.
-Un syndrome non nul indique la présence d'une erreur, maus un syndrome nul n'indique pas qu'il y a une erreur,
-par exemple, si on reçoit un autre mot du code !
-**PAS CLAIR ET PEUT ETRE FAUX !!!*
+```{margin}
+Cependant, un syndrome nul n'implique pas que la transmission se soit faite sans erreur !
+Par exemple, le code reçu peut être différent du code envoyé, tout en étant un autre mot du code !
+Mais ça, on ne peut pas le détecter simplement...
+```
 
-```{exemple}
-Code à répétition $C(3,1)$.
-Si on reçoit $r=011$, il y a manifestation une erreur puisque ce mot n'est pas un triplet du même bit,
+S'il n'y a aucune erreur de transmission, alors $e=0$ et donc le syndrome $s$ est nul.
+De manière équivalente, un syndrome non nul indique la présence d'une erreur de transmission.
+
+```{div} exemple
+
+Avec le cde à répétition $C(3,1)$, si on reçoit $r=011$, il y a manifestation une erreur puisque ce mot n'est pas un triplet du même bit :
 ce n'est pas un mot du code.
-En effet :
+Le syndrome est effectivement non nul :
 
 $$
 s = rH^T
-  = \begin{pamtrix} 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 1 & 0 \\ 0 & 1 \end{pmatrix}
-  = \begin{pamtrix} 1 & 1 \end{pmatrix}
+  = \begin{pmatrix} 0 & 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 1 & 0 \\ 0 & 1 \end{pmatrix}
+  = \begin{pmatrix} 1 & 1 \end{pmatrix}
   \neq 0
 $$
 
-Une erreur est donc détectée !
+L'erreur de transmission est donc détectée !
 ```
 
-Interprétation géométrique du code à répétition $C(3,1)$.
+Comment, alors, corriger le code reçu si une erreur de transmission a été détectée ?
+Sans autre information a priori, il est logique de décider que le mot émis soit le mot le plus proche du mot reçu :
+on fait dans ce cas l'hypothèse qu'il y a eu le moins d'erreurs possibles.
 
-**SCHEMA**
+En termes géométriques, cela signifie que la règle est de rechercher le mot du code le plus proche
+(en termes de distance de Hamming) du code reçu.
 
-La **distance de Hamming** (_???_) $d_H(u,v)$ entre deux séquences binaires $u$ et $v$ est le nombre de bits différents entre $u$ et $v$.
 
-```{exemple}
-d_H(001,000)=1
-d_H(000,111)=3
+## Pouvoir de détection
+
+Le **pouvoir de détection** d'un code est le nombre maximal d'erreurs qui peut affecter le mot transmis
+sans que l'on confonde le mot reçu avec un autre mot du code.
+
+On montre que le pouvoir de détection est égal à $d_\text{min}-1$.
+
+```{div} exemple
+Le code à répétition $C(3,1)$ est capable de détecter jusqu'à deux erreurs,
+puisque si la transmission introduit une ou deux erreurs, alors le mot reçu n'est pas une triple répétition du bit émis.
+Cela correspond bien à $d_\text{min}-1$.
 ```
 
-**exercice 1**
 
-La distance minimale $d_\text{min}$ d'un code est la plus petite distance qu'il existe entre deux mots du code.
-On peut montrer que $d_\text{min}$ est égale au nombre minimal d'éléments non nuls dans les mots du code
-(en excluant l mot nul) (pour les codes linéaires) [Proakis p.414].
+## Pouvoir de correction
 
-```{exemple}
-Code à répétition $C(3,1)$ : $d_\text{min}=3$.
+Le **pouvoir de correction** d'un code est le nombre maximal d'erreurs qui peut affecter le mot transmis
+et qui peuvent être corrigées pour retrouver le mot effectivement émis.
+
+```{margin}
+La notation $\lfloor\cdot\rfloor$ désigne la partie entière.
 ```
 
-si le syndrome $s$ est nul, la règle ...
--->
+On montre que le pouvoir de correction est égal à $\lfloor(d_\text{min}-1)/2\rfloor$.
+
+```{div} exemple
+Le code à répétition $C(3,1)$ est capable de corriger jusqu'à une erreur.
+En effet :
+* si une seule erreur de transmission est intervenue, alors les deux bits non erronés permettront de prendre la bonne décision quant au bit émis
+  (par exemple, si on reçoit `100` alors on suppose que c'est `0` qui a été émis) ;
+* si deux seule erreurs de transmission sont intervenues, alors la décision prise sera mauvaise
+  (par exemple, si on reçoit `101` alors que `0` a été émis, le récepteur supposera tout de même que c'est `1` qui a été émis).
+  
+Cela correspond bien à $\lfloor(d_\text{min}-1)/2\rfloor$.
+```
+
+
+## Codes cycliques
+
+<font color="red"><b>TODO</b></font>
+
+
+<!-- http://pfister.ee.duke.edu/courses/ece590_gmi/coding_intro.pdf -->
