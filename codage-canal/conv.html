@@ -326,6 +326,30 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principe">
+   Principe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representation-en-treillis">
+   Représentation en treillis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decodage">
+   Décodage
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -335,6 +359,64 @@
                 
   <div class="section" id="codes-convolutifs">
 <span id="s-codage-canal-conv"></span><h1>Codes convolutifs<a class="headerlink" href="#codes-convolutifs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="principe">
+<h2>Principe<a class="headerlink" href="#principe" title="Permalink to this headline">¶</a></h2>
+<p>La sortie d’un codeur convolutif est calculée en appliquant une fenêtre glissante sur la totalité du message.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La taille de la fenêtre n’est pas très élégante, mais je n’y peux rien : c’est les notations de la littérature. 💩</p>
+</div>
+<p>Cette fenêtre glissante est constituée de <span class="math notranslate nohighlight">\(K\)</span> groupes de <span class="math notranslate nohighlight">\(k\)</span> bits chacun : elle est donc de taille <span class="math notranslate nohighlight">\(Kk\)</span>.
+<span class="math notranslate nohighlight">\(K\)</span> est appelée <strong>longeur de contrainte</strong> (<em>constraint length</em>).
+À chaque cycle d’horloge, la fenêtre avance d’un groupe de bits,
+et donc <span class="math notranslate nohighlight">\(k\)</span> nouveaux bits rentrent dans la fenêtre alors que les <span class="math notranslate nohighlight">\(k\)</span> plus anciens bits en ressortent.
+Une ou plusieurs additions de quelques bits de la fenêtre sont calculées (toujours en respectant les règle du corps de Galois)
+pour obtenir autant de bits de sortie.
+On note <span class="math notranslate nohighlight">\(n\)</span> le nombre de bits de sortie, ils sont ajoutés au code déjà produit.</p>
+<p>Les bits utilisés par les additions sont représentés par des polynômes générateurs ;
+il y a donc autant de polynômes que de bits de sortie.
+Par exemple, le polynôme générateur <span class="math notranslate nohighlight">\(g = 15_8\)</span> a pour représentation binaire <span class="math notranslate nohighlight">\(001101_2\)</span> :
+l’addition qu’il représente s’effectue donc entre les bits 1, 3 et 4.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/code-conv-5.png"><img alt="../_images/code-conv-5.png" src="../_images/code-conv-5.png" style="width: 568px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Exemple de code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span> appliqué sur le message <code class="docutils literal notranslate"><span class="pre">10110011</span></code>
+à un instant donné.
+La sortie <span class="math notranslate nohighlight">\(u\)</span> du codeur est représentée par la séquence rouge.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/code-conv.gif"><img alt="../_images/code-conv.gif" src="../_images/code-conv.gif" style="width: 568px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Exemple de code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span> appliqué sur le message <code class="docutils literal notranslate"><span class="pre">10110011</span></code>.
+La sortie <span class="math notranslate nohighlight">\(u\)</span> du codeur est représentée par la séquence rouge.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Le rendement d’un code convolutif est, comme pour les codes en bloc, <span class="math notranslate nohighlight">\(k/n\)</span>.</p></li>
+<li><p>Traditionnellement, le registre est initialisé à zéro.</p></li>
+<li><p>Contrairement aux codes en bloc, les <span class="math notranslate nohighlight">\(n\)</span> bits de sortie ne dépendent pas seulement des <span class="math notranslate nohighlight">\(k\)</span> bits d’entrée
+mais également des <span class="math notranslate nohighlight">\(K-1\)</span> blocs précédents : il y a donc un effet de mémoire.</p></li>
+<li><p>Les codes convolutifs sont appelés ainsi car chacune des <span class="math notranslate nohighlight">\(n\)</span> sortie du codeur correspond
+au produit de convolution de l’entrée avec le polynôme générateur correspondant (toujours dans le corps de Galois !).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="representation-en-treillis">
+<h2>Représentation en treillis<a class="headerlink" href="#representation-en-treillis" title="Permalink to this headline">¶</a></h2>
+<p>Lorsqu’un code convolutif est suffisamment simple, il peut être représenté sous forme d’un <strong>treillis</strong>.
+Il s’agit d’une représentation graphique en deux dimension, où chaque état du codeur est représenté par un point.
+L’état d’un codeur correspond aux valeurs des bits de la fenêtre, à l’exception des bits qui viennent de rentrer à l’instant correspondant.
+L’axe horizontal représente le temps, et l’axe vertical les différents états possibles.
+Enfin, des flèches indiquent les valeurs du ou des bits d’entrée du codeur.</p>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/treillis.png"><img alt="../_images/treillis.png" src="../_images/treillis.png" style="width: 70%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Représentation en treillis du code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span>.
+Les quatre états du codeur sont en bleu, les flèches pleines et en pointillés représentent respectivement l’entrée d’un bit à 0 ou à 1.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="decodage">
+<h2>Décodage<a class="headerlink" href="#decodage" title="Permalink to this headline">¶</a></h2>
+<p>Le décodage d’un code convolutif s’effectue avec l’algorithme de Viterbi, qui est illustré dans <a class="reference external" href="https://vincmazet.github.io/comnum/_static/viterbi.pdf">ce document</a>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
