@@ -47,8 +47,8 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/eyediag.js"></script>
-    <script src="../_static/js/huffman.js"></script>
     <script src="../_static/js/spetsi.js"></script>
+    <script src="../_static/js/huffman.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
@@ -369,10 +369,10 @@ alors que l’information supplémentaire présente dans le message avant sa com
 <h2>Deux familles de codage canal<a class="headerlink" href="#deux-familles-de-codage-canal" title="Permalink to this headline">¶</a></h2>
 <p>Il existe deux grandes familles de codage canal.</p>
 <ul class="simple">
-<li><p>Les <strong>codes en bloc</strong> (<em>block codes</em>) consistent à découper le message en petits blocs de symboles,
+<li><p>Les <strong><a class="reference internal" href="bloc.html#s-codage-canal-bloc"><span class="std std-ref">codes en bloc</span></a></strong> (<em>block codes</em>) consistent à découper le message en petits blocs de symboles,
 pour chacun desquels est associé un code (on peut citer comme exemple le code à parité).
-Parmi eux, les <strong>codes cycliques</strong> (<em>cyclic codes</em>) sont une classe particulière de codes en blocs.</p></li>
-<li><p>Les <strong>codes convolutifs</strong> (<em>convolutional codes</em>) où tout le message est codé, sans découpage en blocs :
+Parmi eux, les <strong><a class="reference internal" href="cycliques.html#s-codage-canal-cycliques"><span class="std std-ref">codes cycliques</span></a></strong> (<em>cyclic codes</em>) sont une classe particulière de codes en blocs.</p></li>
+<li><p>Les <strong><a class="reference internal" href="conv.html#s-codage-canal-conv"><span class="std std-ref">codes convolutifs</span></a></strong> (<em>convolutional codes</em>) où tout le message est codé, sans découpage en blocs :
 le message passe dans un système dont la sortie est le message codé.
 On peut modéliser ce fonctionnement par une convolution.</p></li>
 </ul>

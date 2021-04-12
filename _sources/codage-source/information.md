@@ -29,7 +29,7 @@ mais du caractère inattendu de celui-ci.
 On appelle $X$ une source et $\{x_1, x_2,\dots,x_M\}$ son alphabet où chaque $x_m$ est un symbole.
 Le modèle mathématique d'une source $X$ tel que proposé par Shannon considère que la source produit un message aléatoire.
 Donc, chaque symbole $x_m$ a une probabilité $p_m$ d'être émis.
-Cela signifie que pour un message contenant $N$ symboles, il y aura statistiquement $N \times p_m$ occurrence du symboe $x_m$.
+Cela signifie que pour un message contenant $K$ symboles, il y aura statistiquement $K \times p_m$ occurrences du symbole $x_m$.
 
 
 ## Auto-information

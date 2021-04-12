@@ -1,3 +1,4 @@
+(S:codage-canal:cycliques)=
 # Codes cycliques
 
 
