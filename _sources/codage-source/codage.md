@@ -49,7 +49,7 @@ Malheureusement, ce théorème ne dit pas comment construire un tel code...
 ## Codage de Huffman
 
 Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
-Il peut s'appliquer quel que soit la taille $M$ de l'alphabet du canal.
+Il peut s'appliquer quel que soit la taille $M$ de l'alphabet de la source.
 
 La procédure pour construire un code de Huffman dans le cas binaire est la suivante :
 

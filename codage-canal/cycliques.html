@@ -47,8 +47,8 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/eyediag.js"></script>
-    <script src="../_static/js/spetsi.js"></script>
     <script src="../_static/js/huffman.js"></script>
+    <script src="../_static/js/spetsi.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
@@ -368,9 +368,9 @@ Ce sont des codes très répandus et que l’on retrouve notamment dans les comm
 ou certains supports de stockage comme les CD ou les QR codes.</p>
 </div>
 <p>Les codes cycliques sont des codes en blocs linéaires particuliers.
-Ils ont le gran intérêt d’offrir un décodage simple.
-Un code est cyclique si, lorsque <span class="math notranslate nohighlight">\(c=c_{n-1}c{n-2}\dots c_1c_0\)</span> est un mot du code,
-alors <span class="math notranslate nohighlight">\(c=c{n-2}c{n-3}\dots c_0c_{n-1}\)</span> (ou tout autre décalage circulaire des symboles)
+Ils ont le grand intérêt d’offrir un décodage simple.
+Un code est cyclique si, lorsque <span class="math notranslate nohighlight">\(c=c_{n-1}c_{n-2}\dots c_1c_0\)</span> est un mot du code,
+alors <span class="math notranslate nohighlight">\(c=c_{n-2}c_{n-3}\dots c_0c_{n-1}\)</span> (ou tout autre décalage circulaire des symboles)
 est également un mot du code.</p>
 <div class="exemple docutils">
 <p>Le code à parité <span class="math notranslate nohighlight">\(C(3,2)\)</span> consiste à ajouter à chaque mot de 2 bits un troisième bit,
@@ -407,10 +407,10 @@ Les codes associés aux quatre messages possibles sont listés dans le tableau c
 </div>
 <div class="section" id="polynome-generateur">
 <h2>Polynôme générateur<a class="headerlink" href="#polynome-generateur" title="Permalink to this headline">¶</a></h2>
-<p>Plutôt que de définir un code cylcique par des phrases ou un tableau de correspondance,
+<p>Plutôt que de définir un code cyclique par des phrases ou un tableau de correspondance,
 on le représente par un polynôme : c’est beaucoup plus court.
 C’est ce qu’on appelle un <strong>polynôme générateur</strong> (<em>generator polynomial</em>).</p>
-<p>Un bloc du message <span class="math notranslate nohighlight">\(m=m_{k-1}m{k-2}\dots m_1m_0\)</span> peut être représenté par le polynôme en <span class="math notranslate nohighlight">\(X\)</span> dont les coefficients sont les symboles <span class="math notranslate nohighlight">\(m_k\)</span>.
+<p>Un bloc du message <span class="math notranslate nohighlight">\(m=m_{k-1}m_{k-2}\dots m_1m_0\)</span> peut être représenté par le polynôme en <span class="math notranslate nohighlight">\(X\)</span> dont les coefficients sont les symboles <span class="math notranslate nohighlight">\(m_k\)</span>.
 Ainsi, on pourra écrire le message <span class="math notranslate nohighlight">\(m\)</span> comme le polynôme</p>
 <div class="math notranslate nohighlight">
 \[

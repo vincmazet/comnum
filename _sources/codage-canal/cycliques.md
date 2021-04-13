@@ -11,9 +11,9 @@ ou certains supports de stockage comme les CD ou les QR codes.
 ```
 
 Les codes cycliques sont des codes en blocs linéaires particuliers.
-Ils ont le gran intérêt d'offrir un décodage simple.
-Un code est cyclique si, lorsque $c=c_{n-1}c{n-2}\dots c_1c_0$ est un mot du code,
-alors $c=c{n-2}c{n-3}\dots c_0c_{n-1}$ (ou tout autre décalage circulaire des symboles)
+Ils ont le grand intérêt d'offrir un décodage simple.
+Un code est cyclique si, lorsque $c=c_{n-1}c_{n-2}\dots c_1c_0$ est un mot du code,
+alors $c=c_{n-2}c_{n-3}\dots c_0c_{n-1}$ (ou tout autre décalage circulaire des symboles)
 est également un mot du code.
 
 ```{div} exemple
@@ -40,11 +40,11 @@ et un décalage circulaire sur $000$ revient à ce même mot.
 
 ## Polynôme générateur
 
-Plutôt que de définir un code cylcique par des phrases ou un tableau de correspondance,
+Plutôt que de définir un code cyclique par des phrases ou un tableau de correspondance,
 on le représente par un polynôme : c'est beaucoup plus court.
 C'est ce qu'on appelle un **polynôme générateur** (_generator polynomial_).
 
-Un bloc du message $m=m_{k-1}m{k-2}\dots m_1m_0$ peut être représenté par le polynôme en $X$ dont les coefficients sont les symboles $m_k$.
+Un bloc du message $m=m_{k-1}m_{k-2}\dots m_1m_0$ peut être représenté par le polynôme en $X$ dont les coefficients sont les symboles $m_k$.
 Ainsi, on pourra écrire le message $m$ comme le polynôme
 
 $$
