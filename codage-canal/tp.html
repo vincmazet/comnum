@@ -335,6 +335,41 @@
                 
   <div class="section" id="travaux-pratiques">
 <h1>Travaux pratiques<a class="headerlink" href="#travaux-pratiques" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-modules-python admonition">
+<p class="admonition-title">Modules Python</p>
+<p>Dans ce TP, nous utiliserons les modules
+<a class="reference external" href="https://numpy.org/doc/stable/reference/index.html">numpy</a>,
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/index.html#api-reference">scipy</a>,
+<a class="reference external" href="https://matplotlib.org/stable/api/index.html">matplotlib</a>,
+<a class="reference external" href="https://github.com/vincmazet/comnumfip">comnumfip</a> et
+<a class="reference external" href="http://komm.readthedocs.io/">komm</a>.</p>
+</div>
+<p>Dans ce TP, trois codages canal sont comparés sur des simulations numériques :
+le code à parité (5,4), le code de Hamming (7,4) et le code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span>.
+Ces trois codes ont été étudiés en TD et en cours à l’exception du code à parité (5,4),
+mais ce dernier consiste, comme le code à parité (3,2), à ajouter un bit de parité à chaque bloc du message.</p>
+<p>Le codage et le décodage seront, pour ces trois codes, effectués avec le module komm.</p>
+<ol class="simple">
+<li><p>Cherchez dans l’aide de komm quelles instructions permettent de coder et décoder une séquence binaire.
+N’hésitez pas à vous partager le travail et à communiquer les syntaxes que vous avez trouver dans le
+<a class="reference external" href="https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded">chat du TP</a>.</p></li>
+<li><p>Testez le fonctionnement de chaque code sur une séquence binaire aléatoire (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>).</p></li>
+<li><p>Vérifiez que le décodage fonctionne également en l’appliquant directement sur la séquence codée.</p></li>
+<li><p>Introduisez quelques erreurs dans la séquence pour vérifier que le décodage fonctionne bien.
+Expliquez en particulier le cas du code à parité (5,4).</p></li>
+</ol>
+<p>On applique maintenant ces trois codes sur des séquences binaires très longues,
+en considérant un canal binaire symétrique de probabilité d’erreur <span class="math notranslate nohighlight">\(\alpha\)</span>,
+c’est-à-dire que chaque bit a une probabilité <span class="math notranslate nohighlight">\(\alpha\)</span> d’être erroné.
+La transmission est dite « simplex » c’est-à-dire qu’elle s’effectue dans un seul sens :
+il n’est pas possible pour le récepteur de demander à l’émetteur de transmettre une nouvelle fois le message
+si une erreur a été détectée sans avoir pu être corrigée.</p>
+<ol class="simple">
+<li><p>Simulez la transmission via ce canal (<code class="docutils literal notranslate"><span class="pre">komm.BinarySymmetricChannel</span></code>) d’une séquence binaire aléatoire
+sans codage canal et avec les trois codes précédents.</p></li>
+<li><p>Tracez la probabilité d’erreur par élément du message en fonction de la probabilité d’erreur sur le canal de transmission
+(faites plusieurs simulations avec des messages suffisamment longs).</p></li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">

@@ -98,6 +98,7 @@ sera codé :
   $$
   
   Quel taux de compression obtenez-vous ?
+  Donnez votre réponse dans le [chat du TP](https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded).
 
 <!-- Codez la méthode de décompression et vérifiez qu'elle fonctionne correctement en affichant l'image décompressée. -->
 
@@ -128,10 +129,12 @@ La transformation en cosinus discrète inverse permet de décoder l'image compre
    J = I*mask                  # Masquage de l'image
    ```
    Ces valeurs nulles n'étant pas transmises, quel taux de compression obtenez-vous ?
+  Donnez votre réponse dans le [chat du TP](https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded).
 
 1. Appliquez la transformée inverse (`scipy.fftpack.idctn`) sur l'image masquée puis affichez l'image compressée.
 
-1. Discutez la qualité de l'image compressée.
+1. Discutez la qualité de l'image compressée
+  (dans le [chat](https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded)).
    On distingue la qualité visuelle de l'image (critère qualitatif et subjectif)
    et la qualité quantitative qui est souvent mesurée à l'aide du rapport signal-à-bruit (RSB).
    Le RSB quantifie l'erreur pixel par pixel entre l'image originale $f$ et l'image compressée $g$ (de taille $M \times N$) :
