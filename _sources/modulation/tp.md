@@ -29,13 +29,13 @@ L'objectif de cet exercice est d'implémenter et de comparer quelques modulation
 
 Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.
 
-1. Créez une séquence binaire aléatoire $x_2$ de $N$ bits (`comnum.randmary`)
-   et convertissez-la en séquence hexadécimale $x_{16}$ (`comnum.bin2mary`) :
+1. Créez une séquence binaire aléatoire $x_2$ de $N$ bits (`comnumfip.randmary`)
+   et convertissez-la en séquence hexadécimale $x_{16}$ (`comnumfip.bin2mary`) :
    vous disposez donc du même message disponible sous deux représentations différentes.
    Affichez-les avec `print`.
 
-1. Appliquez les modulations `comnum.mod_a`, `comnum.mod_b`, `comnum.mod_c`, `comnum.mod_d` sur la séquence binaire,
-   et `comnum.mod_e` sur la séquence hexadécimale.
+1. Appliquez les modulations `comnumfip.mod_a`, `comnumfip.mod_b`, `comnumfip.mod_c`, `comnumfip.mod_d` sur la séquence binaire,
+   et `comnumfip.mod_e` sur la séquence hexadécimale.
    Identifiez chacune de ces modulations.
 
 1. L'analyse spectrale des modulations peut être effectuée à l'aide de la densité spectrale de puissance,
@@ -88,7 +88,7 @@ Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal br
 1. Donnez l'expression du signal reçu $y(t)$ en fonction du signal émis $x(t)$ et des caractéristiques du canal.
    <!-- y(t) = K\,x(t-\tau) + b(t) -->
 
-1. Simulez la transmission d'un message codé en NRZ binaire (`comnum.randmary`, `comnum.mod_d`, `comnum.channel`).
+1. Simulez la transmission d'un message codé en NRZ binaire (`comnumfip.randmary`, `comnumfip.mod_d`, `comnumfip.channel`).
    On rappelle qu'on considère le canal est idéal, donc que sa largeur de bande est infinie (`numpy.inf`).
    Observez le signal en entrée du détecteur pour différents niveaux de bruit.
    <!--
@@ -98,7 +98,7 @@ Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal br
    -->
 
 1. Dans un premier temps, on ne tient pas compte du filtre de réception : $r(t) = \delta(t)$.
-   Échantillonnez et seuillez le signal $z(t)=y(t)$ (`comnum.sample_and_threshold`)
+   Échantillonnez et seuillez le signal $z(t)=y(t)$ (`comnumfip.sample_and_threshold`)
    pour retrouver, tous les $T$, les symboles $\alpha_k$ émis.
 
 1. Dans un deuxième temps, appliquez le filtre de réception.
@@ -121,7 +121,7 @@ La détection est alors perturbée même s'il n'y a pas de bruit.
 * Simulez l'émission d'un message codé en NRZ binaire.
   Observez le signal en entrée du récepteur pour différentes fréquences de coupure du canal.
 
-* Tracez le diagramme de l'œil (`comnum.eyediag`) de $y(t)$ : que se passe-t-il lorsque la bande passante du canal varie ?
+* Tracez le diagramme de l'œil (`comnumfip.eyediag`) de $y(t)$ : que se passe-t-il lorsque la bande passante du canal varie ?
 
 <!--
   Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
@@ -131,10 +131,10 @@ La détection est alors perturbée même s'il n'y a pas de bruit.
 -->
 
 * Lorsque la bande passante du canal est trop faible, la forme d'onde rectangulaire n'est pas adaptée.
-  Il est préférable d'utiliser une forme d'onde en racine de cosinus surélevé (`comnum.mod_rrc`).
+  Il est préférable d'utiliser une forme d'onde en racine de cosinus surélevé (`comnumfip.mod_rrc`).
   Simulez la transmission du message avec cette nouvelle forme d'onde,
   notamment en observant le diagramme de l'œil pour plusieurs valeurs du facteur de retombée $a$.
-  L'impulsion en racine de cosinus surélevée est obtenue avec la fonction `comnum.rrc`.
+  L'impulsion en racine de cosinus surélevée est obtenue avec la fonction `comnumfip.rrc`.
 
 * Simulez l'opération de détection en comparant les deux formes d'onde.
 

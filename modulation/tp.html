@@ -387,12 +387,12 @@ mais également
 </ul>
 <p>Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.</p>
 <ol class="simple">
-<li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">comnum.randmary</span></code>)
-et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">comnum.bin2mary</span></code>) :
+<li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>)
+et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">comnumfip.bin2mary</span></code>) :
 vous disposez donc du même message disponible sous deux représentations différentes.
 Affichez-les avec <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p></li>
-<li><p>Appliquez les modulations <code class="docutils literal notranslate"><span class="pre">comnum.mod_a</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_b</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_c</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_d</span></code> sur la séquence binaire,
-et <code class="docutils literal notranslate"><span class="pre">comnum.mod_e</span></code> sur la séquence hexadécimale.
+<li><p>Appliquez les modulations <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_a</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_b</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_c</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_d</span></code> sur la séquence binaire,
+et <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_e</span></code> sur la séquence hexadécimale.
 Identifiez chacune de ces modulations.</p></li>
 <li><p>L’analyse spectrale des modulations peut être effectuée à l’aide de la densité spectrale de puissance,
 qui est le carré du module de la transformée de Fourier.
@@ -438,7 +438,7 @@ sa réponse impulsionnelle est alors <span class="math notranslate nohighlight">
 <li><p>Donnez l’expression du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> en fonction du signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> et des caractéristiques du canal.</p>
 <!-- y(t) = K\,x(t-\tau) + b(t) -->
 </li>
-<li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">comnum.randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">comnum.channel</span></code>).
+<li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.channel</span></code>).
 On rappelle qu’on considère le canal est idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>).
 Observez le signal en entrée du détecteur pour différents niveaux de bruit.</p>
 <!--
@@ -448,7 +448,7 @@ de l'écart-type défini.
 -->
 </li>
 <li><p>Dans un premier temps, on ne tient pas compte du filtre de réception : <span class="math notranslate nohighlight">\(r(t) = \delta(t)\)</span>.
-Échantillonnez et seuillez le signal <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span> (<code class="docutils literal notranslate"><span class="pre">comnum.sample_and_threshold</span></code>)
+Échantillonnez et seuillez le signal <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span> (<code class="docutils literal notranslate"><span class="pre">comnumfip.sample_and_threshold</span></code>)
 pour retrouver, tous les <span class="math notranslate nohighlight">\(T\)</span>, les symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span> émis.</p></li>
 <li><p>Dans un deuxième temps, appliquez le filtre de réception.
 Le filtre adapté peut s’implémenter à l’aide d’une corrélation,
@@ -468,7 +468,7 @@ La détection est alors perturbée même s’il n’y a pas de bruit.</p>
 <ul class="simple">
 <li><p>Simulez l’émission d’un message codé en NRZ binaire.
 Observez le signal en entrée du récepteur pour différentes fréquences de coupure du canal.</p></li>
-<li><p>Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><span class="pre">comnum.eyediag</span></code>) de <span class="math notranslate nohighlight">\(y(t)\)</span> : que se passe-t-il lorsque la bande passante du canal varie ?</p></li>
+<li><p>Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><span class="pre">comnumfip.eyediag</span></code>) de <span class="math notranslate nohighlight">\(y(t)\)</span> : que se passe-t-il lorsque la bande passante du canal varie ?</p></li>
 </ul>
 <!--
   Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
@@ -478,10 +478,10 @@ Observez le signal en entrée du récepteur pour différentes fréquences de cou
 -->
 <ul class="simple">
 <li><p>Lorsque la bande passante du canal est trop faible, la forme d’onde rectangulaire n’est pas adaptée.
-Il est préférable d’utiliser une forme d’onde en racine de cosinus surélevé (<code class="docutils literal notranslate"><span class="pre">comnum.mod_rrc</span></code>).
+Il est préférable d’utiliser une forme d’onde en racine de cosinus surélevé (<code class="docutils literal notranslate"><span class="pre">comnumfip.mod_rrc</span></code>).
 Simulez la transmission du message avec cette nouvelle forme d’onde,
 notamment en observant le diagramme de l’œil pour plusieurs valeurs du facteur de retombée <span class="math notranslate nohighlight">\(a\)</span>.
-L’impulsion en racine de cosinus surélevée est obtenue avec la fonction <code class="docutils literal notranslate"><span class="pre">comnum.rrc</span></code>.</p></li>
+L’impulsion en racine de cosinus surélevée est obtenue avec la fonction <code class="docutils literal notranslate"><span class="pre">comnumfip.rrc</span></code>.</p></li>
 <li><p>Simulez l’opération de détection en comparant les deux formes d’onde.</p></li>
 </ul>
 <!-- Répartition optimale du filtrage entre l'émission et la réception ? -->
