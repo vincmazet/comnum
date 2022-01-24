@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercices &#8212; Communications numériques</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jbvinc.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/.ipynb_checkpoints/jbvinc-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Travaux pratiques" href="tp.html" />
+    <link rel="prev" title="Codes convolutifs" href="conv.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Communications numériques</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Avant-propos
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Généralités
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chaine.html">
+   Chaîne de communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chiffrement.html">
+   Chiffrement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/multiplexage.html">
+   Multiplexage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/canal.html">
+   Canal de transmission
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Modulation &amp; démodulation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-bb.html">
+   Modulation en bande de base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-porteuse.html">
+   Modulation sur porteuse
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-canal-bruit%C3%A9.html">
+   Démodulation en présence de bruit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-bande-limit%C3%A9e.html">
+   Démodulation dans le cas d’un canal à bande limitée
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/diagramme-oeil.html">
+   Diagramme de l’œil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/td.html">
+   Excercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage source
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/information.html">
+   Mesure de l’information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/codage.html">
+   Codage d’une source sans mémoire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage canal
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bloc.html">
+   Codes en bloc
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cycliques.html">
+   Codes cycliques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conv.html">
+   Codes convolutifs
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://moodle.unistra.fr/course/view.php?id=5501">
+   Moodle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/references.html">
+   Références
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/licence.html">
+   Licence
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/codage-canal/td.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-1">
+   Exercice 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-2">
+   Exercice 2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-3">
+   Exercice 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-4">
+   Exercice 4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-5">
+   Exercice 5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-6">
+   Exercice 6
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercice-7">
+   Exercice 7
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="exercices">
+<h1>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="exercice-1">
+<h2>Exercice 1<a class="headerlink" href="#exercice-1" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le principe du code à parité (3, 2) est de rajouter à chaque bloc du message un « bit de parité »
+de sorte que le nombre de bit à 1 dans les mots du code soit pair.</p>
+<ol class="simple">
+<li><p>Donnez le rendement de ce code.</p></li>
+<li><p>Donnez l’ensemble des mots du code. Est-ce un code systématique ?</p></li>
+<li><p>Donnez les matrices génératrice et de contrôle de parité.</p></li>
+<li><p>Représentez géométriquement dans <span class="math notranslate nohighlight">\(\mathbb{F}_2^3\)</span> les mots du code.</p></li>
+<li><p>Calculez la distance minimale. En déduire les pouvoirs de détection et de correction du code.</p></li>
+</ol>
+</div>
+<div class="section" id="exercice-2">
+<h2>Exercice 2<a class="headerlink" href="#exercice-2" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les codes de Hamming sont définis ainsi dans <span class="xref std std-ref">[Proakis 2008]</span> :</p>
+<blockquote>
+<div><p>Hamming codes are one of the earliest codes studied in coding theory.
+Hamming codes are linear block codes with parameters <span class="math notranslate nohighlight">\(n=2^m-1\)</span> and <span class="math notranslate nohighlight">\(k=2^m-m-1\)</span>, for <span class="math notranslate nohighlight">\(m\geq3\)</span>.
+Hamming codes are best described in terms of their parity check matrix <span class="math notranslate nohighlight">\(H\)</span> which is an
+<span class="math notranslate nohighlight">\((n-k) \times n = m \times (2^m-1)\)</span> matrix.
+The <span class="math notranslate nohighlight">\(2^m-1\)</span> columns of <span class="math notranslate nohighlight">\(H\)</span> consist of all possible binary vectors of length <span class="math notranslate nohighlight">\(m\)</span> excluding the all-zero vector.</p>
+</div></blockquote>
+<p>Dans cet exercice, on considère le code de Hamming (7, 4).</p>
+<ul class="simple">
+<li><p>Donnez le rendement de ce code.</p></li>
+<li><p>Donnez les matrices génératrice et de contrôle de parité.</p></li>
+<li><p>Donnez l’ensemble des mots du code.</p></li>
+<li><p>Calculez la distance minimale. En déduire les pouvoirs de détection et de correction du code.</p></li>
+</ul>
+<!--
+On reçoit la séquence binaire \bs{10001111110010010100011010111011111}.
+Trouvez le message émis sachant qu'un code de Hamming~(7,4) a été utilisé.
+Solution : 1 0 0 0  1 0 1 0  0 1 1 1  1 1 0 1  1 1 1 1
+-->
+</div>
+<div class="section" id="exercice-3">
+<h2>Exercice 3<a class="headerlink" href="#exercice-3" title="Lien permanent vers ce titre">¶</a></h2>
+<!-- Wilson, ex. 5.0.1 -->
+<p>On suppose un canal binaire où les erreurs de transmissions se traduisent par une suppression de certains bits
+(et non une modification de leur état).
+Le récepteur sait quels sont les bits manquants mais ne connaît pas leurs valeurs.
+Expliquez comment un code de Hamming (7,4) peut trouver les bits manquants lorsque un ou deux bits consécutifs ont été supprimés.</p>
+</div>
+<div class="section" id="exercice-4">
+<h2>Exercice 4<a class="headerlink" href="#exercice-4" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les mots du message à coder sont de longueur <span class="math notranslate nohighlight">\(k=3\)</span> bits.
+On utilise un code à parité qui assure que le nombre de bits à 1 dans chaque mot du code est pair.</p>
+<ul class="simple">
+<li><p>Donnez la taille <span class="math notranslate nohighlight">\(n\)</span> d’un mot du code.</p></li>
+<li><p>Donnez la matrice génératrice.</p></li>
+<li><p>Calculez la distance minimale du code.</p></li>
+</ul>
+<p>On remplace maintenant le code par un code à parité croisée,
+c’est-à-dire qu’en arrangeant les mots du message sous forme d’un tableau <span class="math notranslate nohighlight">\(k \times k\)</span>,
+des bits de parité sont calculés sur chaque ligne et sur chaque colonne.
+L’exemple ci-dessous donne les bits de parité pour le message <code class="docutils literal notranslate"><span class="pre">111010011</span></code> :</p>
+<a class="reference internal image-reference" href="codage-canal/../figs/crossparity.png"><img alt="Exemple de parité croisée" class="align-center" src="codage-canal/../figs/crossparity.png" style="width: 300px;" /></a>
+<p>Répondez aux questions précédentes en considérant le code à parité croisée.
+Concluez sur l’intérêt d’un code à parité croisée par rapport à un code à parité simple.</p>
+</div>
+<div class="section" id="exercice-5">
+<h2>Exercice 5<a class="headerlink" href="#exercice-5" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le meilleur code convolutif de rendement <span class="math notranslate nohighlight">\(1/2\)</span> (avec <span class="math notranslate nohighlight">\(k=1\)</span>) et de longueur de contrainte <span class="math notranslate nohighlight">\(4\)</span> a comme polynômes générateurs <span class="math notranslate nohighlight">\(15_8\)</span> et <span class="math notranslate nohighlight">\(17_8\)</span>.
+Représentez son schéma bloc.</p>
+<!-- Déterminer sa distance minimale $d_\mathrm{min}$ (solution : dmin = 6 : cf tableau 3 dans Sari) -->
+</div>
+<div class="section" id="exercice-6">
+<h2>Exercice 6<a class="headerlink" href="#exercice-6" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On considère le code convolutif ci-dessous (<span class="math notranslate nohighlight">\(k=1\)</span>) :</p>
+<a class="reference internal image-reference" href="codage-canal/../figs/codeconv1.png"><img alt="Code convolutif" class="align-center" src="codage-canal/../figs/codeconv1.png" style="width: 250px;" /></a>
+<p>\includegraphics{figs/codeconv1}</p>
+<ul class="simple">
+<li><p>Déterminez <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(K\)</span>. En déduire le rendement <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
+<li><p>Donnez les polynômes générateurs.</p></li>
+<li><p>Calculez la sortie du codeur lorsque l’entrée est <code class="docutils literal notranslate"><span class="pre">01110110</span></code>.</p></li>
+<li><p>Représentez le diagramme en treillis.</p></li>
+<li><p>(Optionnel) Décodez la séquence reçue <code class="docutils literal notranslate"><span class="pre">11001010</span></code> à l’aide de l’algorithme de Viterbi.</p></li>
+</ul>
+</div>
+<div class="section" id="exercice-7">
+<h2>Exercice 7<a class="headerlink" href="#exercice-7" title="Lien permanent vers ce titre">¶</a></h2>
+<!-- Codeur de la fig 8.27 du Proakis -->
+<p>Même questions que dans l’exercice précédent pour le code convolutif ci-dessous :</p>
+<a class="reference internal image-reference" href="codage-canal/../figs/codeconv2.png"><img alt="Code convolutif" class="align-center" src="codage-canal/../figs/codeconv2.png" style="width: 350px;" /></a>
+<!-- Un code en treillis dont les mots sont de longueur $n=2$ a pour réponse impulsionnelle \bs{11011010}.
+Déterminer la réponse du codeur à l'entrée \bs{10001101}. -->
+<!-- sur les codes barres EAN 13 ? -->
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./codage-canal"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="conv.html" title="previous page">Codes convolutifs</a>
+    <a class='right-next' id="next-link" href="tp.html" title="next page">Travaux pratiques</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Par Vincent Mazet (Université de Strasbourg)<br/>
+        
+            &copy; droits d'auteur 2021-2022.<br/>
+          <div class="extra_footer">
+            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2022 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

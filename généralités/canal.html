@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canal de transmission &#8212; Communications numériques</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jbvinc.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Introduction" href="../modulation/intro.html" />
+    <link rel="prev" title="Multiplexage" href="multiplexage.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Communications numériques</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Avant-propos
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Généralités
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chaine.html">
+   Chaîne de communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chiffrement.html">
+   Chiffrement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multiplexage.html">
+   Multiplexage
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Canal de transmission
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Modulation &amp; démodulation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-bb.html">
+   Modulation en bande de base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-porteuse.html">
+   Modulation sur porteuse
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-canal-bruit%C3%A9.html">
+   Démodulation en présence de bruit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-bande-limit%C3%A9e.html">
+   Démodulation dans le cas d’un canal à bande limitée
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/diagramme-oeil.html">
+   Diagramme de l’œil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/td.html">
+   Excercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage source
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/information.html">
+   Mesure de l’information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/codage.html">
+   Codage d’une source sans mémoire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage canal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/bloc.html">
+   Codes en bloc
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/cycliques.html">
+   Codes cycliques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/conv.html">
+   Codes convolutifs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://moodle.unistra.fr/course/view.php?id=5501">
+   Moodle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/references.html">
+   Références
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/licence.html">
+   Licence
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/généralités/canal.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cable-electrique">
+   Câble électrique
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fibre-optique">
+   Fibre optique
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#canal-electromagnetique">
+   Canal électromagnétique
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#canaux-acoustiques-sous-marins">
+   Canaux acoustiques sous-marins
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stockage">
+   Stockage
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="canal-de-transmission">
+<span id="p-canal"></span><h1>Canal de transmission<a class="headerlink" href="#canal-de-transmission" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Les canaux étant des dispositifs physiques, le signal qui y circule est toujours analogique,
+même si l’information reste codée par un message numérique.
+La transmission est souvent perturbée par deux phénomènes qui limitent la quantité de données pouvant être transmises :</p>
+<ul class="simple">
+<li><p>du bruit, qui peut être électronique (produits par les composants),
+électromagnétique (dû aux rayons cosmiques) ou des interférences avec d’autres signaux (phénomène de diaphonie) ;</p></li>
+<li><p>des distorsions dues aux limitations physiques du canal ou aux imperfections des équipements :</p>
+<ul>
+<li><p>atténuation du signal,</p></li>
+<li><p>distorsion d’amplitude et de phase,</p></li>
+<li><p>échos (trajets multiples),</p></li>
+<li><p>largeur de bande du canal limité.</p></li>
+</ul>
+</li>
+</ul>
+<p>Pour ces raisons, un canal et souvent modélisé, en première approche, par un filtre passe-bas et un bruit additif :</p>
+<div class="figure align-default" id="f-modele-canal">
+<a class="reference internal image-reference" href="../_images/modele-canal.svg"><img alt="../_images/modele-canal.svg" src="../_images/modele-canal.svg" width="50%" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Modèle simple d’un canal.</span><a class="headerlink" href="#f-modele-canal" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>Il existe plusieurs familles de canaux, avec leurs caractéristiques propres, qui sont listés ci-dessous.</p>
+<div class="section" id="cable-electrique">
+<h2>Câble électrique<a class="headerlink" href="#cable-electrique" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un câble électrique simple est constitué de deux fils conducteurs d’électricité.
+On distingue notamment :</p>
+<ul>
+<li><p>le câble simple où les deux fils sont côte à côte ;</p></li>
+<li><p>la paire torsadée (<a class="reference internal" href="#f-paire-torsadee"><span class="std std-numref">Fig. 4</span></a>) où les deux fils sont enroulés l’un sur l’autre : on limite ainsi les interférences et la diaphonie,
+et on utilise ce type de canal pour des communications sur de courtes distances ;</p>
+<!-- BP : plusieurs centaines de kilohertz / distorsion amplitude phase diaphonie -->
+</li>
+<li><p>le câble coaxial (<a class="reference internal" href="#f-cable-coaxial"><span class="std std-numref">Fig. 5</span></a>) où l’un des deux fils est en fait un treillis qui entoure l’autre fil.
+Ainsi, les interférences avec d’autres dispositifs sont extrêmement réduites.
+Le câble coaxial est utilisé dans certains réseaux Ethernet ou pour transmettre un signal vidéo sur quelques dizaines de mètres.
+Les premiers câbles sous-marin étaient co-axiaux, mais ils sont maintenant largement dépassés par les câbles à fibre optique.</p>
+<!-- bande passante plusieurs mégahertz distorsion amplitude phase application connexion entre centraux téléphoniques  -->
+</li>
+</ul>
+<div class="figure align-default" id="f-paire-torsadee">
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/f/f3/Futp_cable.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/f/f3/Futp_cable.jpg" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Futp_cable.jpg" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Paires torsadées.</span><a class="headerlink" href="#f-paire-torsadee" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<div class="figure align-default" id="f-cable-coaxial">
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/7/73/RG-59.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/7/73/RG-59.jpg" src="https://upload.wikimedia.org/wikipedia/commons/7/73/RG-59.jpg" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Câble coaxial.</span><a class="headerlink" href="#f-cable-coaxial" title="Lien permanent vers cette image">¶</a></p>
+</div>
+</div>
+<div class="section" id="fibre-optique">
+<h2>Fibre optique<a class="headerlink" href="#fibre-optique" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une fibre optique est un fil en verre ou en plastique qui conduit la lumière entre ses deux extrémités avec très peu de pertes.
+De ce fait, elle présente très peu de distorsion et n’introduit quasiment pas de bruit.
+La fibre optique est utilisée à tous les niveaux de l’architecture de communication : des câbles sous-marins aux logements.</p>
+<!-- BP : > 10 GHz, débit : 10 Gbits/s -->
+<div class="figure align-default" id="f-fibre-optique">
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/e/e6/Optical_breakout_cable.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/e/e6/Optical_breakout_cable.jpg" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Optical_breakout_cable.jpg" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Illustration d’un câble contenant plusieurs fibres optiques.</span><a class="headerlink" href="#f-fibre-optique" title="Lien permanent vers cette image">¶</a></p>
+</div>
+</div>
+<div class="section" id="canal-electromagnetique">
+<h2>Canal électromagnétique<a class="headerlink" href="#canal-electromagnetique" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le canal électromagnétique regroupe tous les milieux où les ondes électromagnétiques
+(comme les ondes radio ou la lumière) peuvent se déplacer.
+Typiquement, il s’agit de l’air libre.
+On distingue trois types de propagation :</p>
+<ul class="simple">
+<li><p>la propagation en ligne de mire qui permet des communications très haute fréquence ;
+elle est utilisé en téléphonie mobile ou pour la communication par laser entre bâtiments ;</p></li>
+<li><p>la propagation par onde de sol : l’atmosphère joue le rôle d’un guide d’onde ;
+elle permet des communications à très basses fréquence et autorise la diffusion du message dans le monde entier
+(par exemple en navigation) ;</p></li>
+<li><p>la propagation ionosphérique où les ondes rebondissent sur la ionosphère et la surface de la Terre.</p></li>
+</ul>
+<!-- SCHEMAS -->
+</div>
+<div class="section" id="canaux-acoustiques-sous-marins">
+<h2>Canaux acoustiques sous-marins<a class="headerlink" href="#canaux-acoustiques-sous-marins" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La communication dans l’eau est très difficile car les ondes électromagnétiques ne se propage pas bien sur de longues distances.
+À l’inverse, les signaux acoustiques peuvent s’étendre sur des centaines de kilomètres
+(les grands cétacés peuvent communiquer de cette façon).
+Cependant, la communication acoustique sous-marine est sujette à des atténuations fortes et des trajets multiples
+en raison des réflexions à la surface et au fond de l’océan.
+Néanmoins, elle est utilisée pour certains robots sous-marin ou des télémètres (comme des tsunamètres).</p>
+</div>
+<div class="section" id="stockage">
+<h2>Stockage<a class="headerlink" href="#stockage" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Stocker une information numérique est d’un certain point de vue équivalent à transmettre cette information :
+on y retrouve notamment les notions de codage source et codage canal.
+Le stockage d’une information numérique peut se faire dans une mémoire électronique (disque SSD par exemple),
+une bande magnétique, disque optique, et même du papier (code barre et QR code) !</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./généralités"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="multiplexage.html" title="previous page">Multiplexage</a>
+    <a class='right-next' id="next-link" href="../modulation/intro.html" title="next page">Introduction</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Par Vincent Mazet (Université de Strasbourg)<br/>
+        
+            &copy; droits d'auteur 2021-2022.<br/>
+          <div class="extra_footer">
+            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2022 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

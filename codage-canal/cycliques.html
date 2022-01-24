@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codes cycliques &#8212; Communications numériques</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jbvinc.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Codes convolutifs" href="conv.html" />
+    <link rel="prev" title="Codes en bloc" href="bloc.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Communications numériques</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Avant-propos
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Généralités
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chaine.html">
+   Chaîne de communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chiffrement.html">
+   Chiffrement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/multiplexage.html">
+   Multiplexage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/canal.html">
+   Canal de transmission
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Modulation &amp; démodulation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-bb.html">
+   Modulation en bande de base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-porteuse.html">
+   Modulation sur porteuse
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-canal-bruit%C3%A9.html">
+   Démodulation en présence de bruit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-bande-limit%C3%A9e.html">
+   Démodulation dans le cas d’un canal à bande limitée
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/diagramme-oeil.html">
+   Diagramme de l’œil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/td.html">
+   Excercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage source
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/information.html">
+   Mesure de l’information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/codage.html">
+   Codage d’une source sans mémoire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage canal
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bloc.html">
+   Codes en bloc
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Codes cycliques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conv.html">
+   Codes convolutifs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tp.html">
+   Travaux pratiques
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://moodle.unistra.fr/course/view.php?id=5501">
+   Moodle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/references.html">
+   Références
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/licence.html">
+   Licence
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/codage-canal/cycliques.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principe">
+   Principe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynome-generateur">
+   Polynôme générateur
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quelques-codes-cycliques">
+   Quelques codes cycliques
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="codes-cycliques">
+<span id="s-codage-canal-cycliques"></span><h1>Codes cycliques<a class="headerlink" href="#codes-cycliques" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="principe">
+<h2>Principe<a class="headerlink" href="#principe" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Les codes BCH et Reed-Solomon sont des codes circulaires.
+Ce sont des codes très répandus et que l’on retrouve notamment dans les communications spatiales et l’ADSL
+ou certains supports de stockage comme les CD ou les QR codes.</p>
+</div>
+<p>Les codes cycliques sont des codes en blocs linéaires particuliers.
+Ils ont le grand intérêt d’offrir un décodage simple.
+Un code est cyclique si, lorsque <span class="math notranslate nohighlight">\(c=c_{n-1}c_{n-2}\dots c_1c_0\)</span> est un mot du code,
+alors <span class="math notranslate nohighlight">\(c=c_{n-2}c_{n-3}\dots c_0c_{n-1}\)</span> (ou tout autre décalage circulaire des symboles)
+est également un mot du code.</p>
+<div class="exemple docutils">
+<p>Le code à parité <span class="math notranslate nohighlight">\(C(3,2)\)</span> consiste à ajouter à chaque mot de 2 bits un troisième bit,
+de telle sorte que le nombre total de bit à 1 soit pair.
+Les codes associés aux quatre messages possibles sont listés dans le tableau ci-dessous.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(m\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(c\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>00</p></td>
+<td><p>000</p></td>
+</tr>
+<tr class="row-odd"><td><p>01</p></td>
+<td><p>011</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>101</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>110</p></td>
+</tr>
+</tbody>
+</table>
+<p>Ce code est cyclique car on peut effectuer on peut effectuer les décalages circulaires suivants :</p>
+<div class="math notranslate nohighlight">
+\[
+011 \rightarrow 110 \rightarrow 101 \rightarrow 011 \rightarrow \text{etc.}
+\]</div>
+<p>et un décalage circulaire sur <span class="math notranslate nohighlight">\(000\)</span> revient à ce même mot.</p>
+</div>
+</div>
+<div class="section" id="polynome-generateur">
+<h2>Polynôme générateur<a class="headerlink" href="#polynome-generateur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Plutôt que de définir un code cyclique par des phrases ou un tableau de correspondance,
+on le représente par un polynôme : c’est beaucoup plus court.
+C’est ce qu’on appelle un <strong>polynôme générateur</strong> (<em>generator polynomial</em>).</p>
+<p>Un bloc du message <span class="math notranslate nohighlight">\(m=m_{k-1}m_{k-2}\dots m_1m_0\)</span> peut être représenté par le polynôme en <span class="math notranslate nohighlight">\(X\)</span> dont les coefficients sont les symboles <span class="math notranslate nohighlight">\(m_k\)</span>.
+Ainsi, on pourra écrire le message <span class="math notranslate nohighlight">\(m\)</span> comme le polynôme</p>
+<div class="math notranslate nohighlight">
+\[
+m(X) = m_{k-1}X^{k-1} + m_{k-2}X^{k-2} + \dots + m_1X + m_0.
+\]</div>
+<p>De même, le code associé à ce message sera représenté par le polynôme</p>
+<div class="math notranslate nohighlight">
+\[
+c(X) = c_{n-1}X^{n-1} + c_{n-2}X^{n-2} + \dots + c_1X + c_0.
+\]</div>
+<p>Le calcul du code <span class="math notranslate nohighlight">\(c\)</span> à partir du message <span class="math notranslate nohighlight">\(m\)</span> s’effectue en multipliant <span class="math notranslate nohighlight">\(m(X)\)</span> par le polynôme générateur <span class="math notranslate nohighlight">\(g(X)\)</span>.
+Ce polynôme générateur est de degré <span class="math notranslate nohighlight">\(n-k\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[
+g(X) = X^{n-k} + g_{n-k-1}X^{n-k-1} + \dots + g_1X + g_0.
+\]</div>
+<div class="exemple docutils">
+<p>Le polynôme générateur du code à parité <span class="math notranslate nohighlight">\(C(3,2)\)</span>, dont on a vu ci-avant qu’il était cyclique, est</p>
+<div class="math notranslate nohighlight">
+\[
+g(X) = X+1.
+\]</div>
+<p>Il est bien de degré <span class="math notranslate nohighlight">\(n-k=1\)</span>.</p>
+<p>En effet :</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(m\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(m(X)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(c(X)=m(X)g(X)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(c\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>00</p></td>
+<td><p>0</p></td>
+<td><p><span class="math notranslate nohighlight">\(0(X+1) = 0\)</span></p></td>
+<td><p>000</p></td>
+</tr>
+<tr class="row-odd"><td><p>01</p></td>
+<td><p>1</p></td>
+<td><p><span class="math notranslate nohighlight">\(X+1\)</span></p></td>
+<td><p>011</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p><span class="math notranslate nohighlight">\(X\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(X(X+1) = X^2+X\)</span></p></td>
+<td><p>110</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p><span class="math notranslate nohighlight">\(X+1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\((X+1)^2 = X^2+1\)</span></p></td>
+<td><p>101</p></td>
+</tr>
+</tbody>
+</table>
+<p>Notez que <span class="math notranslate nohighlight">\(2X=X+X=0\)</span> quelle que soit la valeur de <span class="math notranslate nohighlight">\(X\)</span>
+(souvenez-vous que <span class="math notranslate nohighlight">\(1+1=0\)</span> dans le corps de Galois <span class="math notranslate nohighlight">\(\mathbb{F}_2\)</span>).</p>
+<p>À la différence du premier tableau définissant le code à parité, le bit de parité est ici situé en deuxième position.</p>
+</div>
+<p>Bref, un code cyclique est représenté par son polynôme générateur.
+Plus précisément, puisque ce sont seulement les coefficients du polynôme qui déterminent le code cyclique,
+on ne représente celui-ci que par ses coefficients.
+Et pour raccourcir encore plus leur représentation, on utilise une représentation octale qui correspond à la valeur en base 8 de groupes de trois coefficients.</p>
+<p>Par exemple :</p>
+<ul class="simple">
+<li><p>le polynôme <span class="math notranslate nohighlight">\(g(X) =       X+1\)</span> a pour coefficients   <span class="math notranslate nohighlight">\(11_2\)</span> soit  <span class="math notranslate nohighlight">\(3_8\)</span> en base 8 ;</p></li>
+<li><p>le polynôme <span class="math notranslate nohighlight">\(g(X) = X^3+X^2+1\)</span> a pour coefficients <span class="math notranslate nohighlight">\(1101_2\)</span> soit <span class="math notranslate nohighlight">\(15_8\)</span> en base 8.</p></li>
+</ul>
+</div>
+<div class="section" id="quelques-codes-cycliques">
+<h2>Quelques codes cycliques<a class="headerlink" href="#quelques-codes-cycliques" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les codes CRC (<em>cyclic redundancy check</em>) sont une forme particulière de codes cycliques.
+Ils ne permettent que de détecter des erreurs, mais pas de les corriger.</p>
+<p>Les codes BCH (du nom de leurs inventeurs : Bose, Chaudhuri, Hocquenghem en 1959-1960)
+sont des codes cycliques binaires ou M-aires.
+Il en existe de plusieurs longueurs et rendements et leur décodage est simple.
+C’est pourquoi ils sont très utilisés comme codes de taille faible ou modérée,
+comme par exemple en communication satellitaire, pour les disques optiques,
+les disques durs et SSD ou les codes barres bi-dimensionnels.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Polynômes générateurs des codes BCH<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Le tableau ci-dessous donne les coefficients (en octal) des polynômes générateurs de quelques codes BCH binaires <span class="xref std std-ref">[Proakis 2008]</span>.
+Ces codes fournissent des mots de longueur <span class="math notranslate nohighlight">\(n\)</span> à partir de blocs du message de taille <span class="math notranslate nohighlight">\(k\)</span>.
+Le code résultant, de rendement <span class="math notranslate nohighlight">\(k/n\)</span>, a un pouvoir de correction égal à <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p class="card-text">Pour préciser les idées, le code BCH <span class="math notranslate nohighlight">\((7,4)\)</span> de coefficient <span class="math notranslate nohighlight">\(13_8=1011_2\)</span> est donc le polynôme</p>
+<div class="math notranslate nohighlight">
+\[
+g(X) = 1 \cdot X^3 + 0 \cdot X^2 + 1 \cdot X^1 + 1 \cdot X^0 = g(X) = X^3 + X + 1.
+\]</div>
+<p class="card-text">Il est capable de corriger <span class="math notranslate nohighlight">\(t=1\)</span> erreur.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="card-text"><span class="math notranslate nohighlight">\(n\)</span></p></th>
+<th class="head"><p class="card-text"><span class="math notranslate nohighlight">\(k\)</span></p></th>
+<th class="head"><p class="card-text"><span class="math notranslate nohighlight">\(k/n\)</span></p></th>
+<th class="head"><p class="card-text"><span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head"><p class="card-text">coefficients de <span class="math notranslate nohighlight">\(g(X)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="card-text">7</p></td>
+<td><p class="card-text">4</p></td>
+<td><p class="card-text">0,57</p></td>
+<td><p class="card-text">1</p></td>
+<td><p class="card-text">13</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">15</p></td>
+<td><p class="card-text">11</p></td>
+<td><p class="card-text">0,73</p></td>
+<td><p class="card-text">1</p></td>
+<td><p class="card-text">23</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">7</p></td>
+<td><p class="card-text">0,47</p></td>
+<td><p class="card-text">2</p></td>
+<td><p class="card-text">721</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">5</p></td>
+<td><p class="card-text">0,33</p></td>
+<td><p class="card-text">3</p></td>
+<td><p class="card-text">2467</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">31</p></td>
+<td><p class="card-text">26</p></td>
+<td><p class="card-text">0,84</p></td>
+<td><p class="card-text">1</p></td>
+<td><p class="card-text">45</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">21</p></td>
+<td><p class="card-text">0,68</p></td>
+<td><p class="card-text">2</p></td>
+<td><p class="card-text">3551</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">16</p></td>
+<td><p class="card-text">0,52</p></td>
+<td><p class="card-text">3</p></td>
+<td><p class="card-text">107657</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">11</p></td>
+<td><p class="card-text">0,35</p></td>
+<td><p class="card-text">5</p></td>
+<td><p class="card-text">5423325</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">6</p></td>
+<td><p class="card-text">0,19</p></td>
+<td><p class="card-text">7</p></td>
+<td><p class="card-text">313365047</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text">63</p></td>
+<td><p class="card-text">57</p></td>
+<td><p class="card-text">0,90</p></td>
+<td><p class="card-text">1</p></td>
+<td><p class="card-text">103</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">51</p></td>
+<td><p class="card-text">0,81</p></td>
+<td><p class="card-text">2</p></td>
+<td><p class="card-text">12471</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">45</p></td>
+<td><p class="card-text">0,71</p></td>
+<td><p class="card-text">3</p></td>
+<td><p class="card-text">1701317</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">39</p></td>
+<td><p class="card-text">0,62</p></td>
+<td><p class="card-text">4</p></td>
+<td><p class="card-text">166623567</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">36</p></td>
+<td><p class="card-text">0,57</p></td>
+<td><p class="card-text">5</p></td>
+<td><p class="card-text">1033500423</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">30</p></td>
+<td><p class="card-text">0,48</p></td>
+<td><p class="card-text">6</p></td>
+<td><p class="card-text">157464165547</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">24</p></td>
+<td><p class="card-text">0,38</p></td>
+<td><p class="card-text">7</p></td>
+<td><p class="card-text">17323260404441</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">18</p></td>
+<td><p class="card-text">0,29</p></td>
+<td><p class="card-text">10</p></td>
+<td><p class="card-text">1363026512351725</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">16</p></td>
+<td><p class="card-text">0,25</p></td>
+<td><p class="card-text">11</p></td>
+<td><p class="card-text">6331141367235453</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">10</p></td>
+<td><p class="card-text">0,16</p></td>
+<td><p class="card-text">13</p></td>
+<td><p class="card-text">472622305527250155</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">7</p></td>
+<td><p class="card-text">0,11</p></td>
+<td><p class="card-text">15</p></td>
+<td><p class="card-text">5231045543503271737</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text">127</p></td>
+<td><p class="card-text">120</p></td>
+<td><p class="card-text">0,94</p></td>
+<td><p class="card-text">1</p></td>
+<td><p class="card-text">211</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">113</p></td>
+<td><p class="card-text">0,89</p></td>
+<td><p class="card-text">2</p></td>
+<td><p class="card-text">41567</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">106</p></td>
+<td><p class="card-text">0,83</p></td>
+<td><p class="card-text">3</p></td>
+<td><p class="card-text">11554743</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">99</p></td>
+<td><p class="card-text">0,78</p></td>
+<td><p class="card-text">4</p></td>
+<td><p class="card-text">3447023271</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">92</p></td>
+<td><p class="card-text">0,72</p></td>
+<td><p class="card-text">5</p></td>
+<td><p class="card-text">624730022327</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">85</p></td>
+<td><p class="card-text">0,67</p></td>
+<td><p class="card-text">6</p></td>
+<td><p class="card-text">130704476322273</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">78</p></td>
+<td><p class="card-text">0,61</p></td>
+<td><p class="card-text">7</p></td>
+<td><p class="card-text">26230002166130115</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">71</p></td>
+<td><p class="card-text">0,56</p></td>
+<td><p class="card-text">9</p></td>
+<td><p class="card-text">6255010713253127753</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">64</p></td>
+<td><p class="card-text">0,50</p></td>
+<td><p class="card-text">10</p></td>
+<td><p class="card-text">1206534025570773100045</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">57</p></td>
+<td><p class="card-text">0,45</p></td>
+<td><p class="card-text">11</p></td>
+<td><p class="card-text">33526525205705053517721</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">50</p></td>
+<td><p class="card-text">0,39</p></td>
+<td><p class="card-text">13</p></td>
+<td><p class="card-text">54446512523314012421501421</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">43</p></td>
+<td><p class="card-text">0,34</p></td>
+<td><p class="card-text">14</p></td>
+<td><p class="card-text">17721772213651227521220574343</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">36</p></td>
+<td><p class="card-text">0,28</p></td>
+<td><p class="card-text">15</p></td>
+<td><p class="card-text">3146074666522075044764574721735</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">29</p></td>
+<td><p class="card-text">0,23</p></td>
+<td><p class="card-text">21</p></td>
+<td><p class="card-text">403114461367670603667530141176155</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">22</p></td>
+<td><p class="card-text">0,17</p></td>
+<td><p class="card-text">23</p></td>
+<td><p class="card-text">123376070404722522435445626637647043</p></td>
+</tr>
+<tr class="row-odd"><td><p class="card-text"></p></td>
+<td><p class="card-text">15</p></td>
+<td><p class="card-text">0,12</p></td>
+<td><p class="card-text">27</p></td>
+<td><p class="card-text">22057042445604554770523013762217604353</p></td>
+</tr>
+<tr class="row-even"><td><p class="card-text"></p></td>
+<td><p class="card-text">8</p></td>
+<td><p class="card-text">0,06</p></td>
+<td><p class="card-text">31</p></td>
+<td><p class="card-text">7047264052751030651476224271567733130217</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./codage-canal"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="bloc.html" title="previous page">Codes en bloc</a>
+    <a class='right-next' id="next-link" href="conv.html" title="next page">Codes convolutifs</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Par Vincent Mazet (Université de Strasbourg)<br/>
+        
+            &copy; droits d'auteur 2021-2022.<br/>
+          <div class="extra_footer">
+            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2022 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
