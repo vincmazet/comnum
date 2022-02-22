@@ -1,14 +1,14 @@
 # Diagramme de l'œil
 
-Le diagramme de l'œil est un graphe sur $\left[-\frac{T}{2}, \frac{T}{2}\right]$
+Le diagramme de l'œil est un graphe sur $\left[-\frac{d}{2}, \frac{d}{2}\right]$
 qui représente la superposition de plusieurs traces du signal reçu $y(t)$.
 
-```{figure} ../figs/diagoeil.svg
+```{figure} figs/diagoeil.svg
 ---
 name: F:diagoeil
 width: 400px
 ---
-Exemple de diagramme de l'œil, ici dans le cas d'un canal non idéal et bruité.
+Exemple de diagramme de l'œil, ici dans le cas d'un canal non idéal et bruité (avec $d=1$).
 ```
 
 Le diagramme de l'œil permet de voir plusieurs choses.
@@ -29,4 +29,4 @@ Le diagramme de l'œil permet de voir plusieurs choses.
 <script src="_static/js/eyediag.js"></script>
 <div id="eyediag" class="spetsi"></div>
 
-<a class="btn btn-light" href="td.html#exercice-6" role="button">Exercice 6</a>
+<a class="exercise btn btn-light" href="td.html#exercice-6" role="button">6</a>

@@ -68,7 +68,7 @@ Les quatre modulations linéaires ci-dessous représentent la séquence binaire 
 1. Identifiez les modulations en bande de base et les modulations sur porteuse.
 1. Déterminez les valeurs des symboles et les formes d'onde de ces modulations.
 
-```{image} ../figs/exo-modulation.svg
+```{image} figs/exo-modulation.svg
 :width: 100%
 :align: center
 ```
@@ -130,18 +130,18 @@ Déterminez, à partir des diagrammes de l'œil ci-dessous :
 1. s'il y a des IES ;
 1. s'il y a du bruit.
 
-```{image} ../figs/eyediag1.svg
+```{image} figs/eyediag1.svg
 :width: 40%
 ```
 
-```{image} ../figs/eyediag2.svg
+```{image} figs/eyediag2.svg
 :width: 40%
 ```
 
-```{image} ../figs/eyediag3.svg
+```{image} figs/eyediag3.svg
 :width: 40%
 ```
 
-```{image} ../figs/eyediag4.svg
+```{image} figs/eyediag4.svg
 :width: 40%
 ```

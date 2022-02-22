@@ -364,18 +364,18 @@ y(t) = x(t) + b(t)
 <p>Le signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> est égal à</p>
 <div class="math notranslate nohighlight">
 \[
-y(t) = \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kT) + b(t).
+y(t) = \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) + b(t).
 \]</div>
-<p>Pour retrouver la séquence binaire que représente ce signal, il faut déterminer les amplitudes <span class="math notranslate nohighlight">\(\alpha_k\)</span> des formes d’onde <span class="math notranslate nohighlight">\(h(t-kT)\)</span>.
-Cela revient à chercher en chaque instant <span class="math notranslate nohighlight">\(kT\)</span> la ressemble du signal reçu avec la forme d’onde.
-Aussi, un <strong>filtre adapté</strong> (<em>matched filter</em>) est effectué entre <span class="math notranslate nohighlight">\(y(t)\)</span> et <span class="math notranslate nohighlight">\(h(t)\)</span> afin de calculer leur intercorrélation.
-Ensuite, le signal filtré est échantillonné tous les <span class="math notranslate nohighlight">\(T\)</span> puis comparé à un seuil pour décider du symbole émis.</p>
+<p>Pour retrouver la séquence binaire que représente ce signal, il faut déterminer les amplitudes <span class="math notranslate nohighlight">\(\alpha_k\)</span> des formes d’onde <span class="math notranslate nohighlight">\(h(t-kd)\)</span>.
+Cela revient à chercher en chaque instant <span class="math notranslate nohighlight">\(kd\)</span> la ressemblance du signal reçu <span class="math notranslate nohighlight">\(y\)</span> avec la forme d’onde <span class="math notranslate nohighlight">\(h\)</span>.
+Aussi, un <strong>filtre adapté</strong> (<em>matched filter</em>) est effectué entre <span class="math notranslate nohighlight">\(y\)</span> et <span class="math notranslate nohighlight">\(h\)</span> afin de calculer leur intercorrélation.
+Ensuite, le signal filtré est échantillonné tous les <span class="math notranslate nohighlight">\(d\)</span> puis comparé à un seuil pour décider du symbole émis.</p>
 <p>Schématiquement, la démodulation est représentée <a class="reference internal" href="#f-demodulation-bruit-bb"><span class="std std-numref">Fig. 10</span></a> :</p>
 <div class="figure align-default" id="f-demodulation-bruit-bb">
-<a class="reference internal image-reference" href="modulation/../figs/demodulation-bruit-bb.svg"><img alt="modulation/../figs/demodulation-bruit-bb.svg" src="modulation/../figs/demodulation-bruit-bb.svg" width="60%" /></a>
+<a class="reference internal image-reference" href="../_images/demodulation-bruit-bb.svg"><img alt="../_images/demodulation-bruit-bb.svg" src="../_images/demodulation-bruit-bb.svg" width="60%" /></a>
 <p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Démodulation d’un signal en bande de base avec un canal idéal.</span><a class="headerlink" href="#f-demodulation-bruit-bb" title="Lien permanent vers cette image">¶</a></p>
 </div>
-<p>Le filtre de réception est le filtre adapté <span class="math notranslate nohighlight">\(r(t)=h(-t)\)</span> et <span class="math notranslate nohighlight">\(T\)</span> est la durée d’un symbole.
+<p>Le filtre de réception est le filtre adapté <span class="math notranslate nohighlight">\(r(t)=h(-t)\)</span> et <span class="math notranslate nohighlight">\(d\)</span> est la durée d’un symbole.
 Quant au seuil, sa valeur optimale dépend du nombre de symboles dans l’alphabet et de la probabilité d’émettre les bits <span class="math notranslate nohighlight">\(0\)</span> et <span class="math notranslate nohighlight">\(1\)</span>.
 Dans le cas d’une communication binaire et lorsque les probabilités sont égales, alors le seuil optimal est la moyenne des amplitudes associées à ces deux bits.
 Dans le cas <span class="math notranslate nohighlight">\(M\)</span>-aire, il y a plusieurs seuils, chacun étant situé au milieu de l’intervalle défini par les amplitudes de deux symboles consécutifs.</p>
@@ -391,21 +391,22 @@ Pour supprimer les sinusoïdes, on peut effectuer une <strong>démodulation coh�
 \[\begin{split}
 w(t) &amp;= y(t) \cos(2\pi f_p t) \\
      &amp;= \left[
-          \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kT) \cos(2\pi f_p t)
-        + \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kT) \sin(2\pi f_p t)
+          \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \cos(2\pi f_p t)
+        + \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(2\pi f_p t)
         + b(t)
        \right] \cos(2\pi f_p t) \\
-     &amp;=    \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kT) \frac{1}{2} \left(1+\cos(4\pi f_p t)\right)
-        + \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kT) \frac{1}{2} \sin(4\pi f_p t)
+     &amp;=    \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \frac{1}{2} \left(1+\cos(4\pi f_p t)\right)
+        + \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \frac{1}{2} \sin(4\pi f_p t)
         + b(t) \cos(2\pi f_p t) \\
-     &amp;=   \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kT) }_{\text{basse fréquence}}
-        + \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kT) \cos(4\pi f_p t) }_{\text{haute fréquence}}
-        + \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kT) \sin(4\pi f_p t) }_{\text{haute fréquence}}
+     &amp;=   \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) }_{\text{basse fréquence}}
+        + \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \cos(4\pi f_p t) }_{\text{haute fréquence}}
+        + \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(4\pi f_p t) }_{\text{haute fréquence}}
         + \underbrace{ b(t) \cos(2\pi f_p t) }_{\text{bruit}}
 \end{split}\]</div>
 </div>
 <p>Le signal <span class="math notranslate nohighlight">\(w(t)\)</span> contient une composante basse fréquence, une composante haute fréquence et du bruit.
 Un filtre passe-bas de fréquence de coupure égale à <span class="math notranslate nohighlight">\(f_p\)</span> permet d’éliminer les composantes hautes fréquences.
+En effet, ces composantes haute fréquence sont centrées autour de <span class="math notranslate nohighlight">\(2f_p\)</span>.
 Le signal basse fréquence résultant est un signal en bande de base sur lequel on effectue une démodulation en bande de base
 (filtre adapté, échantillonnage, seuillage) pour obtenir les symboles associés aux amplitudes <span class="math notranslate nohighlight">\(\alpha_k\)</span>.</p>
 <p>Pour obtenir les symboles associés aux amplitudes <span class="math notranslate nohighlight">\(\beta_k\)</span>, on procède de la même manière en multipliant le signal reçu par <span class="math notranslate nohighlight">\(\sin(2\pi f_p t)\)</span>.</p>

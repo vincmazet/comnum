@@ -23,14 +23,19 @@ Ce cours est également fondé sur les cours de mes collègues C. Collet et F. S
 
 ## Culture générale
 
-* M. Beaugeois, D. Deltombe et D. Hennequin.
-  [Comment un téléphone portable téléphone-t-il ?](https://leblob.fr/techno/comment-un-telephone-portable-telephone-t-il),
-  Unisciel/Université Lille 1, 2013.
-* Claude Berrou. _[La théorie de l'information, une science qui s'émancipe](http://www.youtube.com/watch?v=_N55Bde6k7Q)_,
-  Vidéo YouTube, 2008.
 * J. Gómez. [_Codage et cryptographie_](http://images.math.cnrs.fr/Codage-et-cryptographie.html).
   Images des Mathématiques, CNRS, 2013.
 * C.E. Shannon. « [A Mathematical Theory of Communication](http://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf) ».
   _The Bell System Technical Journal_,
   vol. 27, no. (3), p. 379--423, 1948.
+
+
+## Vidéos
+
+* <iframe width="360" height="202" src="https://www.youtube.com/embed/NklyvZVztaw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+* <iframe width="360" height="202" src="https://www.youtube.com/embed/8BM9LPDjOw0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+* <iframe width="360" height="202" src="https://www.youtube.com/embed/_N55Bde6k7Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 * Colloque « Shannon 10 ». [Playlist YouTube](http://tinyurl.com/jrye5bq), 2016.
