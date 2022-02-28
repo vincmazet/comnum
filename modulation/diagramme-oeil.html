@@ -332,7 +332,19 @@
 <h1>Diagramme de l’œil<a class="headerlink" href="#diagramme-de-l-oeil" title="Lien permanent vers ce titre">¶</a></h1>
 <p>Le diagramme de l’œil est un graphe sur <span class="math notranslate nohighlight">\(\left[-\frac{d}{2}, \frac{d}{2}\right]\)</span>
 qui représente la superposition de plusieurs traces du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
-<div class="figure align-default" id="f-diagoeil">
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Animation<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Cette animation illustre le principe de construction d’un diagramme de l’œil.</p>
+<div id='eyediag' class='spetsi'></div>
+<script src="https://vincmazet.github.io/spetsi/js/spetsi.js" type="text/javascript"></script>
+<script src="https://vincmazet.github.io/spetsi/js/eyediag.js" type="text/javascript"></script>
+</div>
+</details><div class="figure align-default" id="f-diagoeil">
 <a class="reference internal image-reference" href="../_images/diagoeil.svg"><img alt="../_images/diagoeil.svg" src="../_images/diagoeil.svg" width="400px" /></a>
 <p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Exemple de diagramme de l’œil, ici dans le cas d’un canal non idéal et bruité (avec <span class="math notranslate nohighlight">\(d=1\)</span>).</span><a class="headerlink" href="#f-diagoeil" title="Lien permanent vers cette image">¶</a></p>
 </div>
@@ -348,8 +360,6 @@ et alors on ne pourra plus distinguer les niveaux représentant les symboles.</p
 <li><p>L’instant où l’œil est le plus ouvert est le meilleur choix pour effectuer l’échantillonnage,
 puisque c’est à cet instant que les deux niveaux sont le plus éloignés.</p></li>
 </ul>
-<script src="_static/js/eyediag.js"></script>
-<div id="eyediag" class="spetsi"></div>
 <p><a class="exercise btn btn-light" href="td.html#exercice-6" role="button">6</a></p>
 </div>
 

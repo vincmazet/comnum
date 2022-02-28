@@ -11,7 +11,7 @@ n'est pas linéaire et ne sera donc pas abordée.
 
 ## Formulation
 
-Les modulations PAM sur porteuse affectent à chaque symbole du message une sinusoïde de fréquence $f_p$
+Les modulations PAM linéaires sur porteuse affectent à chaque symbole du message une sinusoïde de fréquence $f_p$
 dont l'amplitude $a_k$ et la phase $\varphi_k$ dépendent du symbole $k$ :
 
 $$

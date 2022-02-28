@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; Communications numériques</title>
+    <title>TP Modulation - Transmission en bande de base sur un canal idéal (comparaison NRZ/RZ) &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -58,8 +58,6 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
-    <link rel="next" title="Chaîne de communication" href="chaine.html" />
-    <link rel="prev" title="Avant-propos" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -99,29 +97,29 @@
   Généralités
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/intro.html">
    Introduction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chaine.html">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chaine.html">
    Chaîne de communication
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chiffrement.html">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chiffrement.html">
    Chiffrement
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="multiplexage.html">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/multiplexage.html">
    Multiplexage
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="canal.html">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/canal.html">
    Canal de transmission
   </a>
  </li>
@@ -295,9 +293,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/généralités/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/tp/tpmod3.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -320,24 +318,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenu
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#quelques-definitions">
-   Quelques définitions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#l-interet-du-numerique">
-   L’intérêt du numérique
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -346,57 +326,9 @@
         
               <div>
                 
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers ce titre">¶</a></h1>
-<div class="section" id="quelques-definitions">
-<h2>Quelques définitions<a class="headerlink" href="#quelques-definitions" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Les <strong>communications numériques</strong> (<em>digital communication</em>) concernent la transmission
-d’un <strong>message</strong> d’un émetteur vers un ou plusieurs récepteurs.
-L’émetteur et le récepteur peuvent être des machines, des supports de stockage ou des humains.
-Le message correspond à une suite de <strong>symboles</strong>, l’ensemble de tous les symboles possibles est appelé un <strong>alphabet</strong>.
-Une communication est numérique lorsque le nombre de symboles dans l’alphabet est fini,
-à la différence d’une communication analogique pour laquelle il existe un nombre infini de symboles possibles.</p>
-<p>Si <span class="math notranslate nohighlight">\(M\)</span> est la taille de l’alphabet, c’est-à-dire le nombre de symboles le constituant,
-alors on dit que la communication est <strong>M-aire</strong>.
-Si <span class="math notranslate nohighlight">\(M=2\)</span>, on parle de communication <strong>binaire</strong>.</p>
-<div class="example docutils">
-<ul class="simple">
-<li><p>La transmission entre un ordinateur personnel et un serveur web est numérique :
-seulement deux types de symboles peuvent être transmis (0 et 1).
-La communication est donc binaire (<span class="math notranslate nohighlight">\(M=2\)</span>).</p></li>
-<li><p>En Morse, qui est aussi un type de communications numériques, on peut considérer que <span class="math notranslate nohighlight">\(M=3\)</span> :
-les symboles de l’alphabet sont le point, le trait et le silence.</p></li>
-<li><p>Entre un automobiliste et un feu de signalisation, la communication est également numérique !
-Il y a dans ce cas trois types de symboles : vert, orange et rouge (<span class="math notranslate nohighlight">\(M=3\)</span>).
-En Allemagne, il y a un quatrième symbole avec le orange-rouge et donc <span class="math notranslate nohighlight">\(M=4\)</span>.</p></li>
-<li><p>Entre deux humains, la communication est traditionnellement analogique ;
-la voix, même si elle utilise un nombre possible de mots qui est fini, est modulée par l’intonation et l’expression faciale.
-Cependant, il existe des cas où la communications entre deux humains est numérique,
-comme sur les pistes d’aéroport entre le pilote d’un avion et le <a class="reference external" href="https://fr.wikipedia.org/wiki/Marshaller">marshaller</a>.</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="l-interet-du-numerique">
-<h2>L’intérêt du numérique<a class="headerlink" href="#l-interet-du-numerique" title="Lien permanent vers ce titre">¶</a></h2>
-<p>La popularité croissante du numérique dans les communications est due à plusieurs facteurs.</p>
-<ul class="simple">
-<li><p>Le numérique permet le routage (décision du chemin que prennent les messages)
-et l’adressage (définition de la destination) dans un système multi-utilisateur
-(comme pour le courrier électronique).</p></li>
-<li><p>Des messages de natures différentes peuvent être transmis via le même canal
-(la fameuse offre <em>triple-play</em> des box internet qui permettent d’acheminer du contenu web,
-des signaux de télévision ou de la voix pour le téléphone).</p></li>
-<li><p>Le chiffrement de données est plus simple et plus performant qu’en analogique.</p></li>
-<li><p>Le stockage et la lecture d’information sur un support physique (disque dur SSD par exemple)
-sont à la fois rapides et parfaits en comparaison à leur équivalent analogique (cassette par exemple).</p></li>
-<li><p>La reconstitution du message pendant le transfert pour limiter sa dégradation est possible
-(par exemple, le premier câble à fibre optique transatlantique <a class="reference external" href="https://en.wikipedia.org/wiki/TAT-8">TAT-8</a>
-utilisait une centaine de répéteurs sous l’océan).</p></li>
-<li><p>Les circuits d’électronique numérique sont généralement plus fiables et moins coûteux que les circuits analogiques équivalents.</p></li>
-<li><p>Les caractéristiques des sytèmes de communication numérique peuvent facilement être mis à jour
-puisqu’il suffit de modifier le logiciel plutôt que le matériel.</p></li>
-</ul>
-</div>
+  <div class="section" id="tp-modulation-transmission-en-bande-de-base-sur-un-canal-ideal-comparaison-nrz-rz">
+<h1>TP Modulation - Transmission en bande de base sur un canal idéal (comparaison NRZ/RZ)<a class="headerlink" href="#tp-modulation-transmission-en-bande-de-base-sur-un-canal-ideal-comparaison-nrz-rz" title="Lien permanent vers ce titre">¶</a></h1>
+<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 04/2021</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -412,7 +344,7 @@ puisqu’il suffit de modifier le logiciel plutôt que le matériel.</p></li>
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./généralités"
+            path: "./tp"
         },
         predefinedOutput: true
     }
@@ -424,8 +356,6 @@ puisqu’il suffit de modifier le logiciel plutôt que le matériel.</p></li>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">Avant-propos</a>
-    <a class='right-next' id="next-link" href="chaine.html" title="next page">Chaîne de communication</a>
 
         </div>
         
