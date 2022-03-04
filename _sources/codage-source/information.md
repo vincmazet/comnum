@@ -71,24 +71,14 @@ L'auto-information s'exprime en shannon (abbréviation : Sh),
 et sa représentation graphique est donnée {numref}`F:auto-information` :
 c'est bien une courbe qui décroit avec la probabilité d'apparition du symbole.
 
-```{figure} ../figs/auto-information.svg
+```{figure} figs/auto-information.svg
 ---
 name: F:auto-information
 ---
 Auto-information.
 ```
 
-
-<a class="btn btn-light" href="td.html#exercice-1" role="button">Exercice 1</a>
-
-<!-- Et ainsi :
-
-$$
-\log_2 1 = 0 \qquad
-\log_2 2 = 1 \qquad
-\log_2 8 = 3 \qquad
-\log_2 256 = 8.
-$$ -->
+<a class="exercise btn btn-light" href="td.html#exercice-1" role="button">1</a>
 
 
 ## Entropie
@@ -123,13 +113,13 @@ Il se trouve que la borne supérieure correspond à l'entropie de symboles équi
 pour lesquels $p_m = 1/M$ quel que soit $m$.
 Ainsi, l'entropie d'une source est maximale lorsque ces symboles sont équiprobables.
 
-````{div} exemple
+````{div} example
 
-Une source binaire émet le symbole `0` avec une probabilité $\alpha$ et le symbole `1` avec une probabilité $1-\alpha$.
+Une source binaire émet le symbole <code>0</code> avec une probabilité $\alpha$ et le symbole <code>1</code> avec une probabilité $1-\alpha$.
 L'entropie de cette source a donc pour expression $H(X) = - \alpha \log_2 \alpha - (1-\alpha) \log_2 (1-\alpha)$
 et elle est représentée {numref}`F:entropie`.
 
-```{figure} ../figs/entropie.svg
+```{figure} figs/entropie.svg
 ---
 name: F:entropie
 ---
@@ -138,7 +128,7 @@ Entropie d'une source binaire en fonction de la probabilité d'un des symboles.
 
 ````
 
-<a class="btn btn-light" href="td.html#exercice-2" role="button">Exercice 2</a>
+<a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a>
 
 
 ## Débit source
@@ -148,8 +138,6 @@ il s'exprime donc en symb/s.
 
 
 ## Taux d'émission
-
-<!-- pb notation : taux d'émission / durée d'un symbole ? -->
 
 Considérons une source $X$, d'entropie $H(X)$ et de débit source $D_S$.
 La quantité d'information produite par cette source est appelée le **taux d'émission** $T_S$ et s'exprime en Sh/s :
@@ -166,10 +154,11 @@ Par exemple, un message textuel, dont l'alphabet est constitué de plusieurs diz
 peut être transmis sur un câble électrique en Morse dont l'alphabet est constitué des trois symboles (trait, point et silence).
 Le **débit canal**, noté $D_C$, est le nombre de symboles transmis par le canal en une seconde ;
 il s'exprime donc en symb/s.
+Le débit canal est équivalent à la rapidité de modulation exprimée en bauds.
 
 Le débit canal est donc similaire au débit source mais peut avoir une valeur différente.
 D'ailleurs, les unités des débit source et débit canal sont différentes car elles s'expriment respectivement
-en symboles (de la source) par seconde et en symboles (du canal) par seconde.
+en symboles _de la source_ par seconde et en symboles _du canal_ par seconde.
 
 
 ## Capacité canal
@@ -193,4 +182,4 @@ Il est lié à la transmission de l'information et dit que :
 
 Autrement dit, si $T_S > C_C$, alors l'acheminement de la totalité de l'information émise par la source au travers du canal est impossible sans erreur.
 
-<a class="btn btn-light" href="td.html#exercice-2" role="button">Exercice 2</a>
+<a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a>

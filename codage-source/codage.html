@@ -167,10 +167,37 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -354,7 +381,8 @@
   <div class="section" id="codage-d-une-source-sans-memoire">
 <h1>Codage d’une source sans mémoire<a class="headerlink" href="#codage-d-une-source-sans-memoire" title="Lien permanent vers ce titre">¶</a></h1>
 <p>Un code source associe à chaque symbole <span class="math notranslate nohighlight">\(x_m\)</span> de la source un « mot » formé de <span class="math notranslate nohighlight">\(l_m\)</span> symboles issus de l’alphabet du canal.
-Par exemple, le symbole <code class="docutils literal notranslate"><span class="pre">A</span></code> d’une source texte pourra être codé par le mot <code class="docutils literal notranslate"><span class="pre">01000001</span></code> formé de 8 symboles du canal (en l’occurrence, des bits).</p>
+Par exemple, le symbole <code>A</code> d’une source texte pourra être codé par le mot <code>01000001</code>
+formé de 8 symboles du canal (en l’occurrence, des bits).</p>
 <p>On définit la <strong>longueur moyenne d’un code</strong> par la moyenne des longueurs de chaque symbole de la source, pondérés par leur probabilité :</p>
 <div class="math notranslate nohighlight">
 \[
@@ -381,20 +409,20 @@ Malheureusement, ce théorème ne dit pas comment construire un tel code…</p>
 <li><p>Un code de <strong>longueur fixe</strong> est un code dont tous les mots ont le même nombre de symboles.
 Sinon, le code est de <strong>longueur variable</strong>.</p></li>
 <li><p>Un code à <strong>décodage unique</strong> n’admet aucune ambiguité lors de son décodage.
-Par exemple, le code qui à <code class="docutils literal notranslate"><span class="pre">A</span></code> associe <code class="docutils literal notranslate"><span class="pre">1</span></code> et à <code class="docutils literal notranslate"><span class="pre">B</span></code> associe <code class="docutils literal notranslate"><span class="pre">11</span></code> n’est pas à décodage unique
-(et oui ! Quel est le message si on reçoit <code class="docutils literal notranslate"><span class="pre">111</span></code> ?).</p></li>
+Par exemple, le code qui à <code>A</code> associe <code>1</code> et à <code>B</code> associe <code>11</code> n’est pas à décodage unique
+(et oui ! Quel est le message si on reçoit <code>111</code> ?).</p></li>
 <li><p>Un code <strong>instantané</strong> permet de décoder chaque symbole sans avoir à attendre le symbole suivant.
-Par exemple, le code qui à <code class="docutils literal notranslate"><span class="pre">C</span></code> associe <code class="docutils literal notranslate"><span class="pre">01</span></code> et à <code class="docutils literal notranslate"><span class="pre">D</span></code> associe <code class="docutils literal notranslate"><span class="pre">011</span></code> n’est pas instantané
-car pour décoder <code class="docutils literal notranslate"><span class="pre">C</span></code> il faut attendre le bit suivant.</p></li>
+Par exemple, le code qui à <code>C</code> associe <code>01</code> et à <code>D</code> associe <code>011</code> n’est pas instantané
+car pour décoder <code>C</code> il faut attendre le bit suivant.</p></li>
 </ul>
-<p><a class="btn btn-light" href="td.html#exercice-3" role="button">Exercice 3</a>
-<a class="btn btn-light" href="td.html#exercice-4" role="button">Exercice 4</a>
-<a class="btn btn-light" href="td.html#exercice-5" role="button">Exercice 5</a></p>
+<p><a class="exercise btn btn-light" href="td.html#exercice-3" role="button">3</a>
+<a class="exercise btn btn-light" href="td.html#exercice-4" role="button">4</a>
+<a class="exercise btn btn-light" href="td.html#exercice-5" role="button">5</a></p>
 </div>
 <div class="section" id="codage-de-huffman">
 <h2>Codage de Huffman<a class="headerlink" href="#codage-de-huffman" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
-Il peut s’appliquer quel que soit la taille <span class="math notranslate nohighlight">\(M\)</span> de l’alphabet de la source.</p>
+<p>Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable et dont la longueur moyenne est la plus petite possible.
+Il peut s’appliquer quelle que soit la taille <span class="math notranslate nohighlight">\(M\)</span> de l’alphabet de la source.</p>
 <p>La procédure pour construire un code de Huffman dans le cas binaire est la suivante :</p>
 <ol>
 <li><p>ordonner les symboles dans l’ordre des probabilités décroissantes :</p>
@@ -405,17 +433,17 @@ Il peut s’appliquer quel que soit la taille <span class="math notranslate nohi
    p(x_1) \geq \dots \geq p(x_M),
    \]</div>
 </li>
-<li><p>affecter au symbole de plus faible probabilité <span class="math notranslate nohighlight">\(x_M\)</span> le bit <code class="docutils literal notranslate"><span class="pre">0</span></code>,</p></li>
-<li><p>affecter au deuxième symbole de plus faible probabilité <span class="math notranslate nohighlight">\(x_{M-1}\)</span> le bit <code class="docutils literal notranslate"><span class="pre">1</span></code>,</p></li>
+<li><p>affecter au symbole de plus faible probabilité <span class="math notranslate nohighlight">\(x_M\)</span> le bit <code>0</code>,</p></li>
+<li><p>affecter au deuxième symbole de plus faible probabilité <span class="math notranslate nohighlight">\(x_{M-1}\)</span> le bit <code>1</code>,</p></li>
 <li><p>combiner <span class="math notranslate nohighlight">\(x_M\)</span> et <span class="math notranslate nohighlight">\(x_{M-1}\)</span> pour former un nouveau symbole de probabilité <span class="math notranslate nohighlight">\(p(x_M)+p(x_{M-1})\)</span>,</p></li>
 <li><p>retourner à l’étape 2 tant qu’il reste plus de un seul symbole.</p></li>
 </ol>
-<p>Un exemple de codage de Huffman est représenté dans l’animation ci-dessous, où les probabilités peuvent être définies.</p>
-<br />
-<script src="_static/js/huffman.js"></script>
+<p>Un exemple de codage de Huffman est représenté dans l’animation ci-dessous.</p>
 <div id='huffman' class='spetsi'></div>
-<p><a class="btn btn-light" href="td.html#exercice-6" role="button">Exercice 6</a>
-<a class="btn btn-light" href="td.html#exercice-7" role="button">Exercice 7</a></p>
+<script src="https://vincmazet.github.io/spetsi/js/spetsi.js" type="text/javascript"></script>
+<script src="https://vincmazet.github.io/spetsi/js/huffman.js" type="text/javascript"></script>
+<p><a class="exercise btn btn-light" href="td.html#exercice-6" role="button">6</a>
+<a class="exercise btn btn-light" href="td.html#exercice-7" role="button">7</a></p>
 </div>
 </div>
 

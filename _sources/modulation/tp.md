@@ -42,12 +42,12 @@ Ces modulations sont étudiées et comparées à la fois dans le domaine tempore
    qui est le carré du module de la transformée de Fourier.
    En choisissant un message suffisamment long ($N$ grand),
    représentez la densité spectrale de puissance de chaque modulation en échelle décimale en utilisant la méthode du périodogramme
-   (`scipy.signal.periodogram`, en fixant la fréquence d'échantillonnage égale à $100/T$ où $T$ est la durée d'un bit).
+   (`scipy.signal.periodogram`, en fixant la fréquence d'échantillonnage égale à $100/d$ où $d$ est la durée d'un bit).
 
 1. Identifiez les modulations en bande de base et les modulations sur porteuse.
 
-1. Comparez les codes en termes de simplicité de mise en œuvre, de largeur de bande, de téléalimentation possible,
-   de robustesse au bruit, d'inversion de polarité et de détection d'interruption de la transmission.
+1. Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
+   de téléalimentation possible, d'inversion de la polarité et de détection d'interruption de la transmission.
 
 1. D'après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?
    * bus informatique (I2C, SATA...) ou de terrain (ASI, Modbus...) ;
@@ -74,19 +74,12 @@ Intérêt du code de Gray
 
 Le principe d'une transmission en bande de base est représenté ci-dessous :
 
-```{image} ../figs/transmission.png
+```{image} figs/transmission.png
 :width: 100%
 ```
 <br />
 
-Un canal est dit idéal si sa largeur de bande est infinie :
-sa réponse impulsionnelle est alors $g(t)=K\,\delta(t-\tau)$ où $K$ et $\tau$ sont l'atténuation et le retard du signal reçu
-(sans perdre en généralité, on pourra prendre $K=1$ et $\tau=0$).
-
-Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal bruité $y(t)$.
-
 1. Donnez l'expression du signal reçu $y(t)$ en fonction du signal émis $x(t)$ et des caractéristiques du canal.
-   <!-- y(t) = K\,x(t-\tau) + b(t) -->
 
 1. Simulez la transmission d'un message codé en NRZ binaire (`comnumfip.randmary`, `comnumfip.mod_d`, `comnumfip.channel`).
    On rappelle qu'on considère le canal est idéal, donc que sa largeur de bande est infinie (`numpy.inf`).
@@ -99,7 +92,7 @@ Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal br
 
 1. Dans un premier temps, on ne tient pas compte du filtre de réception : $r(t) = \delta(t)$.
    Échantillonnez et seuillez le signal $z(t)=y(t)$ (`comnumfip.sample_and_threshold`)
-   pour retrouver, tous les $T$, les symboles $\alpha_k$ émis.
+   pour retrouver, tous les $d$, les symboles $\alpha_k$ émis.
 
 1. Dans un deuxième temps, appliquez le filtre de réception.
    Le filtre adapté peut s'implémenter à l'aide d'une corrélation,
@@ -114,7 +107,7 @@ Un filtre adapté permet de détecter les formes d'onde $h(t)$ dans le signal br
 ## Transmission en bande de base sur un canal à bande limitée
 
 Cette fois, on suppose le canal sans bruit mais à bande limitée.
-On peut alors être en présence d'IES lorsque les valeurs du signal $z(t)$ aux instants $T$
+On peut alors être en présence d'IES lorsque les valeurs du signal $z(t)$ aux instants d'échantillonnage
 dépendent de plusieurs symboles $\alpha_k$.
 La détection est alors perturbée même s'il n'y a pas de bruit.
 
@@ -123,13 +116,6 @@ La détection est alors perturbée même s'il n'y a pas de bruit.
 
 * Tracez le diagramme de l'œil (`comnumfip.eyediag`) de $y(t)$ : que se passe-t-il lorsque la bande passante du canal varie ?
 
-<!--
-  Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
-  Comment se traduit-elle sur la transformée de Fourier de $y(t)$~? % critère de Nyquist
-  En déduire pourquoi une forme d'onde rectangulaire n'est pas adaptée
-  lorsque la bande passante du canal est trop faible.
--->
-
 * Lorsque la bande passante du canal est trop faible, la forme d'onde rectangulaire n'est pas adaptée.
   Il est préférable d'utiliser une forme d'onde en racine de cosinus surélevé (`comnumfip.mod_rrc`).
   Simulez la transmission du message avec cette nouvelle forme d'onde,
@@ -137,6 +123,13 @@ La détection est alors perturbée même s'il n'y a pas de bruit.
   L'impulsion en racine de cosinus surélevée est obtenue avec la fonction `comnumfip.rrc`.
 
 * Simulez l'opération de détection en comparant les deux formes d'onde.
+
+<!--
+  Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
+  Comment se traduit-elle sur la transformée de Fourier de $y(t)$~? % critère de Nyquist
+  En déduire pourquoi une forme d'onde rectangulaire n'est pas adaptée
+  lorsque la bande passante du canal est trop faible.
+-->
 
 <!-- Répartition optimale du filtrage entre l'émission et la réception ? -->
 

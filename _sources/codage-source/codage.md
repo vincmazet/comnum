@@ -1,7 +1,8 @@
 # Codage d'une source sans mémoire
 
 Un code source associe à chaque symbole $x_m$ de la source un « mot » formé de $l_m$ symboles issus de l'alphabet du canal.
-Par exemple, le symbole `A` d'une source texte pourra être codé par le mot `01000001` formé de 8 symboles du canal (en l'occurrence, des bits).
+Par exemple, le symbole <code>A</code> d'une source texte pourra être codé par le mot <code>01000001</code>
+formé de 8 symboles du canal (en l'occurrence, des bits).
 
 On définit la **longueur moyenne d'un code** par la moyenne des longueurs de chaque symbole de la source, pondérés par leur probabilité :
 
@@ -34,22 +35,22 @@ Malheureusement, ce théorème ne dit pas comment construire un tel code...
   Sinon, le code est de **longueur variable**.
 
 * Un code à **décodage unique** n'admet aucune ambiguité lors de son décodage.
-  Par exemple, le code qui à `A` associe `1` et à `B` associe `11` n'est pas à décodage unique
-  (et oui ! Quel est le message si on reçoit `111` ?).
+  Par exemple, le code qui à <code>A</code> associe <code>1</code> et à <code>B</code> associe <code>11</code> n'est pas à décodage unique
+  (et oui ! Quel est le message si on reçoit <code>111</code> ?).
 
 * Un code **instantané** permet de décoder chaque symbole sans avoir à attendre le symbole suivant.
-  Par exemple, le code qui à `C` associe `01` et à `D` associe `011` n'est pas instantané
-  car pour décoder `C` il faut attendre le bit suivant.
+  Par exemple, le code qui à <code>C</code> associe <code>01</code> et à <code>D</code> associe <code>011</code> n'est pas instantané
+  car pour décoder <code>C</code> il faut attendre le bit suivant.
   
-<a class="btn btn-light" href="td.html#exercice-3" role="button">Exercice 3</a>
-<a class="btn btn-light" href="td.html#exercice-4" role="button">Exercice 4</a>
-<a class="btn btn-light" href="td.html#exercice-5" role="button">Exercice 5</a>
+<a class="exercise btn btn-light" href="td.html#exercice-3" role="button">3</a>
+<a class="exercise btn btn-light" href="td.html#exercice-4" role="button">4</a>
+<a class="exercise btn btn-light" href="td.html#exercice-5" role="button">5</a>
 
 
 ## Codage de Huffman
 
-Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable mais dont la longueur moyenne est la plus petite possible.
-Il peut s'appliquer quel que soit la taille $M$ de l'alphabet de la source.
+Le codage de Huffman (1952) fournit un code instantané, à décodage unique, de longueur variable et dont la longueur moyenne est la plus petite possible.
+Il peut s'appliquer quelle que soit la taille $M$ de l'alphabet de la source.
 
 La procédure pour construire un code de Huffman dans le cas binaire est la suivante :
 
@@ -61,20 +62,19 @@ La procédure pour construire un code de Huffman dans le cas binaire est la suiv
    p(x_1) \geq \dots \geq p(x_M),
    $$
 
-2. affecter au symbole de plus faible probabilité $x_M$ le bit `0`,
+2. affecter au symbole de plus faible probabilité $x_M$ le bit <code>0</code>,
 
-3. affecter au deuxième symbole de plus faible probabilité $x_{M-1}$ le bit `1`,
+3. affecter au deuxième symbole de plus faible probabilité $x_{M-1}$ le bit <code>1</code>,
 
 4. combiner $x_M$ et $x_{M-1}$ pour former un nouveau symbole de probabilité $p(x_M)+p(x_{M-1})$,
 
 5. retourner à l'étape 2 tant qu'il reste plus de un seul symbole.
 
-Un exemple de codage de Huffman est représenté dans l'animation ci-dessous, où les probabilités peuvent être définies.
+Un exemple de codage de Huffman est représenté dans l'animation ci-dessous.
 
-<br />
-
-<script src="_static/js/huffman.js"></script>
 <div id='huffman' class='spetsi'></div>
+<script src="https://vincmazet.github.io/spetsi/js/spetsi.js" type="text/javascript"></script>
+<script src="https://vincmazet.github.io/spetsi/js/huffman.js" type="text/javascript"></script>
 
-<a class="btn btn-light" href="td.html#exercice-6" role="button">Exercice 6</a>
-<a class="btn btn-light" href="td.html#exercice-7" role="button">Exercice 7</a>
+<a class="exercise btn btn-light" href="td.html#exercice-6" role="button">6</a>
+<a class="exercise btn btn-light" href="td.html#exercice-7" role="button">7</a>

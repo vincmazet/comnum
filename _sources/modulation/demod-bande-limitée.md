@@ -130,5 +130,3 @@ Typiquement, c'est le filtre constitué de la forme d'onde (ou filtre d'émissio
 qui vérifient le critère de Nyquist, et les IES introduites par le canal sont traitées séparément le cas échéant.
 Cela signifie que, dans le domaine fréquentiel, $HR$ est la transformée de Fourier d'un cosinus surélevé.
 On dit alors que $h$ et $r$ sont des **filtres en racine de cosinus surélevé** (_root-raised-cosine filter_).
-
-<a class="exercise btn btn-light" href="td.html#exercice-6" role="button">6</a>

@@ -27,5 +27,5 @@ ytick.labelsize : 12
 
 ## SAVING FIGURES
 
-savefig.transparent: True
+savefig.transparent: False
 savefig.bbox      : tight

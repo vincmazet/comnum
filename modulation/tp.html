@@ -58,7 +58,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
-    <link rel="next" title="Mesure de l’information" href="../codage-source/information.html" />
+    <link rel="next" title="Étude de quelques modulations" href="../tp/tpmod1.html" />
     <link rel="prev" title="Excercices" href="td.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -167,10 +167,37 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1 current active">
+ <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
    Travaux pratiques
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -392,10 +419,10 @@ Identifiez chacune de ces modulations.</p></li>
 qui est le carré du module de la transformée de Fourier.
 En choisissant un message suffisamment long (<span class="math notranslate nohighlight">\(N\)</span> grand),
 représentez la densité spectrale de puissance de chaque modulation en échelle décimale en utilisant la méthode du périodogramme
-(<code class="docutils literal notranslate"><span class="pre">scipy.signal.periodogram</span></code>, en fixant la fréquence d’échantillonnage égale à <span class="math notranslate nohighlight">\(100/T\)</span> où <span class="math notranslate nohighlight">\(T\)</span> est la durée d’un bit).</p></li>
+(<code class="docutils literal notranslate"><span class="pre">scipy.signal.periodogram</span></code>, en fixant la fréquence d’échantillonnage égale à <span class="math notranslate nohighlight">\(100/d\)</span> où <span class="math notranslate nohighlight">\(d\)</span> est la durée d’un bit).</p></li>
 <li><p>Identifiez les modulations en bande de base et les modulations sur porteuse.</p></li>
-<li><p>Comparez les codes en termes de simplicité de mise en œuvre, de largeur de bande, de téléalimentation possible,
-de robustesse au bruit, d’inversion de polarité et de détection d’interruption de la transmission.</p></li>
+<li><p>Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
+de téléalimentation possible, d’inversion de la polarité et de détection d’interruption de la transmission.</p></li>
 <li><p>D’après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?</p>
 <ul class="simple">
 <li><p>bus informatique (I2C, SATA…) ou de terrain (ASI, Modbus…) ;</p></li>
@@ -422,16 +449,10 @@ Intérêt du code de Gray
 <div class="section" id="transmission-en-bande-de-base-sur-un-canal-ideal">
 <h2>Transmission en bande de base sur un canal idéal<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-ideal" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le principe d’une transmission en bande de base est représenté ci-dessous :</p>
-<a class="reference internal image-reference" href="modulation/../figs/transmission.png"><img alt="modulation/../figs/transmission.png" src="modulation/../figs/transmission.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/transmission.png"><img alt="../_images/transmission.png" src="../_images/transmission.png" style="width: 100%;" /></a>
 <br />
-<p>Un canal est dit idéal si sa largeur de bande est infinie :
-sa réponse impulsionnelle est alors <span class="math notranslate nohighlight">\(g(t)=K\,\delta(t-\tau)\)</span> où <span class="math notranslate nohighlight">\(K\)</span> et <span class="math notranslate nohighlight">\(\tau\)</span> sont l’atténuation et le retard du signal reçu
-(sans perdre en généralité, on pourra prendre <span class="math notranslate nohighlight">\(K=1\)</span> et <span class="math notranslate nohighlight">\(\tau=0\)</span>).</p>
-<p>Un filtre adapté permet de détecter les formes d’onde <span class="math notranslate nohighlight">\(h(t)\)</span> dans le signal bruité <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
 <ol>
-<li><p>Donnez l’expression du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> en fonction du signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> et des caractéristiques du canal.</p>
-<!-- y(t) = K\,x(t-\tau) + b(t) -->
-</li>
+<li><p>Donnez l’expression du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> en fonction du signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> et des caractéristiques du canal.</p></li>
 <li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.channel</span></code>).
 On rappelle qu’on considère le canal est idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>).
 Observez le signal en entrée du détecteur pour différents niveaux de bruit.</p>
@@ -443,7 +464,7 @@ de l'écart-type défini.
 </li>
 <li><p>Dans un premier temps, on ne tient pas compte du filtre de réception : <span class="math notranslate nohighlight">\(r(t) = \delta(t)\)</span>.
 Échantillonnez et seuillez le signal <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span> (<code class="docutils literal notranslate"><span class="pre">comnumfip.sample_and_threshold</span></code>)
-pour retrouver, tous les <span class="math notranslate nohighlight">\(T\)</span>, les symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span> émis.</p></li>
+pour retrouver, tous les <span class="math notranslate nohighlight">\(d\)</span>, les symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span> émis.</p></li>
 <li><p>Dans un deuxième temps, appliquez le filtre de réception.
 Le filtre adapté peut s’implémenter à l’aide d’une corrélation,
 mais on peut montrer qu’il peut également s’écrire comme une convolution
@@ -456,21 +477,13 @@ Comment varie la qualité de la détection en fonction du niveau de bruit ?</p><
 <div class="section" id="transmission-en-bande-de-base-sur-un-canal-a-bande-limitee">
 <h2>Transmission en bande de base sur un canal à bande limitée<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-a-bande-limitee" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Cette fois, on suppose le canal sans bruit mais à bande limitée.
-On peut alors être en présence d’IES lorsque les valeurs du signal <span class="math notranslate nohighlight">\(z(t)\)</span> aux instants <span class="math notranslate nohighlight">\(T\)</span>
+On peut alors être en présence d’IES lorsque les valeurs du signal <span class="math notranslate nohighlight">\(z(t)\)</span> aux instants d’échantillonnage
 dépendent de plusieurs symboles <span class="math notranslate nohighlight">\(\alpha_k\)</span>.
 La détection est alors perturbée même s’il n’y a pas de bruit.</p>
 <ul class="simple">
 <li><p>Simulez l’émission d’un message codé en NRZ binaire.
 Observez le signal en entrée du récepteur pour différentes fréquences de coupure du canal.</p></li>
 <li><p>Tracez le diagramme de l’œil (<code class="docutils literal notranslate"><span class="pre">comnumfip.eyediag</span></code>) de <span class="math notranslate nohighlight">\(y(t)\)</span> : que se passe-t-il lorsque la bande passante du canal varie ?</p></li>
-</ul>
-<!--
-  Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
-  Comment se traduit-elle sur la transformée de Fourier de $y(t)$~? % critère de Nyquist
-  En déduire pourquoi une forme d'onde rectangulaire n'est pas adaptée
-  lorsque la bande passante du canal est trop faible.
--->
-<ul class="simple">
 <li><p>Lorsque la bande passante du canal est trop faible, la forme d’onde rectangulaire n’est pas adaptée.
 Il est préférable d’utiliser une forme d’onde en racine de cosinus surélevé (<code class="docutils literal notranslate"><span class="pre">comnumfip.mod_rrc</span></code>).
 Simulez la transmission du message avec cette nouvelle forme d’onde,
@@ -478,8 +491,16 @@ notamment en observant le diagramme de l’œil pour plusieurs valeurs du facteu
 L’impulsion en racine de cosinus surélevée est obtenue avec la fonction <code class="docutils literal notranslate"><span class="pre">comnumfip.rrc</span></code>.</p></li>
 <li><p>Simulez l’opération de détection en comparant les deux formes d’onde.</p></li>
 </ul>
+<!--
+  Quelle est la condition sur le signal temporel $y(t)$ pour éviter les IES~?
+  Comment se traduit-elle sur la transformée de Fourier de $y(t)$~? % critère de Nyquist
+  En déduire pourquoi une forme d'onde rectangulaire n'est pas adaptée
+  lorsque la bande passante du canal est trop faible.
+-->
 <!-- Répartition optimale du filtrage entre l'émission et la réception ? -->
 <!-- Probabilité d'erreur minimale sur un canal à bande limitée ? --></div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -508,7 +529,7 @@ L’impulsion en racine de cosinus surélevée est obtenue avec la fonction <cod
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="td.html" title="previous page">Excercices</a>
-    <a class='right-next' id="next-link" href="../codage-source/information.html" title="next page">Mesure de l’information</a>
+    <a class='right-next' id="next-link" href="../tp/tpmod1.html" title="next page">Étude de quelques modulations</a>
 
         </div>
         

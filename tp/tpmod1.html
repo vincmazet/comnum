@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TP Modulation - Étude de quelques modulations numériques &#8212; Communications numériques</title>
+    <title>Étude de quelques modulations &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -58,6 +58,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Transmission en bande de base sur un canal idéal" href="tpmod2.html" />
+    <link rel="prev" title="Travaux pratiques" href="../modulation/tp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -129,7 +131,7 @@
   Modulation &amp; démodulation
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulation/intro.html">
    Introduction
@@ -165,10 +167,37 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -333,11 +362,6 @@
    Code principal
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#quelle-modulation-adaptee-aux-communications">
-   Quelle modulation adaptée aux communications ?
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -349,26 +373,19 @@
         
               <div>
                 
-  <div class="section" id="tp-modulation-etude-de-quelques-modulations-numeriques">
-<h1>TP Modulation - Étude de quelques modulations numériques<a class="headerlink" href="#tp-modulation-etude-de-quelques-modulations-numeriques" title="Lien permanent vers ce titre">¶</a></h1>
-<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 03/2022</p>
-<p>On veut étudier les propriétés et les effets des modulations : ce sont des signaux analogiques et aléatoires, il faut donc un traitement statistique aléatoire. Pour cela, on peut faire des calculs en utilisant les outils du traitement statistique du signal.
+  <div class="section" id="etude-de-quelques-modulations">
+<h1>Étude de quelques modulations<a class="headerlink" href="#etude-de-quelques-modulations" title="Lien permanent vers ce titre">¶</a></h1>
+<!-- vincent.mazet@unistra.fr, 03/2022 --><p>Dans ce TP, on veut étudier les propriétés et les effets des modulations numériques.
+Comme ce sont des signaux analogiques et aléatoires, on effectue les calculs en utilisant les outils du traitement statistique du signal.
 Pour éviter des calculs fastidieux, on va utiliser les outils numériques sur des signaux simulés.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 </div>
 <div class="section" id="utilisation-du-module-comnumfip">
 <h2>Utilisation du module comnumfip<a class="headerlink" href="#utilisation-du-module-comnumfip" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le module <strong>comnumfip</strong> regroupe de fonctions particulières pour faire les TP.
-Il s’agit simplement d’un unique fichier (<a class="reference external" href="http://comnumfip.py">comnumfip.py</a>) téléchargeable sur GitHub à l’adresse :</p>
-<p><a class="reference external" href="https://github.com/vincmazet/comnumfip">https://github.com/vincmazet/comnumfip</a></p>
-<p>Une fois le fichier <a class="reference external" href="http://comnumfip.py">comnumfip.py</a> téléchargé, il suffit de l’ajouter dans le dossier contenant le notebook.</p>
+<p>Le module <code class="docutils literal notranslate"><span class="pre">comnumfip</span></code> regroupe de fonctions particulières pour faire les TP.
+Il s’agit d’un unique fichier téléchargeable sur :
+<a class="reference external" href="https://github.com/vincmazet/comnumfip">https://github.com/vincmazet/comnumfip</a>.
+Une fois le fichier téléchargé, il suffit de l’ajouter dans le dossier contenant le notebook.</p>
 <p>L’aide des fonctions de ce module est accessible directement sur la page web du module, ou bien en utilisant l’instruction <code class="docutils literal notranslate"><span class="pre">help(fonction)</span></code>. Par exemple :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -408,87 +425,17 @@ randmary(N, p)
 <div class="section" id="code-principal">
 <h2>Code principal<a class="headerlink" href="#code-principal" title="Lien permanent vers ce titre">¶</a></h2>
 <p>La fonction <code class="docutils literal notranslate"><span class="pre">randmary</span></code> produit une séquence M-aire, et la fonction <code class="docutils literal notranslate"><span class="pre">bin2mary</span></code> permet de convertir une séquence binaire en séquence M-aire.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nombre de bits dans la séquence binaire</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
-
-<span class="c1"># Séquence binaire (avec probabilité égale des bits 0 et 1)</span>
-<span class="n">m2</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">randmary</span><span class="p">(</span><span class="n">N</span><span class="p">,[</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">])</span>
-
-<span class="c1"># Conversion en séquence hexadécimale</span>
-<span class="n">m16</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">bin2mary</span><span class="p">(</span><span class="n">m2</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
-
-<span class="c1"># Affichage</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Séquence binaire :      </span><span class="si">{</span><span class="n">m2</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span><span class="si">}</span><span class="se">\b</span><span class="s2"> ...]&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Séquence hecadécimale : </span><span class="si">{</span><span class="n">m16</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="se">\b</span><span class="s2"> ...]&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attention : LSB (low significant bit) à gauche !&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Séquence binaire :      [1 1 1 0 0 1 1 0 1 0 0 0 0 1 0 0 ...]
-Séquence hecadécimale : [7 6 1 2 ...]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Séquence binaire :      [0 0 1 0 1 1 0 0 0 1 1 1 0 0 1 1 ...]
+Séquence hecadécimale : [ 4  3 14 12 ...]
 Attention : LSB (low significant bit) à gauche !
 </pre></div>
 </div>
 </div>
 </div>
 <p>À partir des séquences binaires et hexadécimale créées, qui représentent toutes les deux le même message, on représente différentes modulations (seuls les premiers symboles son représentés) et leur périodogramme :</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modulations à étudier</span>
-<span class="n">modulations</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;AMI&quot;</span><span class="p">:</span>         <span class="n">cnf</span><span class="o">.</span><span class="n">mod_a</span><span class="p">,</span>
-    <span class="s2">&quot;BPSK&quot;</span><span class="p">:</span>        <span class="n">cnf</span><span class="o">.</span><span class="n">mod_b</span><span class="p">,</span>
-    <span class="s2">&quot;Manchester&quot;</span><span class="p">:</span>  <span class="n">cnf</span><span class="o">.</span><span class="n">mod_c</span><span class="p">,</span>
-    <span class="s2">&quot;NRZ&quot;</span><span class="p">:</span>         <span class="n">cnf</span><span class="o">.</span><span class="n">mod_d</span><span class="p">,</span>
-    <span class="s2">&quot;16-QAM&quot;</span><span class="p">:</span>      <span class="n">cnf</span><span class="o">.</span><span class="n">mod_e</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="c1"># Amplitude et durée d&#39;un bit</span>
-<span class="n">V</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span>
-
-<span class="c1"># Taille de la séquence à afficher</span>
-<span class="n">K</span> <span class="o">=</span> <span class="mi">8</span>
-
-<span class="c1"># Affichage</span>
-<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">modulations</span><span class="p">:</span>
-    
-    <span class="n">m</span> <span class="o">=</span> <span class="n">m2</span> <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;16-QAM&quot;</span> <span class="k">else</span> <span class="n">m16</span>
-    
-    <span class="c1"># Modulation</span>
-    <span class="n">mod</span> <span class="o">=</span> <span class="n">modulations</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="n">t</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">mod</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
-    
-    <span class="c1"># Fenêtre</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">mod</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-    <span class="n">tm</span><span class="p">,</span> <span class="n">fr</span> <span class="o">=</span> <span class="n">ax</span>
-    
-    <span class="c1"># Signal temporel</span>
-    <span class="n">tm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">tm</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">K</span><span class="o">*</span><span class="n">T</span><span class="p">])</span>
-    
-    <span class="c1"># Texte</span>
-    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">):</span>
-        <span class="n">tm</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Densité spectrale de puissance</span>
-    <span class="n">f</span><span class="p">,</span> <span class="n">Pxx</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">periodogram</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">100</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">fr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Pxx</span><span class="p">)</span>
-    <span class="n">fr</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-
-    <span class="c1"># Fraction d&#39;énergie</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;AMI&quot;</span><span class="p">,</span> <span class="s2">&quot;Manchester&quot;</span><span class="p">,</span> <span class="s2">&quot;NRZ&quot;</span><span class="p">]:</span>
-        <span class="n">f0</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">frac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Pxx</span><span class="p">[</span><span class="n">f</span><span class="o">&lt;</span><span class="n">f0</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Pxx</span><span class="p">)</span>
-        <span class="n">fr</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">f0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:orange&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
-        <span class="n">fr</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">f0</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">frac</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:orange&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpmod1_10_0.png" src="../_images/tpmod1_10_0.png" />
 <img alt="../_images/tpmod1_10_1.png" src="../_images/tpmod1_10_1.png" />
@@ -497,23 +444,53 @@ Attention : LSB (low significant bit) à gauche !
 <img alt="../_images/tpmod1_10_4.png" src="../_images/tpmod1_10_4.png" />
 </div>
 </div>
-</div>
-<div class="section" id="quelle-modulation-adaptee-aux-communications">
-<h2>Quelle modulation adaptée aux communications ?<a class="headerlink" href="#quelle-modulation-adaptee-aux-communications" title="Lien permanent vers ce titre">¶</a></h2>
-<ul class="simple">
-<li><p><strong>Bus informatique ou de terrain : modulation en bande de base</strong>
-(I2C : NRZ,
-SATA : 8b/10b encoding,
-ASI : Manchester,
-KNX : sorte de Manchester,
-HART : FSK binaire superposé au 4-20 mA)</p></li>
-<li><p><strong>liaison Wi-Fi : modulation sur porteuse</strong>
-(QAM, PSK, ou autre suivant la version de la norme)</p></li>
-<li><p><strong>périphérique USB et ordinateur : modulation en bande de base</strong>
-(NRZI)</p></li>
-<li><p><strong>téléphone mobile et antenne relais : modulation sur porteuse</strong>
-(GSM = 900 MHz et 1800 MHz, avec variantes)</p></li>
-</ul>
+<p>Ce tableau compare les différentes modulations en bande de base sur différents critères :</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>NRZ</p></th>
+<th class="head"><p>Manchester</p></th>
+<th class="head"><p>AMI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Largeur de bande</p></td>
+<td><p>😀</p></td>
+<td><p>😖</p></td>
+<td><p>😀</p></td>
+</tr>
+<tr class="row-odd"><td><p>Simplicité de mise en œuvre</p></td>
+<td><p>😀</p></td>
+<td><p>😕</p></td>
+<td><p>😕</p></td>
+</tr>
+<tr class="row-even"><td><p>Robustesse au bruit</p></td>
+<td><p>🙂</p></td>
+<td><p>🙂</p></td>
+<td><p>😖</p></td>
+</tr>
+<tr class="row-odd"><td><p>Synchronisation du récepteur</p></td>
+<td><p>😖</p></td>
+<td><p>😀</p></td>
+<td><p>😖</p></td>
+</tr>
+<tr class="row-even"><td><p>Téléalimentation possible</p></td>
+<td><p>😖</p></td>
+<td><p>😀</p></td>
+<td><p>😀</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inversion de la polarité</p></td>
+<td><p>😖</p></td>
+<td><p>😖</p></td>
+<td><p>😀</p></td>
+</tr>
+<tr class="row-even"><td><p>Détection d’interruption</p></td>
+<td><p>😀</p></td>
+<td><p>😀</p></td>
+<td><p>😕</p></td>
+</tr>
+</tbody>
+</table>
 <!--  
  - largeur de sa plage de fréquences : la plus étroite possible
   - téléalimentation : peu de puissance aux faibles fréquences, aucune à la fréquence nulle
@@ -527,7 +504,22 @@ HART : FSK binaire superposé au 4-20 mA)</p></li>
       DRDS({ak}) = max(abs{RDS({aj}) tel que {aj} sous-suite valide de {ak}}).
   - les transmissions en bande de base ont le grand intérêt d'être simples à mettre en place
     et sont donc utilisées dans de nombreux domaines où les communications se font sur de courtes distances.
---></div>
+--><p>Selon les résultats de cet exercice, on peut en conclure les modulations adaptées pour les applications suivantes :</p>
+<ul class="simple">
+<li><p>Bus informatique ou de terrain : modulation en bande de base
+(I2C : NRZ,
+SATA : 8b/10b encoding,
+ASI : Manchester,
+KNX : sorte de Manchester,
+HART : FSK binaire superposé au 4-20 mA)</p></li>
+<li><p>liaison Wi-Fi : modulation sur porteuse
+(QAM, PSK, ou autre suivant la version de la norme)</p></li>
+<li><p>périphérique USB et ordinateur : modulation en bande de base
+(NRZI)</p></li>
+<li><p>téléphone mobile et antenne relais : modulation sur porteuse
+(GSM = 900 MHz et 1800 MHz, avec variantes)</p></li>
+</ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -555,6 +547,8 @@ HART : FSK binaire superposé au 4-20 mA)</p></li>
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="../modulation/tp.html" title="previous page">Travaux pratiques</a>
+    <a class='right-next' id="next-link" href="tpmod2.html" title="next page">Transmission en bande de base sur un canal idéal</a>
 
         </div>
         

@@ -26,8 +26,12 @@ pouvant transmettre sans erreur 95 bits par seconde.
 
 <!-- MacKay, exercices 5.19 et 5.20 -->
 
-1. Le code binaire $\{00, 11, 0101, 111, 1010, 100100, 0110\}$ est-il à décodage unique ?
-1. Le code ternaire $\{00, 012, 0110, 0112, 100, 201, 212, 22\}$ est-il à décodage unique ?
+1. Le code binaire
+   {<code>00</code>, <code>11</code>, <code>0101</code>, <code>111</code>, <code>1010</code>, <code>100100</code>, <code>0110</code>}
+   est-il à décodage unique ?
+1. Le code ternaire
+   {<code>00</code>, <code>012</code>, <code>0110</code>, <code>0112</code>, <code>100</code>, <code>201</code>, <code>212</code>, <code>22</code>}
+   est-il à décodage unique ?
 
 
 ## Exercice 4

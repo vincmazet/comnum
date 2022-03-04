@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TP Modulation - Transmission en bande de base sur un canal idéal &#8212; Communications numériques</title>
+    <title>Transmission en bande de base sur un canal idéal &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -58,6 +58,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Mesure de l’information" href="../codage-source/information.html" />
+    <link rel="prev" title="Étude de quelques modulations" href="tpmod1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -129,7 +131,7 @@
   Modulation &amp; démodulation
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulation/intro.html">
    Introduction
@@ -165,10 +167,27 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -326,138 +345,53 @@
         
               <div>
                 
-  <div class="section" id="tp-modulation-transmission-en-bande-de-base-sur-un-canal-ideal">
-<h1>TP Modulation - Transmission en bande de base sur un canal idéal<a class="headerlink" href="#tp-modulation-transmission-en-bande-de-base-sur-un-canal-ideal" title="Lien permanent vers ce titre">¶</a></h1>
-<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 04/2021</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">comnumfip</span> <span class="k">as</span> <span class="nn">cnf</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
-<span class="kn">import</span> <span class="nn">scipy.spatial.distance</span> <span class="k">as</span> <span class="nn">dist</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="n">divide</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span><span class="p">);</span>
-</pre></div>
+  <div class="section" id="transmission-en-bande-de-base-sur-un-canal-ideal">
+<h1>Transmission en bande de base sur un canal idéal<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-ideal" title="Lien permanent vers ce titre">¶</a></h1>
+<!-- vincent.mazet@unistra.fr, 03/2022 --><p>On rappelle qu’un canal est dit idéal si sa largeur de bande est infinie :
+sa réponse impulsionnelle est alors <span class="math notranslate nohighlight">\(g(t)=K\,\delta(t-\tau)\)</span> où <span class="math notranslate nohighlight">\(K\)</span> et <span class="math notranslate nohighlight">\(\tau\)</span> sont l’atténuation et le retard du signal reçu
+(sans perdre en généralité, on pourra prendre <span class="math notranslate nohighlight">\(K=1\)</span> et <span class="math notranslate nohighlight">\(\tau=0\)</span>).</p>
+<p>Le signal reçu a pour expression :</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = (x*g)(t) + b(t) = K\,x(t-\tau) + b(t)
+\]</div>
+<p>soit, en considérant <span class="math notranslate nohighlight">\(K=1\)</span> et <span class="math notranslate nohighlight">\(\tau=0\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = x(t) + b(t).
+\]</div>
+<p>Les graphiques ci-dessous représentent, pour deux niveaux de bruit, les différents signaux :</p>
+<ul class="simple">
+<li><p>le premier graphe correspond au signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> ;</p></li>
+<li><p>le deuxième graphe correspond au signal <span class="math notranslate nohighlight">\(z(t)\)</span> sans filtre de réception (<span class="math notranslate nohighlight">\(r(t)=\delta(t)\)</span>, donc finalement : <span class="math notranslate nohighlight">\(z(t)=y(t)\)</span>)
+et un seuil fixé à 0 ;</p></li>
+<li><p>le troisième graphe correspond au signal <span class="math notranslate nohighlight">\(z(t)\)</span> avec filtre de réception et un seuil fixé à 0;</p></li>
+<li><p>le quatrième graphe correspond au signal <span class="math notranslate nohighlight">\(z(t)\)</span> avec filtre de réception et un seuil dit au sens du « maximum a posteriori » ;</p></li>
+</ul>
+<p>Sur chaque graphe, les points rouges correspondent aux instants d’échantillonnage du signal,
+et permettent de définir la séquence binaire reçue.
+Ces points sont comparés au seuil représenté par la ligne rouge.</p>
+<div class="cell tag_remove-input docutils container">
 </div>
+<div class="cell tag_remove-input docutils container">
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myplot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">sample_period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">decoded</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">actual</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">sample_period</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        
-        <span class="c1"># Nombre d&#39;erreurs</span>
-        <span class="n">err</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="n">decoded</span><span class="p">)</span><span class="o">*</span><span class="n">N</span>
-        
-        <span class="c1"># Pourcentage d&#39;erreur</span>
-        <span class="n">ter</span> <span class="o">=</span> <span class="n">err</span><span class="o">/</span><span class="n">N</span>
-        
-        <span class="c1"># BER (Bit Error Rate)</span>
-        <span class="n">ber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
-        
-        <span class="c1"># Seuils</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:red&quot;</span><span class="p">)</span>
-        
-        <span class="c1"># Échantillons</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="mi">100</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">L</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s2">&quot;tab:red&quot;</span><span class="p">,</span> <span class="n">markeredgecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
-        
-        <span class="c1"># Code obtenu</span>
-        <span class="n">yy</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
-        <span class="n">y0</span><span class="p">,</span> <span class="n">yd</span> <span class="o">=</span> <span class="n">yy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">10</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;tab:green&quot;</span> <span class="k">if</span> <span class="n">decoded</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="n">actual</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;tab:red&quot;</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">n</span><span class="o">+.</span><span class="mi">5</span><span class="p">,</span> <span class="n">y0</span><span class="o">-</span><span class="n">yd</span><span class="p">,</span> <span class="n">decoded</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">y0</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">yd</span><span class="p">,</span> <span class="n">yy</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-
-        <span class="c1"># Titre</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">ter</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Séquence binaire aléatoire</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">512</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">randmary</span><span class="p">(</span><span class="n">N</span><span class="p">,[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span>
-
-<span class="c1"># Amplitude et durée de la forme d&#39;onde</span>
-<span class="n">V</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
-
-<span class="c1"># Nombre d&#39;échantillons dans un symbole</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="c1"># Modulation</span>
-<span class="n">t</span><span class="p">,</span> <span class="n">xfull</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">mod_d</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
-
-<span class="c1"># Deux niveaux de bruit</span>
-<span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
-    
-    <span class="n">x</span> <span class="o">=</span> <span class="n">xfull</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
-    <span class="c1"># Canal idéal</span>
-    <span class="n">fc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fc</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
-    
-    <span class="c1"># Filtre adapté</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">L</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Seuil MV</span>
-    <span class="n">Smv</span> <span class="o">=</span> <span class="mi">0</span>
-    
-    <span class="c1"># Seuil MAP</span>
-    <span class="c1"># Estimation de la variance de b~ par émission d&#39;un signal x nul et estimation de la variance du signal z</span>
-    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e3</span><span class="p">))</span>
-    <span class="n">y0</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">fc</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
-    <span class="n">zsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">z0</span><span class="p">)</span>
-    <span class="n">A0</span><span class="p">,</span> <span class="n">A1</span> <span class="o">=</span> <span class="o">-</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span>
-    <span class="n">Smap</span> <span class="o">=</span> <span class="p">(</span> <span class="n">A0</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">A1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">zsig</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">A0</span><span class="o">-</span><span class="n">A1</span><span class="p">))</span>
-    
-    <span class="c1"># Nombre de symboles pour l&#39;affichage</span>
-    <span class="n">M</span> <span class="o">=</span> <span class="mi">16</span>
-    <span class="n">nmax</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">L</span>
-    
-    <span class="c1"># Figure</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;bruit faible&quot;</span> <span class="k">if</span> <span class="n">sig</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;bruit élevé&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-    
-    <span class="c1"># Signal émis</span>
-    <span class="n">myplot</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">x</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;$x(t)$&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Signal émis&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Détection sans filtre</span>
-    <span class="n">yss</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">sample_and_threshold</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Smv</span><span class="p">)</span>
-    <span class="n">myplot</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;$y(t)$&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Sans filtre adapté (seuil MV = </span><span class="si">{</span><span class="n">Smv</span><span class="si">:</span><span class="s2">.0e</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-           <span class="n">sample_period</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">Smv</span><span class="p">,</span> <span class="n">decoded</span><span class="o">=</span><span class="n">yss</span><span class="p">,</span> <span class="n">actual</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
-    
-    <span class="c1"># Erreurs de détection avec filtre et MV</span>
-    <span class="n">zss</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">sample_and_threshold</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Smv</span><span class="p">)</span>
-    <span class="n">myplot</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">t</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">z</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;$z(t)$&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Avec filtre adapté (seuil MV = </span><span class="si">{</span><span class="n">Smv</span><span class="si">:</span><span class="s2">.0e</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-           <span class="n">sample_period</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">Smv</span><span class="p">,</span> <span class="n">decoded</span><span class="o">=</span><span class="n">zss</span><span class="p">,</span> <span class="n">actual</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
-
-    <span class="c1"># Erreurs de détection avec filtre et MAP</span>
-    <span class="n">zss</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">sample_and_threshold</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Smap</span><span class="p">)</span>
-    <span class="n">myplot</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">t</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">z</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;$z(t)$&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Avec filtre adapté (seuil MAP = </span><span class="si">{</span><span class="n">Smap</span><span class="si">:</span><span class="s2">.0e</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-           <span class="n">sample_period</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">Smap</span><span class="p">,</span> <span class="n">decoded</span><span class="o">=</span><span class="n">zss</span><span class="p">,</span> <span class="n">actual</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/tpmod2_3_0.png" src="../_images/tpmod2_3_0.png" />
-<img alt="../_images/tpmod2_3_1.png" src="../_images/tpmod2_3_1.png" />
+<img alt="../_images/tpmod2_6_0.png" src="../_images/tpmod2_6_0.png" />
+<img alt="../_images/tpmod2_6_1.png" src="../_images/tpmod2_6_1.png" />
 </div>
 </div>
+<p>Le filtre de réception <span class="math notranslate nohighlight">\(r(t)\)</span> est un filtre adapté car on cherche à détecter les formes d’onde <span class="math notranslate nohighlight">\(h(t)\)</span> dans le signal bruité <span class="math notranslate nohighlight">\(y(t)\)</span>.
+Ainsi, <span class="math notranslate nohighlight">\(r(t) = h(-t)\)</span>.
+La forme d’onde <span class="math notranslate nohighlight">\(h\)</span> étant une porte de durée <span class="math notranslate nohighlight">\(d\)</span>, le filtre de réception est également une porte de durée <span class="math notranslate nohighlight">\(d\)</span>, que l’on peut générer ainsi :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">L</span>
+</pre></div>
+</div>
+<p>La variable <code class="docutils literal notranslate"><span class="pre">r</span></code> est un signal constant.
+Comme il s’agit ici d’une simulation, ce signal est numérique et contient 100 échantillons, lesquels sont d’amplitude 1/100.</p>
+<p>Pour chaque niveau de bruit et chaque procédure de réception, le taux d’erreur, exprimé en pourcentage, est indiqué.
+On constate tout d’abord que le filtre de réception joue un rôle très important et permet de réduire drastiquement le niveau de bruit dans les signaux, et donc de réduire le nombre d’erreurs.
+Par ailleurs, l’utilisation du seuil au sens du maximum a posteriori, qui est défini en fonction de l’amplitude des formes d’onde mais également du nombre attendu de bits à 0 et à 1, permet de réduire encore un peu les erreurs, dans le cas où, comme dans cet exemple, les symboles ne sont pas équiprobables.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -485,6 +419,8 @@
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="tpmod1.html" title="previous page">Étude de quelques modulations</a>
+    <a class='right-next' id="next-link" href="../codage-source/information.html" title="next page">Mesure de l’information</a>
 
         </div>
         

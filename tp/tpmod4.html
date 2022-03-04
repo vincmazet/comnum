@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TP Modulation - Probabilité d’erreur en fonction du RSB &#8212; Communications numériques</title>
+    <title>Probabilité d’erreur en fonction du RSB &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -58,6 +58,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Transmission en bande de base sur un canal à bande limitée" href="tpmod5.html" />
+    <link rel="prev" title="Transmission en bande de base sur un canal idéal" href="tpmod2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -129,7 +131,7 @@
   Modulation &amp; démodulation
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../modulation/intro.html">
    Introduction
@@ -165,10 +167,37 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -326,10 +355,9 @@
         
               <div>
                 
-  <div class="section" id="tp-modulation-probabilite-d-erreur-en-fonction-du-rsb">
-<h1>TP Modulation - Probabilité d’erreur en fonction du RSB<a class="headerlink" href="#tp-modulation-probabilite-d-erreur-en-fonction-du-rsb" title="Lien permanent vers ce titre">¶</a></h1>
-<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 04/2021</p>
-<p>Dans ce notebook, on représente le pourcentage d’erreur obtenu lors de la transmission d’un message binaire modulé en NRZ en fonction de la puissance du bruit, pour trois types de réception :</p>
+  <div class="section" id="probabilite-d-erreur-en-fonction-du-rsb">
+<h1>Probabilité d’erreur en fonction du RSB<a class="headerlink" href="#probabilite-d-erreur-en-fonction-du-rsb" title="Lien permanent vers ce titre">¶</a></h1>
+<!-- vincent.mazet@unistra.fr, 03/2022 --><p>Dans ce notebook, on représente le pourcentage d’erreur obtenu lors de la transmission d’un message binaire modulé en NRZ en fonction de la puissance du bruit, pour trois types de réception :</p>
 <ul class="simple">
 <li><p>sans filtre de réception (filtre adapté),</p></li>
 <li><p>avec filtre adapté et seuil au sens du maximum de vraisemblance (égal à 0 pour une modulation NRZ bipolaire) : c’est le seuil classique vu en cours,</p></li>
@@ -338,143 +366,37 @@
 <p>Pour obtenir ces résultats, on génère une séquence binaire contenant un grand nombre de symboles pour obtenir des résultats significatifs.
 Cette séquence est ensuite modulée, transmise via un canal idéal, et traitée avec les trois récepteurs étudiés.
 On compare finalement la séquence binaire reçue avec la séquence binaire émise.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">comnumfip</span> <span class="k">as</span> <span class="nn">cnf</span>
-<span class="kn">import</span> <span class="nn">scipy.spatial.distance</span> <span class="k">as</span> <span class="nn">dist</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="n">divide</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span><span class="p">);</span>
-</pre></div>
+<div class="cell tag_remove-input docutils container">
 </div>
+<div class="cell tag_remove-input docutils container">
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Séquence binaire aléatoire</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">2048</span>
-<span class="n">p</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">randmary</span><span class="p">(</span><span class="n">N</span><span class="p">,[</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span>
-
-<span class="c1"># Amplitude et durée de la forme d&#39;onde (modulation NRZ)</span>
-<span class="n">V</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
-<span class="n">A0</span><span class="p">,</span> <span class="n">A1</span> <span class="o">=</span> <span class="o">-</span><span class="n">V</span><span class="p">,</span> <span class="o">+</span><span class="n">V</span>
-
-<span class="c1"># Nombre d&#39;échantillons dans un symbole</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">t</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">mod_d</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
-
-<span class="c1"># Liste des RSB et des pourcentages d&#39;erreurs de détection</span>
-<span class="n">rsbs</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">err1</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">err2</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">err3</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="c1"># Tests pour différents niveaux de bruits</span>
-<span class="n">sigs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">sigs</span><span class="p">:</span>
-    
-    <span class="c1"># Canal (idéal)</span>
-    <span class="n">fc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fc</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
-    
-    <span class="c1"># RSB</span>
-    <span class="n">rsbs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="p">)</span>
-    
-    <span class="c1"># Filtre adapté</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">V</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">L</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Échantillonnage</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">L</span> <span class="o">+</span> <span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Seuil MV</span>
-    <span class="n">Smv</span> <span class="o">=</span> <span class="p">(</span><span class="n">A0</span><span class="o">+</span><span class="n">A1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-    
-    <span class="c1"># Seuil MAP</span>
-    <span class="c1"># Estimation de la variance de b~ par émission d&#39;un signal x nul et estimation de la variance du signal z</span>
-    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e3</span><span class="p">))</span>
-    <span class="n">y0</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">fc</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">z0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y0</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="s2">&quot;same&quot;</span><span class="p">)</span>
-    <span class="n">zsig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">z0</span><span class="p">)</span>
-    <span class="n">A0</span><span class="p">,</span> <span class="n">A1</span> <span class="o">=</span> <span class="o">-</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span>
-    <span class="n">Smap</span> <span class="o">=</span> <span class="p">(</span> <span class="n">A0</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">A1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">zsig</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">A0</span><span class="o">-</span><span class="n">A1</span><span class="p">))</span>
-    
-    <span class="c1"># Pourcentage d&#39;erreur dans le cas sans filtre adapté</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">&gt;</span><span class="n">Smv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">err1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">dist</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">)</span>
-    
-    <span class="c1"># Pourcentage d&#39;erreur dans le cas avec filtre adapté et seuil MV</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">&gt;</span><span class="n">Smv</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">err2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">dist</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">)</span>
-    
-    <span class="c1"># Pourcentage d&#39;erreur dans le cas avec filtre adapté et seuil MAP</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">&gt;</span><span class="n">Smap</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">err3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">dist</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">):</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sans FA&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;avec FA+MV&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;avec FA+MAP&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 </div>
 <p>Dans un premier temps, on représente le pourcentage d’erreur en fonction de l’écart-type du bruit :</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nombre d&#39;erreurs en fonction de l&#39;écart-type du bruit</span>
-<span class="n">myplot</span><span class="p">(</span><span class="n">sigs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">err1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">err2</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">err3</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">% e</span><span class="s2">rr&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpmod4_6_0.png" src="../_images/tpmod4_6_0.png" />
 </div>
 </div>
-<p>On constate que le filtre adapté permet de réduire significativement les erreurs de transmission.
-Si en plus on effectue un seuillage avec le seuil au sens du maximum a posteriori, alors on réduit encore le nombre d’erreurs.</p>
+<p>On constate que le filtre adapté (courbes orange et verte) permet de réduire significativement les erreurs de transmission.
+Si en plus on effectue un seuillage avec le seuil au sens du maximum a posteriori (courbe verte), alors on réduit encore le nombre d’erreurs.</p>
 <p>Par ailleurs, on observe que le pourcentage d’erreur se stabilise aux alentours de 50 %.
 Ce pourcentage est celui qu’on obtiendrait si le récepteur ne faisait que générer aléatoirement une séquence binaire sans considérer le signal reçu : c’est donc le pire résultat qu’on puisse obtenir.</p>
 <p>Enfin, on constate que lorsque l’écart-type du bruit est faible, alors on est capable de ne pas faire d’erreur du tout !</p>
-<p>Plutôt que d’utiliser le pourcentage d’erreur, on utilise plutôt le BER (<em>bit error rate</em>) qui est le pourcentage d’erreur exprimé en décibels (donc, c’est le logarithme à base 10 du pourcentage d’erreur).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BER (bit error rate) en fonction de l&#39;écart-type du bruit</span>
-<span class="n">myplot</span><span class="p">(</span><span class="n">sigs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err3</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;BER&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<p>Plutôt que d’utiliser le pourcentage d’erreur, on utilise plutôt le <strong>BER</strong> (<em>bit error rate</em>) qui est le pourcentage d’erreur exprimé en décibels (c’est le logarithme à base 10 du pourcentage d’erreur).</p>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpmod4_9_0.png" src="../_images/tpmod4_9_0.png" />
 </div>
 </div>
-<p>Enfin, il est généralement préférable d’exprimer la puissance du bruit en fonction du rapport siganl-à-bruit (RSB) plutôt qu’en fonction de son écart-type.
+<p>Enfin, il est généralement préférable d’exprimer la puissance du bruit en fonction du rapport signal-à-bruit (RSB) plutôt qu’en fonction de son écart-type.
 En effet, le RSB tient compte de l’amplitude du bruit, mais également du signal sur lequel il est appliqué.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># BER (bit error rate) en fonction du RSB</span>
-<span class="n">myplot</span><span class="p">(</span><span class="n">rsbs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">err3</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;RSB (dB)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;BER&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpmod4_11_0.png" src="../_images/tpmod4_11_0.png" />
 </div>
 </div>
+<p>Ce type de représentation (BER en fonction du RSB) est très utilisé en communications numériques, pour comparer differntes méthodes.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -502,6 +424,8 @@ En effet, le RSB tient compte de l’amplitude du bruit, mais également du sign
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="tpmod2.html" title="previous page">Transmission en bande de base sur un canal idéal</a>
+    <a class='right-next' id="next-link" href="tpmod5.html" title="next page">Transmission en bande de base sur un canal à bande limitée</a>
 
         </div>
         

@@ -111,16 +111,21 @@ table p { margin-bottom: 0 }
 }
 
 .anim-button {
-  background-color:#ededed;
-  /*-moz-border-radius:50%;
-  -webkit-border-radius:50%;
-  border-radius:50%;*/
-  border:1px solid #dcdcdc;
-  display:inline-block;
-  cursor:pointer;
-  color:#777777;
-  text-decoration:none;
-  text-shadow:0px 1px 0px #ffffff;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  color: #0071bc;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  text-decoration: none;
 }
 .anim-button:hover {
   background-color:#dfdfdf;

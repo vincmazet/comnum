@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
     <link rel="next" title="Codage d’une source sans mémoire" href="codage.html" />
-    <link rel="prev" title="Travaux pratiques" href="../modulation/tp.html" />
+    <link rel="prev" title="Transmission en bande de base sur un canal à bande limitée" href="../tp/tpmod5.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -167,10 +167,37 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -442,17 +469,9 @@ L’auto-information s’exprime en shannon (abbréviation : Sh),
 et sa représentation graphique est donnée <a class="reference internal" href="#f-auto-information"><span class="std std-numref">Fig. 15</span></a> :
 c’est bien une courbe qui décroit avec la probabilité d’apparition du symbole.</p>
 <div class="figure align-default" id="f-auto-information">
-<img alt="codage-source/../figs/auto-information.svg" src="codage-source/../figs/auto-information.svg" /><p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Auto-information.</span><a class="headerlink" href="#f-auto-information" title="Lien permanent vers cette image">¶</a></p>
+<img alt="../_images/auto-information.svg" src="../_images/auto-information.svg" /><p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Auto-information.</span><a class="headerlink" href="#f-auto-information" title="Lien permanent vers cette image">¶</a></p>
 </div>
-<p><a class="btn btn-light" href="td.html#exercice-1" role="button">Exercice 1</a></p>
-<!-- Et ainsi :
-
-$$
-\log_2 1 = 0 \qquad
-\log_2 2 = 1 \qquad
-\log_2 8 = 3 \qquad
-\log_2 256 = 8.
-$$ -->
+<p><a class="exercise btn btn-light" href="td.html#exercice-1" role="button">1</a></p>
 </div>
 <div class="section" id="entropie">
 <h2>Entropie<a class="headerlink" href="#entropie" title="Lien permanent vers ce titre">¶</a></h2>
@@ -482,15 +501,15 @@ dont dans une discussion tu auras toujours l’avantage ! »
 <p>Il se trouve que la borne supérieure correspond à l’entropie de symboles équiprobables,
 pour lesquels <span class="math notranslate nohighlight">\(p_m = 1/M\)</span> quel que soit <span class="math notranslate nohighlight">\(m\)</span>.
 Ainsi, l’entropie d’une source est maximale lorsque ces symboles sont équiprobables.</p>
-<div class="exemple docutils">
-<p>Une source binaire émet le symbole <code class="docutils literal notranslate"><span class="pre">0</span></code> avec une probabilité <span class="math notranslate nohighlight">\(\alpha\)</span> et le symbole <code class="docutils literal notranslate"><span class="pre">1</span></code> avec une probabilité <span class="math notranslate nohighlight">\(1-\alpha\)</span>.
+<div class="example docutils">
+<p>Une source binaire émet le symbole <code>0</code> avec une probabilité <span class="math notranslate nohighlight">\(\alpha\)</span> et le symbole <code>1</code> avec une probabilité <span class="math notranslate nohighlight">\(1-\alpha\)</span>.
 L’entropie de cette source a donc pour expression <span class="math notranslate nohighlight">\(H(X) = - \alpha \log_2 \alpha - (1-\alpha) \log_2 (1-\alpha)\)</span>
 et elle est représentée <a class="reference internal" href="#f-entropie"><span class="std std-numref">Fig. 16</span></a>.</p>
 <div class="figure align-default" id="f-entropie">
-<img alt="codage-source/../figs/entropie.svg" src="codage-source/../figs/entropie.svg" /><p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Entropie d’une source binaire en fonction de la probabilité d’un des symboles.</span><a class="headerlink" href="#f-entropie" title="Lien permanent vers cette image">¶</a></p>
+<img alt="../_images/entropie.svg" src="../_images/entropie.svg" /><p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Entropie d’une source binaire en fonction de la probabilité d’un des symboles.</span><a class="headerlink" href="#f-entropie" title="Lien permanent vers cette image">¶</a></p>
 </div>
 </div>
-<p><a class="btn btn-light" href="td.html#exercice-2" role="button">Exercice 2</a></p>
+<p><a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a></p>
 </div>
 <div class="section" id="debit-source">
 <h2>Débit source<a class="headerlink" href="#debit-source" title="Lien permanent vers ce titre">¶</a></h2>
@@ -499,7 +518,6 @@ il s’exprime donc en symb/s.</p>
 </div>
 <div class="section" id="taux-d-emission">
 <h2>Taux d’émission<a class="headerlink" href="#taux-d-emission" title="Lien permanent vers ce titre">¶</a></h2>
-<!-- pb notation : taux d'émission / durée d'un symbole ? -->
 <p>Considérons une source <span class="math notranslate nohighlight">\(X\)</span>, d’entropie <span class="math notranslate nohighlight">\(H(X)\)</span> et de débit source <span class="math notranslate nohighlight">\(D_S\)</span>.
 La quantité d’information produite par cette source est appelée le <strong>taux d’émission</strong> <span class="math notranslate nohighlight">\(T_S\)</span> et s’exprime en Sh/s :</p>
 <div class="math notranslate nohighlight">
@@ -513,10 +531,11 @@ T_S = D_S \times H(X).
 Par exemple, un message textuel, dont l’alphabet est constitué de plusieurs dizaines de symboles,
 peut être transmis sur un câble électrique en Morse dont l’alphabet est constitué des trois symboles (trait, point et silence).
 Le <strong>débit canal</strong>, noté <span class="math notranslate nohighlight">\(D_C\)</span>, est le nombre de symboles transmis par le canal en une seconde ;
-il s’exprime donc en symb/s.</p>
+il s’exprime donc en symb/s.
+Le débit canal est équivalent à la rapidité de modulation exprimée en bauds.</p>
 <p>Le débit canal est donc similaire au débit source mais peut avoir une valeur différente.
 D’ailleurs, les unités des débit source et débit canal sont différentes car elles s’expriment respectivement
-en symboles (de la source) par seconde et en symboles (du canal) par seconde.</p>
+en symboles <em>de la source</em> par seconde et en symboles <em>du canal</em> par seconde.</p>
 </div>
 <div class="section" id="capacite-canal">
 <h2>Capacité canal<a class="headerlink" href="#capacite-canal" title="Lien permanent vers ce titre">¶</a></h2>
@@ -536,7 +555,7 @@ Il est lié à la transmission de l’information et dit que :</p>
 <div><p>Sur un canal bruité de capacité <span class="math notranslate nohighlight">\(C_C\)</span>, il est possible de transmettre sans erreur jusqu’à une valeur limite du taux d’émission <span class="math notranslate nohighlight">\(T_S\)</span>.</p>
 </div></blockquote>
 <p>Autrement dit, si <span class="math notranslate nohighlight">\(T_S &gt; C_C\)</span>, alors l’acheminement de la totalité de l’information émise par la source au travers du canal est impossible sans erreur.</p>
-<p><a class="btn btn-light" href="td.html#exercice-2" role="button">Exercice 2</a></p>
+<p><a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a></p>
 </div>
 </div>
 
@@ -565,7 +584,7 @@ Il est lié à la transmission de l’information et dit que :</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../modulation/tp.html" title="previous page">Travaux pratiques</a>
+    <a class='left-prev' id="prev-link" href="../tp/tpmod5.html" title="previous page">Transmission en bande de base sur un canal à bande limitée</a>
     <a class='right-next' id="next-link" href="codage.html" title="next page">Codage d’une source sans mémoire</a>
 
         </div>
