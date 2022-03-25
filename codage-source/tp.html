@@ -182,6 +182,21 @@
      Étude de quelques modulations
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -338,23 +353,40 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-de-la-theorie-de-l-information-a-la-transmission-d-un-texte">
-   Application de la théorie de l’information à la transmission d’un texte
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#compression-d-une-image-numerique">
-   Compression d’une image numérique
+  <a class="reference internal nav-link" href="#compression-d-un-texte">
+   Compression d’un texte
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#codage-sans-perte">
-     Codage sans perte
+    <a class="reference internal nav-link" href="#code-ascii">
+     Code ASCII
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#codage-avec-perte">
-     Codage avec perte
+    <a class="reference internal nav-link" href="#code-de-huffman-binaire-de-premiere-extension">
+     Code de Huffman binaire de première extension
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-de-huffman-binaire-de-deuxieme-extension">
+     Code de Huffman binaire de deuxième extension
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compression-d-une-image">
+   Compression d’une image
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compression-sans-perte">
+     Compression sans perte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compression-avec-perte">
+     Compression avec perte
     </a>
    </li>
   </ul>
@@ -374,102 +406,109 @@
 <h1>Travaux pratiques<a class="headerlink" href="#travaux-pratiques" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="admonition-modules-python admonition">
 <p class="admonition-title">Modules Python</p>
-<p>Dans ce TP, en plus des modules
-<a class="reference external" href="https://numpy.org/doc/stable/reference/index.html">numpy</a>,
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/index.html#api-reference">scipy</a>,
-<a class="reference external" href="https://matplotlib.org/stable/api/index.html">matplotlib</a>,
-et
-<a class="reference external" href="https://github.com/vincmazet/comnumfip">comnumfip</a>,
-nous aurons besoin de
-<a class="reference external" href="http://komm.readthedocs.io/">komm</a>
-et
-<a class="reference external" href="https://scikit-image.org/docs/stable/api/api.html">skimage</a>.</p>
-<p>Pour installer <code class="docutils literal notranslate"><span class="pre">komm</span></code>, utilisez l’instruction</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">komm</span>
-</pre></div>
+<p>Dans ce TP, nous aurons besoin des modules :</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/doc/stable/reference/index.html">numpy</a>,</p></li>
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/index.html#api-reference">scipy</a>,</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/index.html">matplotlib</a>,</p></li>
+<li><p><a class="reference external" href="https://scikit-image.org/docs/stable/api/api.html">skimage</a>,</p></li>
+<li><p><a class="reference external" href="http://komm.readthedocs.io/">komm</a> (s’il n’est pas installé, tapez dans un terminal : <code class="docutils literal notranslate"><span class="pre">pip install toto</span></code>).</p></li>
+<li><p><a class="reference external" href="https://github.com/vincmazet/comnumfip">comnumfip</a> (à télécharger en zip et installer dans le répertoire de travail).</p></li>
+</ul>
 </div>
-</div>
-<div class="section" id="application-de-la-theorie-de-l-information-a-la-transmission-d-un-texte">
-<h2>Application de la théorie de l’information à la transmission d’un texte<a class="headerlink" href="#application-de-la-theorie-de-l-information-a-la-transmission-d-un-texte" title="Lien permanent vers ce titre">¶</a></h2>
-<!-- bien faire comprendre la différence entre Shannon, bits, codes, symboles, ... -->
-<p>Un SMS en français est transmis sur un canal binaire.
-Le texte contient <span class="math notranslate nohighlight">\(K=140\)</span> caractères parmi les vingt-six lettres de l’alphabet (majuscules non accentuées)
-et quatre signes de ponctuation (point, virgule, espace, apostrophe).</p>
-<ol class="simple">
+<div class="section" id="compression-d-un-texte">
+<h2>Compression d’un texte<a class="headerlink" href="#compression-d-un-texte" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un texte en français est transmis sur un canal binaire.
+Le texte contient 16 000 caractères parmi les vingt-six lettres de l’alphabet (majuscules non accentuées)
+et quatre signes de ponctuation (point <code class="docutils literal notranslate"><span class="pre">.</span></code>, virgule <code class="docutils literal notranslate"><span class="pre">,</span></code>, espace <code class="docutils literal notranslate"><span class="pre">⎵</span></code>, apostrophe <code class="docutils literal notranslate"><span class="pre">'</span></code>).</p>
+<ul class="simple">
 <li><p>Quelle est la taille de l’alphabet de la source ?</p></li>
 <li><p>Quelle est la taille de l’alphabet du canal ?</p></li>
 <li><p>Les symboles de la source peuvent-ils être considérés comme équiprobables ?</p></li>
 <li><p>Calculez l’entropie de la source.
 Le fichier probas.csv contient les probabilités d’occurrence des caractères en français (deuxième colonne) et en anglais (troisième colonne).
-Un fichier csv peut se charger avec <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> et
-le logarithme à base 2 se calcule avec la fonction <code class="docutils literal notranslate"><span class="pre">numpy.log2</span></code>.</p></li>
-<li><p>La transmission du texte se fait à une vitesse maximale de 10 bits/s avec un taux d’erreur nul.
+Un fichier csv peut se charger avec <code class="docutils literal notranslate"><span class="pre">numpy.loadtxt</span></code> et le logarithme à base 2 se calcule avec la fonction <code class="docutils literal notranslate"><span class="pre">numpy.log2</span></code>.</p></li>
+<li><p>La transmission du texte se fait à une vitesse de 100 Mbits/s avec un taux d’erreur nul.
 À quel débit canal cela correspond-il ? En déduire la capacité du canal.</p></li>
-<li><p>D’après le second théorème de Shannon (théorème du codage canal),
+<li><p>D’après le théorème du codage canal,
 quel est le taux d’émission maximal pour pouvoir transmettre les données sans erreur ?</p></li>
-<li><p>En déduire le débit de la source puis le temps minimal théorique nécessaire pour transmettre le texte sans erreur
-(aucun codage source sans perte ne permet donc de diminuer cette durée).</p></li>
-<li><p>Que devient ce temps dans le cas d’un canal 8-aire (transmission 8-QAM par exemple) émettant 10 symboles par seconde ?</p></li>
-</ol>
-<p>Pour réaliser la transmission sur le canal binaire, on propose de tester trois codes :</p>
-<ul class="simple">
-<li><p>le code ASCII classique qui code chaque symbole sur 8 bits ;</p></li>
-<li><p>un code de Huffman binaire de première extension ;</p></li>
-<li><p>un code de Huffman binaire de deuxième extension.
-Un code de deuxième extension est défini à partir d’un nouvel alphabet contenant les symboles originaux regroupés deux par deux.
-Dans le cas considéré ici, le nouvel alphabet correspond aux symboles <span class="math notranslate nohighlight">\(\{AA, AB, AC, \dots\}\)</span>.</p></li>
+<li><p>En déduire le débit de la source puis le temps minimal théorique nécessaire pour transmettre le texte sans erreur.
+Aucun codage source sans perte ne pourra donc diminuer cette durée.</p></li>
 </ul>
-<ol class="simple">
-<li><p>Calculez la longueur moyenne de chaque code.
-La fonction <code class="docutils literal notranslate"><span class="pre">komm.HuffmanCode</span></code> créer un objet dont on peut récupérer les codes avec la syntaxe <code class="docutils literal notranslate"><span class="pre">code.enc_mapping.values()</span></code>.
-Pour calculer le dictionnaire associé au codage de Huffman de deuxième extention,
-il faut calculer les probabilités des nouveaux symboles avec <code class="docutils literal notranslate"><span class="pre">numpy.kron</span></code>.</p></li>
-<li><p>Déterminez alors la durée de transmission nécessaire pour chaque code.</p></li>
-</ol>
+<p>Dans la suite, trois codes sources sont évalués.</p>
+<div class="section" id="code-ascii">
+<h3>Code ASCII<a class="headerlink" href="#code-ascii" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><p>Donnez la longueur moyenne du code ASCII.</p></li>
+<li><p>Déterminez la durée de transmission nécessaire du texte codé en ASCII.</p></li>
+</ul>
 </div>
-<div class="section" id="compression-d-une-image-numerique">
-<h2>Compression d’une image numérique<a class="headerlink" href="#compression-d-une-image-numerique" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Nous allons étudier deux codages source sur une image à niveaux de gris (256 niveaux possibles), non compressée et de taille <span class="math notranslate nohighlight">\(128\times128\)</span>.
-Pour cela, vous utiliserez l’une des images suivantes : smiley.png, schtroumpf.png, boat.png.</p>
+<div class="section" id="code-de-huffman-binaire-de-premiere-extension">
+<h3>Code de Huffman binaire de première extension<a class="headerlink" href="#code-de-huffman-binaire-de-premiere-extension" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Le code de Huffman binaire classique est dit « de première extension ».</p>
 <ul class="simple">
-<li><p>Quelle est l’entropie de la source ?</p></li>
-<li><p>En déduire la longueur moyenne minimale d’un code dans le cas d’une compression sans perte, puis la taille d’une image en bits.</p></li>
-<li><p>Chargez (<code class="docutils literal notranslate"><span class="pre">skimage.io.imread</span></code>) l’une des images précédentes puis affichez-la
-(<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow</span></code>).</p></li>
+<li><p>Calculez la longueur moyenne du code de Huffman de première extension.
+La fonction <code class="docutils literal notranslate"><span class="pre">komm.HuffmanCode</span></code> créer un objet dont on peut récupérer les codes avec la syntaxe <code class="docutils literal notranslate"><span class="pre">code.enc_mapping.values()</span></code>.</p></li>
+<li><p>Déterminez la durée de transmission nécessaire du texte codé avec ce code.</p></li>
 </ul>
-<div class="section" id="codage-sans-perte">
-<h3>Codage sans perte<a class="headerlink" href="#codage-sans-perte" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+<div class="section" id="code-de-huffman-binaire-de-deuxieme-extension">
+<h3>Code de Huffman binaire de deuxième extension<a class="headerlink" href="#code-de-huffman-binaire-de-deuxieme-extension" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Un code de deuxième extension est défini à partir d’un nouvel alphabet contenant les symboles originaux regroupés deux par deux.
+Dans le cas considéré ici, le nouvel alphabet correspond aux symboles
+{<code class="docutils literal notranslate"><span class="pre">AA</span></code>, <code class="docutils literal notranslate"><span class="pre">AB</span></code>, <code class="docutils literal notranslate"><span class="pre">AC</span></code>, …, <code class="docutils literal notranslate"><span class="pre">',</span></code>, <code class="docutils literal notranslate"><span class="pre">'⎵</span></code>, <code class="docutils literal notranslate"><span class="pre">''</span></code>}.</p>
+<ul class="simple">
+<li><p>Calculez la longueur moyenne du code de Huffman de deuxième extension.
+Les probabilités des nouveaux symboles peuvent être calculées avec l’aide de <code class="docutils literal notranslate"><span class="pre">numpy.kron</span></code>.</p></li>
+<li><p>Déterminez la durée de transmission nécessaire du texte codé avec ce code.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="compression-d-une-image">
+<h2>Compression d’une image<a class="headerlink" href="#compression-d-une-image" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous allons étudier deux codages source sur une image à niveaux de gris (256 niveaux possibles) de taille 128 × 128.
+Pour cela, vous disposez des images non compressées suivantes : smiley.png, schtroumpf.png, boat.png
+(disponibles dans <a class="reference external" href="https://github.com/vincmazet/comnumfip">comnumfip</a>).</p>
+<ul class="simple">
+<li><p>Quelle est la taille de l’alphabet de la source ?</p></li>
+<li><p>Les symboles de la source peuvent-ils être considérés comme équiprobables ?</p></li>
+<li><p>Calculez l’entropie de la source.</p></li>
+<li><p>En déduire la longueur moyenne minimale d’un code dans le cas d’une compression sans perte, puis la taille d’une image en bits.</p></li>
+<li><p>Chargez (<code class="docutils literal notranslate"><span class="pre">skimage.io.imread</span></code>) l’une des images précédentes puis affichez-la (<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow</span></code>).</p></li>
+</ul>
+<div class="section" id="compression-sans-perte">
+<h3>Compression sans perte<a class="headerlink" href="#compression-sans-perte" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Le codage par plage (RLE : <em>run length encoding</em>, utilisé par exemple pour le format BMP) est une technique de compression sans perte.
 Le principe est de remplacer toute séquence consécutive d’un même symbole par la taille de cette séquence suivi du symbole.
 Par exemple, le message</p>
 <blockquote>
-<div><p>255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 0</p>
+<div><p>255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 133, 133, 133, 0</p>
 </div></blockquote>
 <p>sera codé :</p>
 <blockquote>
-<div><p>6, 255, 4, 0, 3, 255, 1, 0.</p>
+<div><p>6, 255, 4, 0, 3, 133, 1, 0.</p>
 </div></blockquote>
 <ul>
-<li><p>Appliquez la compression RLE à l’image (<code class="docutils literal notranslate"><span class="pre">comnum.rleenc</span></code>).</p></li>
+<li><p>Appliquez la compression RLE à l’image (<code class="docutils literal notranslate"><span class="pre">comnumfip.rleenc</span></code>).</p></li>
+<li><p>Vous pouvez ensuite appliquez la décompression RLE (<code class="docutils literal notranslate"><span class="pre">comnumfip.rledec</span></code>) et vérifier que vous retrouvez l’image initiale, sans défaut.</p></li>
 <li><p>On définit le taux de compression par :</p>
 <div class="math notranslate nohighlight">
 \[
-    \text{Taux de compression} = 1 - \frac{\text{taille de l'image compressée}}{\text{taille de l'image non compressée}}.
+    \text{Taux de compression} = \frac{\text{taille de l'image compressée}}{\text{taille de l'image non compressée}}.
   \]</div>
-<p>Quel taux de compression obtenez-vous ?
-Donnez votre réponse dans le <a class="reference external" href="https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded">chat du TP</a>.</p>
+<p>Quel taux de compression obtenez-vous ?</p>
 </li>
 </ul>
 <!-- Codez la méthode de décompression et vérifiez qu'elle fonctionne correctement en affichant l'image décompressée. -->
 </div>
-<div class="section" id="codage-avec-perte">
-<h3>Codage avec perte<a class="headerlink" href="#codage-avec-perte" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="compression-avec-perte">
+<h3>Compression avec perte<a class="headerlink" href="#compression-avec-perte" title="Lien permanent vers ce titre">¶</a></h3>
 <p>On peut autoriser la compression d’une image avec perte tout en conservant une qualité visuelle correcte.
 Ainsi, le principe fondamental de la compression JPEG est de calculer la transformée en cosinus discrète (DCT : <em>discrete cosine transform</em>)
 de l’image pour obtenir des coefficients qui seront quantifiés afin de réduire la taille de l’image.
 Ce sont ces coefficients qui sont stockés ou transmis.
 La transformation en cosinus discrète inverse permet de décoder l’image compressée.</p>
-<ol>
+<ul>
 <li><p>Appliquez la transformée en cosinus discrète (<code class="docutils literal notranslate"><span class="pre">scipy.fftpack.dctn</span></code>) sur l’image.
 Précisez l’argument <code class="docutils literal notranslate"><span class="pre">norm='ortho'</span></code>.
 La transformée obtenue est une image de même taille que l’originale,
@@ -481,17 +520,15 @@ Pour annuler ces hautes fréquences, on peut procéder de la sorte :</p>
 <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>            <span class="c1"># Liste des indices des lignes</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>            <span class="c1"># Liste des indices des colonnes</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># Matrices des coordonnées</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mf">0.5</span>                     <span class="c1"># Taux de compression (entre 0 et 1)</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">X</span><span class="o">+</span><span class="n">Y</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>     <span class="c1"># Définit un masque triangulaire</span>
+<span class="n">F</span> <span class="o">=</span> <span class="mf">0.5</span>                     <span class="c1"># Facteur de compression (entre 0 et 1)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">X</span><span class="o">+</span><span class="n">Y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">F</span><span class="p">)</span>      <span class="c1"># Définit un masque triangulaire</span>
 <span class="n">J</span> <span class="o">=</span> <span class="n">I</span><span class="o">*</span><span class="n">mask</span>                  <span class="c1"># Masquage de l&#39;image</span>
 </pre></div>
 </div>
-<p>Ces valeurs nulles n’étant pas transmises, quel taux de compression obtenez-vous ?
-Donnez votre réponse dans le <a class="reference external" href="https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded">chat du TP</a>.</p>
+<p>Ces valeurs nulles n’étant pas transmises, quel taux de compression obtenez-vous ?</p>
 </li>
 <li><p>Appliquez la transformée inverse (<code class="docutils literal notranslate"><span class="pre">scipy.fftpack.idctn</span></code>) sur l’image masquée puis affichez l’image compressée.</p></li>
-<li><p>Discutez la qualité de l’image compressée
-(dans le <a class="reference external" href="https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded">chat</a>).
+<li><p>Discutez la qualité de l’image compressée.
 On distingue la qualité visuelle de l’image (critère qualitatif et subjectif)
 et la qualité quantitative qui est souvent mesurée à l’aide du rapport signal-à-bruit (RSB).
 Le RSB quantifie l’erreur pixel par pixel entre l’image originale <span class="math notranslate nohighlight">\(f\)</span> et l’image compressée <span class="math notranslate nohighlight">\(g\)</span> (de taille <span class="math notranslate nohighlight">\(M \times N\)</span>) :</p>
@@ -506,8 +543,7 @@ Le RSB quantifie l’erreur pixel par pixel entre l’image originale <span clas
    \]</div>
 <p>(vous pouvez utiliser <code class="docutils literal notranslate"><span class="pre">numpy.linalg.norm</span></code>).</p>
 </li>
-<li><p>Concluez sur les deux méthodes de compression d’image étudiées.</p></li>
-</ol>
+</ul>
 </div>
 </div>
 </div>

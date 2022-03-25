@@ -29,31 +29,31 @@ L'objectif de cet exercice est d'implémenter et de comparer quelques modulation
 
 Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.
 
-1. Créez une séquence binaire aléatoire $x_2$ de $N$ bits (`comnumfip.randmary`)
-   et convertissez-la en séquence hexadécimale $x_{16}$ (`comnumfip.bin2mary`) :
-   vous disposez donc du même message disponible sous deux représentations différentes.
-   Affichez-les avec `print`.
+* Créez une séquence binaire aléatoire $x_2$ de $N$ bits (`comnumfip.randmary`)
+  et convertissez-la en séquence hexadécimale $x_{16}$ (`comnumfip.bin2mary`) :
+  vous disposez donc du même message disponible sous deux représentations différentes.
+  Affichez-les avec `print`.
 
-1. Appliquez les modulations `comnumfip.mod_a`, `comnumfip.mod_b`, `comnumfip.mod_c`, `comnumfip.mod_d` sur la séquence binaire,
-   et `comnumfip.mod_e` sur la séquence hexadécimale.
-   Identifiez chacune de ces modulations.
+* Appliquez les modulations `comnumfip.mod_a`, `comnumfip.mod_b`, `comnumfip.mod_c`, `comnumfip.mod_d` sur la séquence binaire,
+  et `comnumfip.mod_e` sur la séquence hexadécimale.
+  Identifiez chacune de ces modulations.
 
-1. L'analyse spectrale des modulations peut être effectuée à l'aide de la densité spectrale de puissance,
-   qui est le carré du module de la transformée de Fourier.
-   En choisissant un message suffisamment long ($N$ grand),
-   représentez la densité spectrale de puissance de chaque modulation en échelle décimale en utilisant la méthode du périodogramme
-   (`scipy.signal.periodogram`, en fixant la fréquence d'échantillonnage égale à $100/d$ où $d$ est la durée d'un bit).
+* L'analyse spectrale des modulations peut être effectuée à l'aide de la densité spectrale de puissance,
+  qui est le carré du module de la transformée de Fourier.
+  En choisissant un message suffisamment long ($N$ grand),
+  représentez la densité spectrale de puissance de chaque modulation en échelle décimale en utilisant la méthode du périodogramme
+  (`scipy.signal.periodogram`, en fixant la fréquence d'échantillonnage égale à $100/d$ où $d$ est la durée d'un bit).
 
-1. Identifiez les modulations en bande de base et les modulations sur porteuse.
+* Identifiez les modulations en bande de base et les modulations sur porteuse.
 
-1. Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
-   de téléalimentation possible, d'inversion de la polarité et de détection d'interruption de la transmission.
+* Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
+  de téléalimentation possible, d'inversion de la polarité et de détection d'interruption de la transmission.
 
-1. D'après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?
-   * bus informatique (I2C, SATA...) ou de terrain (ASI, Modbus...) ;
-   * liaison Wi-Fi ;
-   * périphérique USB et ordinateur ;
-   * téléphone mobile et antenne relais.
+* D'après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?
+  * bus informatique (I2C, SATA...) ou de terrain (ASI, Modbus...) ;
+  * liaison Wi-Fi ;
+  * périphérique USB et ordinateur ;
+  * téléphone mobile et antenne relais.
 
 <!--
 Intérêt du code de Gray
@@ -79,29 +79,29 @@ Le principe d'une transmission en bande de base est représenté ci-dessous :
 ```
 <br />
 
-1. Donnez l'expression du signal reçu $y(t)$ en fonction du signal émis $x(t)$ et des caractéristiques du canal.
+* Donnez l'expression du signal reçu $y(t)$ en fonction du signal émis $x(t)$ et des caractéristiques du canal.
 
-1. Simulez la transmission d'un message codé en NRZ binaire (`comnumfip.randmary`, `comnumfip.mod_d`, `comnumfip.channel`).
-   On rappelle qu'on considère le canal est idéal, donc que sa largeur de bande est infinie (`numpy.inf`).
-   Observez le signal en entrée du détecteur pour différents niveaux de bruit.
-   <!--
-   Dans la fonction channel.m, je préfère définir l'écart-type du bruit plutôt que le RSB, car lors de l'émission
-   d'un signal nul, je ne conserve pas la même puissance du bruit. De plus, on peut toujours calculer le RSB à partir
-   de l'écart-type défini.
-   -->
+* Simulez la transmission d'un message codé en NRZ binaire (`comnumfip.randmary`, `comnumfip.mod_d`, `comnumfip.channel`).
+  On rappelle qu'on considère le canal idéal, donc que sa largeur de bande est infinie (`numpy.inf`).
+  Observez le signal en entrée du détecteur pour différents niveaux de bruit.
+  <!--
+  Dans la fonction channel.m, je préfère définir l'écart-type du bruit plutôt que le RSB, car lors de l'émission
+  d'un signal nul, je ne conserve pas la même puissance du bruit. De plus, on peut toujours calculer le RSB à partir
+  de l'écart-type défini.
+  -->
 
-1. Dans un premier temps, on ne tient pas compte du filtre de réception : $r(t) = \delta(t)$.
-   Échantillonnez et seuillez le signal $z(t)=y(t)$ (`comnumfip.sample_and_threshold`)
-   pour retrouver, tous les $d$, les symboles $\alpha_k$ émis.
+* Dans un premier temps, on ne tient pas compte du filtre de réception : $r(t) = \delta(t)$.
+  Échantillonnez et seuillez le signal $z(t)=y(t)$ (`comnumfip.sample_and_threshold`)
+  pour retrouver, tous les $d$, les symboles $\alpha_k$ émis.
 
-1. Dans un deuxième temps, appliquez le filtre de réception.
-   Le filtre adapté peut s'implémenter à l'aide d'une corrélation,
-   mais on peut montrer qu'il peut également s'écrire comme une convolution
-   en utilisant `numpy.convolve` (choisissez `mode="same"` pour conserver des signaux de même taille).
-   Effectuez le seuillage et l'échantillonnage comme dans la question précédente.
+* Dans un deuxième temps, appliquez le filtre de réception.
+  Le filtre adapté peut s'implémenter à l'aide d'une corrélation,
+  mais on peut montrer qu'il peut également s'écrire comme une convolution
+  en utilisant `numpy.convolve` (choisissez `mode="same"` pour conserver des signaux de même taille).
+  Effectuez le seuillage et l'échantillonnage comme dans la question précédente.
 
-1. Calculez les taux d'erreurs obtenus avec et sans filtre de détection.
-   Comment varie la qualité de la détection en fonction du niveau de bruit ?
+* Calculez les taux d'erreurs obtenus avec et sans filtre de détection.
+  Comment varie la qualité de la détection en fonction du niveau de bruit ?
    
 
 ## Transmission en bande de base sur un canal à bande limitée

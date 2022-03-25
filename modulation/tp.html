@@ -407,7 +407,7 @@ mais également
 <li><p>16-QAM (<em>quadrature amplitude modulation</em>).</p></li>
 </ul>
 <p>Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.</p>
-<ol class="simple">
+<ul class="simple">
 <li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>)
 et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">comnumfip.bin2mary</span></code>) :
 vous disposez donc du même message disponible sous deux représentations différentes.
@@ -424,14 +424,14 @@ représentez la densité spectrale de puissance de chaque modulation en échelle
 <li><p>Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
 de téléalimentation possible, d’inversion de la polarité et de détection d’interruption de la transmission.</p></li>
 <li><p>D’après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?</p>
-<ul class="simple">
+<ul>
 <li><p>bus informatique (I2C, SATA…) ou de terrain (ASI, Modbus…) ;</p></li>
 <li><p>liaison Wi-Fi ;</p></li>
 <li><p>périphérique USB et ordinateur ;</p></li>
 <li><p>téléphone mobile et antenne relais.</p></li>
 </ul>
 </li>
-</ol>
+</ul>
 <!--
 Intérêt du code de Gray
 * Tracez la constellation (\vcmd{constellation}) du signal modulé en QAM16 (donc en sortie de l'émetteur).
@@ -451,10 +451,10 @@ Intérêt du code de Gray
 <p>Le principe d’une transmission en bande de base est représenté ci-dessous :</p>
 <a class="reference internal image-reference" href="../_images/transmission.png"><img alt="../_images/transmission.png" src="../_images/transmission.png" style="width: 100%;" /></a>
 <br />
-<ol>
+<ul>
 <li><p>Donnez l’expression du signal reçu <span class="math notranslate nohighlight">\(y(t)\)</span> en fonction du signal émis <span class="math notranslate nohighlight">\(x(t)\)</span> et des caractéristiques du canal.</p></li>
 <li><p>Simulez la transmission d’un message codé en NRZ binaire (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.mod_d</span></code>, <code class="docutils literal notranslate"><span class="pre">comnumfip.channel</span></code>).
-On rappelle qu’on considère le canal est idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>).
+On rappelle qu’on considère le canal idéal, donc que sa largeur de bande est infinie (<code class="docutils literal notranslate"><span class="pre">numpy.inf</span></code>).
 Observez le signal en entrée du détecteur pour différents niveaux de bruit.</p>
 <!--
 Dans la fonction channel.m, je préfère définir l'écart-type du bruit plutôt que le RSB, car lors de l'émission
@@ -472,7 +472,7 @@ en utilisant <code class="docutils literal notranslate"><span class="pre">numpy.
 Effectuez le seuillage et l’échantillonnage comme dans la question précédente.</p></li>
 <li><p>Calculez les taux d’erreurs obtenus avec et sans filtre de détection.
 Comment varie la qualité de la détection en fonction du niveau de bruit ?</p></li>
-</ol>
+</ul>
 </div>
 <div class="section" id="transmission-en-bande-de-base-sur-un-canal-a-bande-limitee">
 <h2>Transmission en bande de base sur un canal à bande limitée<a class="headerlink" href="#transmission-en-bande-de-base-sur-un-canal-a-bande-limitee" title="Lien permanent vers ce titre">¶</a></h2>
