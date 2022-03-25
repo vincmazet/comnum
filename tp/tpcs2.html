@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codage source : code morse &#8212; Communications numériques</title>
+    <title>Code morse et code de Huffman ternaire &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -353,9 +353,9 @@
         
               <div>
                 
-  <div class="section" id="codage-source-code-morse">
-<h1>Codage source : code morse<a class="headerlink" href="#codage-source-code-morse" title="Lien permanent vers ce titre">¶</a></h1>
-<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 04/2021</p>
+  <div class="section" id="code-morse-et-code-de-huffman-ternaire">
+<h1>Code morse et code de Huffman ternaire<a class="headerlink" href="#code-morse-et-code-de-huffman-ternaire" title="Lien permanent vers ce titre">¶</a></h1>
+<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 03/2022</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -363,105 +363,120 @@
 
 <span class="c1"># Probabilité des caractères (character, probability)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;probas.csv&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;probas.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">character</span> <span class="o">=</span> <span class="n">T</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">probability</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">T</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
 
+<span class="c1"># Nombre de symboles</span>
 <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
+
+<span class="c1"># Entropie</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entropie de la source : </span><span class="si">{</span><span class="n">H</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Sh/symb</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Longueur moyenne</span>
 <span class="n">dm</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;  .-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -...&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -.-.&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -..&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ..-.&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  --.&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ....&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ..&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .---&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -.-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .-..&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  --&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -.&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ---&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .--.&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  --.-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .-.&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ...&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ..-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  ...-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .--&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -..-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  -.--&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  --..&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .-.-.-&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  --..--&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;    &#39;</span><span class="p">,</span>
-    <span class="s1">&#39;  .----.&#39;</span><span class="p">]</span>
+    <span class="s1">&#39;__.-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-.-.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-..&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__..-.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__--.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__....&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__..&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.---&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-.-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.-..&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__--&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__---&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.--.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__--.-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.-.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__..-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__...-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.--&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-..-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__-.--&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__--..&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.-.-.-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__--..--&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__  &#39;</span><span class="p">,</span>
+    <span class="s1">&#39;__.----.&#39;</span><span class="p">]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueurs moyennes :&quot;</span><span class="p">)</span>
+
 <span class="n">Lm</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-    <span class="n">Lm</span> <span class="o">=</span> <span class="n">Lm</span> <span class="o">+</span> <span class="n">probability</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur moyenne du code morse : </span><span class="si">{</span><span class="n">Lm</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> codes/symb&quot;</span><span class="p">)</span>
+    <span class="n">Lm</span> <span class="o">+=</span> <span class="n">probability</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="n">m</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- code morse                 : </span><span class="si">{</span><span class="n">Lm</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> codes/symb&quot;</span><span class="p">)</span>
 
-<span class="c1"># Codage de Hamming</span>
+<span class="c1"># Codage de Hamming binaire</span>
 <span class="n">code</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">HuffmanCode</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">enc_mapping</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">Lh</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">source_cardinality</span><span class="p">):</span>
-    <span class="n">Lh</span> <span class="o">+=</span> <span class="n">code</span><span class="o">.</span><span class="n">pmf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur moyenne du code de Huffman (binaire) : </span><span class="si">{</span><span class="n">Lh</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> codes/symb&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">Lh</span> <span class="o">+=</span> <span class="n">probability</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- code de Huffman (binaire)  : </span><span class="si">{</span><span class="n">Lh</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> codes/symb&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur moyenne du code de Huffman (ternaire) : 2.72 codes/symb (code Matlab)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- code de Huffman (ternaire) : 2.72 codes/symb (code Matlab)&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">()</span>
 
 <span class="c1"># Affichage des dictionnaires</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Symbole      Morse          Huffman (binaire)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    ---------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Symbole     Morse      Huffman (binaire)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    ----------------------------------------&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">character</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="si">}</span><span class="se">\t\t</span><span class="s2">[</span><span class="si">{</span><span class="n">dm</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="si">}</span><span class="s2">]</span><span class="se">\t\t</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">character</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}{</span><span class="n">cm</span><span class="si">:</span><span class="s2">&lt;11</span><span class="si">}{</span><span class="n">ch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Longueur moyenne du code morse : 4.55 codes/symb
-Longueur moyenne du code de Huffman (binaire) : 4.22 codes/symb
-Longueur moyenne du code de Huffman (ternaire) : 2.72 codes/symb (code Matlab)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropie de la source : 4.18 Sh/symb
 
-    Symbole      Morse          Huffman (binaire)
-    ---------------------------------------------
-    A		[  .-]		(0, 1, 1, 0)
-    B		[  -...]		(1, 0, 1, 0, 1, 1)
-    C		[  -.-.]		(0, 0, 1, 1, 1, 0)
-    D		[  -..]		(0, 0, 1, 1, 0)
-    E		[  .]		(1, 1, 1)
-    F		[  ..-.]		(0, 1, 0, 1, 0, 1)
-    G		[  --.]		(0, 0, 1, 1, 1, 1)
-    H		[  ....]		(1, 0, 1, 1)
-    I		[  ..]		(1, 0, 0, 1)
-    J		[  .---]		(1, 0, 1, 0, 1, 0, 1, 1, 1)
-    K		[  -.-]		(1, 0, 1, 0, 1, 0, 0)
-    L		[  .-..]		(0, 1, 0, 1, 1)
-    M		[  --]		(0, 0, 1, 0, 0, 1)
-    N		[  -.]		(1, 0, 0, 0)
-    O		[  ---]		(0, 1, 1, 1)
-    P		[  .--.]		(1, 0, 1, 0, 0, 1)
-    Q		[  --.-]		(1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
-    R		[  .-.]		(1, 1, 0, 0)
-    S		[  ...]		(1, 1, 0, 1)
-    T		[  -]		(0, 1, 0, 0)
-    U		[  ..-]		(0, 0, 1, 0, 0, 0)
-    V		[  ...-]		(0, 0, 1, 0, 1, 0, 1)
-    W		[  .--]		(0, 1, 0, 1, 0, 0)
-    X		[  -..-]		(1, 0, 1, 0, 1, 0, 1, 1, 0)
-    Y		[  -.--]		(1, 0, 1, 0, 0, 0)
-    Z		[  --..]		(1, 0, 1, 0, 1, 0, 1, 0, 1, 1)
-    period		[  .-.-.-]		(0, 0, 1, 0, 1, 0, 0)
-    comma		[  --..--]		(0, 0, 1, 0, 1, 1)
-    space		[    ]		(0, 0, 0)
-    apostrophe		[  .----.]		(1, 0, 1, 0, 1, 0, 1, 0, 0)
+Longueurs moyennes :
+- code morse                 : 3.55 codes/symb
+- code de Huffman (binaire)  : 4.22 codes/symb
+- code de Huffman (ternaire) : 2.72 codes/symb (code Matlab)
+
+    Symbole     Morse      Huffman (binaire)
+    ----------------------------------------
+    A           __.-       0110
+    B           __-...     101011
+    C           __-.-.     001110
+    D           __-..      00110
+    E           __.        111
+    F           __..-.     010101
+    G           __--.      001111
+    H           __....     1011
+    I           __..       1001
+    J           __.---     101010111
+    K           __-.-      1010100
+    L           __.-..     01011
+    M           __--       001001
+    N           __-.       1000
+    O           __---      0111
+    P           __.--.     101001
+    Q           __--.-     1010101010
+    R           __.-.      1100
+    S           __...      1101
+    T           __-        0100
+    U           __..-      001000
+    V           __...-     0010101
+    W           __.--      010100
+    X           __-..-     101010110
+    Y           __-.--     101000
+    Z           __--..     1010101011
+    period      __.-.-.-   0010100
+    comma       __--..--   001011
+    space       __         000
+    apostrophe  __.----.   101010100
 </pre></div>
 </div>
 </div>

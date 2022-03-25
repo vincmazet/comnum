@@ -7,7 +7,7 @@ Dans ce TP, nous aurons besoin des modules :
 * [scipy](https://docs.scipy.org/doc/scipy/reference/index.html#api-reference),
 * [matplotlib](https://matplotlib.org/stable/api/index.html),
 * [skimage](https://scikit-image.org/docs/stable/api/api.html),
-* [komm](http://komm.readthedocs.io/) (s'il n'est pas installé, tapez dans un terminal : `pip install toto`).
+* [komm](http://komm.readthedocs.io/) (s'il n'est pas installé, tapez dans un terminal : `pip install komm`).
 * [comnumfip](https://github.com/vincmazet/comnumfip) (à télécharger en zip et installer dans le répertoire de travail).
 ```
 
@@ -80,7 +80,7 @@ Pour cela, vous disposez des images non compressées suivantes : smiley.png, sch
 
 * Calculez l'entropie de la source.
 
-* En déduire la longueur moyenne minimale d'un code dans le cas d'une compression sans perte, puis la taille d'une image en bits.
+* En déduire la longueur moyenne Nminimale d'un code dans le cas d'une compression sans perte, puis la taille d'une image en bits.
 
 * Chargez (`skimage.io.imread`) l'une des images précédentes puis affichez-la (`matplotlib.pyplot.imshow`).
 

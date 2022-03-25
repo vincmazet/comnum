@@ -386,28 +386,6 @@
   <div class="section" id="compression-d-une-image">
 <h1>Compression d’une image<a class="headerlink" href="#compression-d-une-image" title="Lien permanent vers ce titre">¶</a></h1>
 <p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 03/2022</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">skimage.io</span> <span class="k">as</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">comnumfip</span> <span class="k">as</span> <span class="nn">cnf</span>
-<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">dctn</span><span class="p">,</span> <span class="n">idctn</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">comp_rate</span><span class="p">(</span><span class="n">original</span><span class="p">,</span><span class="n">compressed</span><span class="p">):</span>
-    <span class="c1"># Calcul du taux de compression</span>
-    <span class="n">compressed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-    <span class="n">original</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">original</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>La source est une image de taille 128 × 128 = 16 384 pixels.
 L’ensemble des pixels possibles constitue l’alphabet de la source : il y a <span class="math notranslate nohighlight">\(M=\)</span> 256 niveaux de gris possible.</p>
 <p>A priori, chaque niveau de gris est équiprobable
@@ -418,26 +396,7 @@ Donc ici, l’entropie est <span class="math notranslate nohighlight">\(H(X) = \
 Une image de 128 × 128 pixels pèse donc 16,384 ko.</p>
 <div class="section" id="image-non-compressee">
 <h2>Image non compressée<a class="headerlink" href="#image-non-compressee" title="Lien permanent vers ce titre">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chargement de l&#39;image</span>
-<span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;smiley.png&quot;</span><span class="p">,</span> <span class="s2">&quot;schtroumpf.png&quot;</span><span class="p">,</span> <span class="s2">&quot;boat.png&quot;</span><span class="p">]</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-
-<span class="c1"># Affichage</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Image originale&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Taille (en bits) de l&#39;image</span>
-<span class="n">nbits</span> <span class="o">=</span> <span class="mi">8</span>
-
-<span class="c1"># Dimension de l&#39;image</span>
-<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpcs3_5_0.png" src="../_images/tpcs3_5_0.png" />
 </div>
@@ -445,24 +404,7 @@ Une image de 128 × 128 pixels pèse donc 16,384 ko.</p>
 </div>
 <div class="section" id="compression-rle">
 <h2>Compression RLE<a class="headerlink" href="#compression-rle" title="Lien permanent vers ce titre">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compression RLE</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="n">rle</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">rleenc</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-
-<span class="c1"># Taille de l&#39;image originale</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image originale : </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">×</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="si">}</span><span class="s2"> symboles codés sur </span><span class="si">{</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits = </span><span class="si">{</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
-
-<span class="c1"># Taille de l&#39;image compressée en RLE</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image compressée :          </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span><span class="si">}</span><span class="s2"> symboles codés sur </span><span class="si">{</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span><span class="o">*</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
-
-<span class="c1"># Taux de compression en RLE</span>
-<span class="n">taux</span> <span class="o">=</span> <span class="n">comp_rate</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">rle</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;soit un taux de compression : </span><span class="si">{</span><span class="n">taux</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image originale : 128×128 = 16384 symboles codés sur 8 bits = 131072 bits
 Image compressée :          29746 symboles codés sur 8 bits = 237968 bits
@@ -471,20 +413,7 @@ soit un taux de compression : 182 %
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Décompression RLE</span>
-
-<span class="n">rec</span> <span class="o">=</span> <span class="n">cnf</span><span class="o">.</span><span class="n">rledec</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span>
-<span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Image décompressée (RLE)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpcs3_8_0.png" src="../_images/tpcs3_8_0.png" />
 </div>
@@ -496,89 +425,29 @@ soit un taux de compression : 182 %
 <h3>Images de base de la DCT<a class="headerlink" href="#images-de-base-de-la-dct" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Avant de commencer, il est intéressant d’afficher les images de base de la DCT.
 Dans l’exemple ci-dessous, on considère une image de taille 8×8 : il y a donc 64 coefficients de la DCT.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs3_12_0.png" src="../_images/tpcs3_12_0.png" />
+</div>
+</div>
 <p>En particulier, voici quelques exemples d’images de la base (sur la première ligne) et de leur DCT (sur la seconde ligne) pour une taille de 8×8 pixels.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <img alt="../_images/tpcs3_14_0.png" src="../_images/tpcs3_14_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transformée en cosinus discrète</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">dctn</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
-
-<span class="c1"># Compression par annulation des hautes fréquences</span>
-<span class="n">M</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">I</span><span class="o">.</span><span class="n">shape</span>              <span class="c1"># Taille de la DCT I</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>            <span class="c1"># Liste des indices des lignes</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>            <span class="c1"># Liste des indices des colonnes</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># Matrices des coordonnées</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mf">0.1</span>                     <span class="c1"># Taux de compression (entre 0 et 1)</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">X</span><span class="o">+</span><span class="n">Y</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>     <span class="c1"># Définit un masque triangulaire</span>
-<span class="n">J</span> <span class="o">=</span> <span class="n">I</span><span class="o">*</span><span class="n">mask</span>                  <span class="c1"># Masquage de l&#39;image</span>
-
-<span class="n">tcdsize</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>       <span class="c1"># Nombre de symboles conservés</span>
-
-<span class="c1"># Transformation inverse</span>
-<span class="n">tcd</span> <span class="o">=</span> <span class="n">idctn</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
-
-<span class="c1"># Taille de l&#39;image originale</span>
-<span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image originale : </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">×</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="si">}</span><span class="s2"> symboles codés sur </span><span class="si">{</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits = </span><span class="si">{</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
-
-<span class="c1"># Taille de l&#39;image compressée en JPEG</span>
-<span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image compressée :          </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span><span class="si">}</span><span class="s2"> symboles codés sur </span><span class="si">{</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span><span class="o">*</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
-
-<span class="c1"># Taux de compression en JPEG</span>
-<span class="n">taux</span> <span class="o">=</span> <span class="n">comp_rate</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">tmp</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;soit un taux de compression : </span><span class="si">{</span><span class="n">taux</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
-
-
-
-
-<span class="c1"># Taille de l&#39;image compressée</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tcdsize</span><span class="si">}</span><span class="s2"> symboles codés sur </span><span class="si">{</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits = </span><span class="si">{</span><span class="n">tcdsize</span><span class="o">*</span><span class="n">nbits</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Taux de compression : </span><span class="si">{</span><span class="n">T</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
-
-<span class="c1"># PSNR</span>
-<span class="n">D</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">8</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">PI</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
-<span class="n">eqm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">img</span><span class="o">-</span><span class="n">tcd</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
-<span class="n">rsb</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">PI</span><span class="o">/</span><span class="n">eqm</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RSB : </span><span class="si">{</span><span class="n">rsb</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> dB&quot;</span><span class="p">)</span>
-
-<span class="c1"># Affichage</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">13</span><span class="p">))</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Image originale&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tcd</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Image compressée&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">I</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;DCT de l&#39;image originale&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="c1"># axs[1][1].imshow(np.log(np.absolute(J)), cmap=&quot;gray&quot;)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;DCT de l&#39;image compressée&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="mi">351</span><span class="o">/</span><span class="mi">16384</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image originale : 128×128 = 16384 symboles codés sur 8 bits = 131072 bits
-351
-Image compressée :          351 symboles codés sur 8 bits = 2808 bits
-soit un taux de compression : 2 %
-351 symboles codés sur 8 bits = 2808 bits
-Taux de compression : 10.0 %
-RSB : 15.91 dB
+Image compressée :          8256 symboles codés sur 8 bits = 66048 bits
+soit un taux de compression : 50 %
+RSB : 27.03 dB
 </pre></div>
 </div>
-<img alt="../_images/tpcs3_15_1.png" src="../_images/tpcs3_15_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.02142333984375
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/miv/mazet/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:43: RuntimeWarning: divide by zero encountered in log
 </pre></div>
 </div>
+<img alt="../_images/tpcs3_15_2.png" src="../_images/tpcs3_15_2.png" />
 </div>
 </div>
 <div class="cell docutils container">

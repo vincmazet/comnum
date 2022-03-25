@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Théorie de l’information &#8212; Communications numériques</title>
+    <title>Compression d’un texte &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -351,8 +351,17 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-de-trois-codes">
-   Test de trois codes
+  <a class="reference internal nav-link" href="#code-ascii">
+   Code ASCII
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-de-huffman-de-1-sup-re-sup-espece">
+   Code de Huffman de 1
+   <sup>
+    re
+   </sup>
+   espèce
   </a>
  </li>
 </ul>
@@ -366,157 +375,74 @@
         
               <div>
                 
-  <div class="section" id="theorie-de-l-information">
-<h1>Théorie de l’information<a class="headerlink" href="#theorie-de-l-information" title="Lien permanent vers ce titre">¶</a></h1>
+  <div class="section" id="compression-d-un-texte">
+<h1>Compression d’un texte<a class="headerlink" href="#compression-d-un-texte" title="Lien permanent vers ce titre">¶</a></h1>
 <p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 03/2022</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">komm</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nombre de caractères</span>
-<span class="n">K</span> <span class="o">=</span> <span class="mi">140</span>
-
-<span class="c1"># Taille de l&#39;alphabet de la source</span>
-<span class="n">M</span> <span class="o">=</span> <span class="mi">26</span> <span class="o">+</span> <span class="mi">4</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Taille de l&#39;alphabet de la source M = </span><span class="si">{</span><span class="n">M</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Taille de l&#39;alphabet du support de stockage</span>
-<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Taille de l&#39;alphabet du canal N = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Probabilité des caractères</span>
-    <span class="n">probability</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;probas.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># Entropie</span>
-    <span class="n">Hs</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">entropy</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entropie de la source Hs = </span><span class="si">{</span><span class="n">Hs</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Sh/symb&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Redondance</span>
-    <span class="k">if</span> <span class="n">Hs</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(entropie différente de log2(M) donc compression possible)&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(entropie égale à log2(M) donc compression impossible)&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Débit canal</span>
-    <span class="n">Dc</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">nomsymb</span> <span class="o">=</span> <span class="s2">&quot;bits&quot;</span> <span class="k">if</span> <span class="n">N</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s2">&quot;symb&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Débit canal Dc = </span><span class="si">{</span><span class="n">Dc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">nomsymb</span><span class="si">}</span><span class="s2">/s&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Capacité canal</span>
-    <span class="n">Cc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">Dc</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Capacité canal Cc = </span><span class="si">{</span><span class="n">Cc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Sh/s&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Taux de transmission maximal</span>
-    <span class="n">Ts</span> <span class="o">=</span> <span class="n">Cc</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Taux de transmission maximal Ts = </span><span class="si">{</span><span class="n">Ts</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Sh/s&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Débit de la source</span>
-    <span class="n">Ds</span> <span class="o">=</span> <span class="n">Ts</span> <span class="o">/</span> <span class="n">Hs</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Débit de la source Ds = </span><span class="si">{</span><span class="n">Ds</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> symb/s&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Temps minimal théorique nécessaire pour enregistrer le fichier sans erreur</span>
-    <span class="n">tps</span> <span class="o">=</span> <span class="n">K</span> <span class="o">/</span> <span class="n">Ds</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temps minimal théorique nécessaire pour enregistrer le fichier sans erreur : </span><span class="si">{</span><span class="n">tps</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
-    
-    <span class="nb">print</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Taille de l&#39;alphabet de la source M = 30
-Taille de l&#39;alphabet du canal N = 2
-Entropie de la source Hs = 4.09 Sh/symb
-(entropie différente de log2(M) donc compression possible)
-Débit canal Dc = 10.00 bits/s
-Capacité canal Cc = 10.00 Sh/s
-Taux de transmission maximal Ts = 10.00 Sh/s
-Débit de la source Ds = 2.45 symb/s
-Temps minimal théorique nécessaire pour enregistrer le fichier sans erreur : 57.24 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Taille de l&#39;alphabet de la source   M = 30 symb
+Taille de l&#39;alphabet du canal       N = 2 symb
+Entropie de la source               H = 4.09 Sh/symb    (&lt; log2(M) = 4.91 donc compression possible sans perte)
+Débit canal                         Dc = 100.00 Mbit/s
+Capacité canal                      Cc = 100.00 Sh/µs
+Taux de transmission maximal        Ts = 100.00 Sh/µs
+Débit de la source                  Ds = 24.46 symb/µs
 
-Taille de l&#39;alphabet du canal N = 8
-Entropie de la source Hs = 4.09 Sh/symb
-(entropie différente de log2(M) donc compression possible)
-Débit canal Dc = 10.00 symb/s
-Capacité canal Cc = 30.00 Sh/s
-Taux de transmission maximal Ts = 30.00 Sh/s
-Débit de la source Ds = 7.34 symb/s
-Temps minimal théorique nécessaire pour enregistrer le fichier sans erreur : 19.08 s
+Temps minimal théorique nécessaire pour transmettre le fichier sans erreur : 654.22 µs
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="test-de-trois-codes">
-<h2>Test de trois codes<a class="headerlink" href="#test-de-trois-codes" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Pour le <strong>code ASCII</strong>, la longueur moyenne est 8 puisque tous les symboles sont codés sur 8 bits.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">L</span> <span class="o">/</span> <span class="n">Dc</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur moyenne : </span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> bits/symb&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Durée de transmission : </span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="section" id="code-ascii">
+<h2>Code ASCII<a class="headerlink" href="#code-ascii" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le code ASCII est un code de longueur fixe, chaque symbole est codé sur 8 bits.
+Donc la longueur moyenne est 8 bits/symb.</p>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Longueur moyenne : 8.00 bits/symb
-Durée de transmission : 112.00 s
+Durée de transmission : 1280.00 µs
 </pre></div>
 </div>
 </div>
 </div>
-<p>Pour le <strong>code de Huffman de 1<sup>re</sup> espèce</strong> :</p>
+</div>
+<div class="section" id="code-de-huffman-de-1-sup-re-sup-espece">
+<h2>Code de Huffman de 1<sup>re</sup> espèce<a class="headerlink" href="#code-de-huffman-de-1-sup-re-sup-espece" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le code peut être construit de la façon suivante :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">HuffmanCode</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">HuffmanCode</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">enc_mapping</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)):</span>
-    <span class="n">L</span> <span class="o">+=</span> <span class="n">code</span><span class="o">.</span><span class="n">pmf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">L</span> <span class="o">/</span> <span class="n">Dc</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur moyenne : </span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> bits/symb&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Durée de transmission : </span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Longueur moyenne : 4.12 bits/symb
-Durée de transmission : 57.69 s
+Durée de transmission : 659.31 µs
 </pre></div>
 </div>
 </div>
 </div>
-<p>Enfin, le <strong>code de Huffman de 2<sup>e</sup> espèce</strong> :</p>
+<p>## Code de Huffman de 2<sup>e</sup> espèce</p>
+<p>Les probabilités des nouveaux symboles (combien y en a-t-il ?) peuvent être calculées ainsi :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probability</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">probability</span><span class="p">,</span><span class="n">probability</span><span class="p">)</span>
-<span class="n">code</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">HuffmanCode</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">enc_mapping</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)):</span>
-    <span class="n">L</span> <span class="o">+=</span> <span class="n">code</span><span class="o">.</span><span class="n">pmf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">L</span> <span class="o">/</span> <span class="n">Dc</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longueur moyenne : </span><span class="si">{</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> bits/symb&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Durée de transmission : </span><span class="si">{</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probas2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">probas</span><span class="p">,</span><span class="n">probas</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Longueur moyenne : 4.10 bits/symb
-Durée de transmission : 57.46 s
+Durée de transmission : 656.74 µs
 </pre></div>
 </div>
 </div>
 </div>
+<p>Il ne faut pas oublier de diviser la longueur moyenne par 2 puisque la longueur moyenne calculée correspond à un alaphabet contenant des <em>couples</em> de symboles. On observe ainsi que regrouper les symboles deux par deux pour constituer un nouvel alphabet permet de gagner un peu plus en temps de transmission.</p>
 </div>
 </div>
 

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codage source : compression d’une image numérique (image couleur) &#8212; Communications numériques</title>
+    <title>Compression d’une image couleur &#8212; Communications numériques</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -345,6 +345,39 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#espace-ycbcr">
+   Espace YCbCr
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-originale">
+   Image originale
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sous-echantillonnage">
+   Sous-échantillonnage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantification-des-coefficients-de-la-dct">
+   Quantification des coefficients de la DCT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-tout-combine">
+   Le tout combiné…
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -353,102 +386,313 @@
         
               <div>
                 
-  <div class="section" id="codage-source-compression-d-une-image-numerique-image-couleur">
-<h1>Codage source : compression d’une image numérique (image couleur)<a class="headerlink" href="#codage-source-compression-d-une-image-numerique-image-couleur" title="Lien permanent vers ce titre">¶</a></h1>
-<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 02/2021</p>
+  <div class="section" id="compression-d-une-image-couleur">
+<h1>Compression d’une image couleur<a class="headerlink" href="#compression-d-une-image-couleur" title="Lien permanent vers ce titre">¶</a></h1>
+<p><a class="reference external" href="mailto:vincent&#46;mazet&#37;&#52;&#48;unistra&#46;fr">vincent<span>&#46;</span>mazet<span>&#64;</span>unistra<span>&#46;</span>fr</a>, 03/2022</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span> <span class="nb">all</span><span class="p">;</span>
-<span class="n">close</span> <span class="nb">all</span><span class="p">;</span>
-
-<span class="o">%</span> <span class="n">Chargement</span> <span class="n">de</span> <span class="n">l</span><span class="s1">&#39;image</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;automne.jpg&#39;</span><span class="p">));</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">uint8</span><span class="p">(</span><span class="n">I</span><span class="p">);</span>
-<span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">bnd</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">I</span><span class="p">);</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Image originale :    </span><span class="si">%d</span><span class="s1"> octets</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">row</span><span class="o">*</span><span class="n">col</span><span class="o">*</span><span class="n">bnd</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">Image</span> <span class="n">RVB</span> <span class="n">et</span> <span class="n">ses</span> <span class="n">composantes</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="s1">&#39;InitialMagnification&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image originale&#39;</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composante Rouge&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composante Verte&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composante Bleue&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">Composantes</span> <span class="n">manquantes</span>
-<span class="n">rv</span> <span class="o">=</span> <span class="n">I</span><span class="p">;</span> <span class="n">rv</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">vb</span> <span class="o">=</span> <span class="n">I</span><span class="p">;</span> <span class="n">vb</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">rb</span> <span class="o">=</span> <span class="n">I</span><span class="p">;</span> <span class="n">rb</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span> 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">vb</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composantes V+B&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">rb</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composantes R+B&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">rv</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composantes R+V&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">RGB</span> <span class="o">-&gt;</span> <span class="n">YCbCr</span>
-<span class="n">J</span> <span class="o">=</span> <span class="n">rgb2ycbcr</span><span class="p">(</span><span class="n">I</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">Image</span> <span class="n">YCbCr</span> <span class="n">et</span> <span class="n">ses</span> <span class="n">composantes</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span> 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">J</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composante Y&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">J</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composante Cb&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">J</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composante Cr&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">Composantes</span> <span class="n">manquantes</span>
-<span class="n">yb</span> <span class="o">=</span> <span class="n">J</span><span class="p">;</span> <span class="n">yb</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">yr</span> <span class="o">=</span> <span class="n">J</span><span class="p">;</span> <span class="n">yr</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">br</span> <span class="o">=</span> <span class="n">J</span><span class="p">;</span> <span class="n">br</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span> 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">yb</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composantes Y+Cb&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">yr</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composantes Y+Cr&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">br</span><span class="p">));</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Composantes Cb+Cr&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">Compression</span>
-<span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">col</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">row</span><span class="p">);</span>
-<span class="n">M</span> <span class="o">=</span> <span class="n">X</span> <span class="o">+</span> <span class="n">Y</span><span class="p">;</span>
-<span class="n">coef</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">;</span>
-<span class="n">Mr</span> <span class="o">=</span> <span class="n">M</span><span class="o">&lt;</span><span class="mi">283</span><span class="p">;</span>
-<span class="n">Mv</span> <span class="o">=</span> <span class="n">Mr</span><span class="p">;</span>
-<span class="n">Mb</span> <span class="o">=</span> <span class="n">Mr</span><span class="p">;</span>
-<span class="n">My</span> <span class="o">=</span> <span class="n">M</span><span class="o">&lt;</span><span class="mi">400</span><span class="p">;</span><span class="o">%</span> <span class="n">My</span> <span class="o">=</span> <span class="n">M</span><span class="o">&lt;</span><span class="mi">500</span><span class="p">;</span>
-<span class="n">Mcb</span> <span class="o">=</span> <span class="n">M</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">;</span><span class="o">%</span> <span class="n">Mcb</span> <span class="o">=</span> <span class="n">M</span><span class="o">&lt;</span><span class="mi">70</span><span class="p">;</span>
-<span class="n">Mcr</span> <span class="o">=</span> <span class="n">Mcb</span><span class="p">;</span>
-
-<span class="n">fprintf</span><span class="p">(</span><span class="s1">&#39;Image compressée 1 : </span><span class="si">%d</span><span class="s1"> octets</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">Mr</span><span class="p">(:)</span><span class="o">+</span><span class="n">Mb</span><span class="p">(:)</span><span class="o">+</span><span class="n">Mb</span><span class="p">(:)));</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s1">&#39;Image compressée 2 : </span><span class="si">%d</span><span class="s1"> octets</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="nb">sum</span><span class="p">(</span><span class="n">My</span><span class="p">(:)</span><span class="o">+</span><span class="n">Mcb</span><span class="p">(:)</span><span class="o">+</span><span class="n">Mcr</span><span class="p">(:)));</span>
-
-<span class="n">R</span>  <span class="o">=</span> <span class="n">I</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">);</span> <span class="n">Rdct</span>  <span class="o">=</span> <span class="n">dct2</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">.*</span><span class="n">Mr</span><span class="p">;</span> <span class="n">Ridct</span>  <span class="o">=</span> <span class="n">idct2</span><span class="p">(</span><span class="n">Rdct</span><span class="p">);</span>
-<span class="n">V</span>  <span class="o">=</span> <span class="n">I</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">);</span> <span class="n">Vdct</span>  <span class="o">=</span> <span class="n">dct2</span><span class="p">(</span><span class="n">V</span><span class="p">)</span><span class="o">.*</span><span class="n">Mv</span><span class="p">;</span> <span class="n">Vidct</span>  <span class="o">=</span> <span class="n">idct2</span><span class="p">(</span><span class="n">Vdct</span><span class="p">);</span>
-<span class="n">B</span>  <span class="o">=</span> <span class="n">I</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">);</span> <span class="n">Bdct</span>  <span class="o">=</span> <span class="n">dct2</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">.*</span><span class="n">Mb</span><span class="p">;</span> <span class="n">Bidct</span>  <span class="o">=</span> <span class="n">idct2</span><span class="p">(</span><span class="n">Bdct</span><span class="p">);</span>
-<span class="n">Y</span>  <span class="o">=</span> <span class="n">J</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">);</span> <span class="n">Ydct</span>  <span class="o">=</span> <span class="n">dct2</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">.*</span><span class="n">My</span><span class="p">;</span> <span class="n">Yidct</span>  <span class="o">=</span> <span class="n">idct2</span><span class="p">(</span><span class="n">Ydct</span><span class="p">);</span>
-<span class="n">Cb</span> <span class="o">=</span> <span class="n">J</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">);</span> <span class="n">Cbdct</span> <span class="o">=</span> <span class="n">dct2</span><span class="p">(</span><span class="n">Cb</span><span class="p">)</span><span class="o">.*</span><span class="n">Mcb</span><span class="p">;</span> <span class="n">Cbidct</span> <span class="o">=</span> <span class="n">idct2</span><span class="p">(</span><span class="n">Cbdct</span><span class="p">);</span>
-<span class="n">Cr</span> <span class="o">=</span> <span class="n">J</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">);</span> <span class="n">Crdct</span> <span class="o">=</span> <span class="n">dct2</span><span class="p">(</span><span class="n">Cr</span><span class="p">)</span><span class="o">.*</span><span class="n">Mcr</span><span class="p">;</span> <span class="n">Cridct</span> <span class="o">=</span> <span class="n">idct2</span><span class="p">(</span><span class="n">Crdct</span><span class="p">);</span>
-
-<span class="n">figure</span><span class="p">;</span> 
-<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">Mr</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masque sur R&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">Mv</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masque sur V&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">Mb</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masque sur B&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">My</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masque sur Y&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">Mcb</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masque sur Cb&#39;</span><span class="p">);</span>
-<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span> <span class="n">imshow</span><span class="p">(</span><span class="n">Mcr</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Masque sur Cr&#39;</span><span class="p">);</span>
-
-<span class="o">%</span> <span class="n">Image</span> <span class="n">reconstruites</span>
-<span class="n">rvb</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">I</span><span class="p">));</span>
-<span class="n">rvb</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ridct</span><span class="p">;</span>
-<span class="n">rvb</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">Vidct</span><span class="p">;</span>
-<span class="n">rvb</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">Bidct</span><span class="p">;</span>
-<span class="n">rvb</span> <span class="o">=</span> <span class="n">uint8</span><span class="p">(</span><span class="n">rvb</span><span class="p">);</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span> 
-<span class="n">imshow</span><span class="p">(</span><span class="n">rvb</span><span class="p">);</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image compressée 1&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
-
-<span class="n">ycbcr</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">I</span><span class="p">));</span>
-<span class="n">ycbcr</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">Yidct</span><span class="p">;</span>
-<span class="n">ycbcr</span><span class="p">(:,:,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">Cbidct</span><span class="p">;</span>
-<span class="n">ycbcr</span><span class="p">(:,:,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">Cridct</span><span class="p">;</span>
-<span class="n">ycbcr</span> <span class="o">=</span> <span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">uint8</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">));</span>
-<span class="n">figure</span><span class="p">(</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span> 
-<span class="n">imshow</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">);</span>
-<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image compressée 2&#39;</span><span class="p">,</span><span class="s1">&#39;Color&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">skimage.color</span> <span class="kn">import</span> <span class="n">ycbcr2rgb</span><span class="p">,</span> <span class="n">rgb2ycbcr</span>
+<span class="c1"># from skimage.util import img_as_float, img_as_ubyte, img_as_uint</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
+<span class="kn">import</span> <span class="nn">skimage.io</span> <span class="k">as</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">dctn</span><span class="p">,</span> <span class="n">idctn</span>
 </pre></div>
+</div>
+</div>
+</div>
+<p>La compression JPEG s’effectue en plusieurs étapes.
+Deux étapes en particulier sont particulièrement importantes pour la compression avec perte :</p>
+<ul class="simple">
+<li><p>le sous-échantillonnage de l’image dans l’espace couleur YCbCr,</p></li>
+<li><p>la quantification des coefficients de la DCT de l’image.</p></li>
+</ul>
+<div class="section" id="espace-ycbcr">
+<h2>Espace YCbCr<a class="headerlink" href="#espace-ycbcr" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il existe beaucoup d’espaces couleurs, le plus courant étant RVB.
+YCbCr est un autre espace de couleur dont les composantes sont :</p>
+<ul class="simple">
+<li><p>la luminosité Y,</p></li>
+<li><p>la chrominance bleue Cb</p></li>
+<li><p>la chrominance rouge Cr</p></li>
+</ul>
+<p>L’intérêt de l’utilisation de l’espace YCbCr pour la compression JPEG est que l’œil humain est très sensible à la luminosité, et moins au chrominance.
+On peut donc compresser plus fortement les chrominances que la luminosité, afin de gagner en espace mémoire.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paramètres d&#39;affichage</span>
+<span class="n">B</span> <span class="o">=</span> <span class="mi">4</span>           <span class="c1"># Nombre de bandes</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">235</span><span class="o">-</span><span class="mi">16</span><span class="o">+</span><span class="mi">1</span>    <span class="c1"># Taille des images</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">50</span>          <span class="c1"># Résolution des bandes (de taille R×R)</span>
+
+<span class="c1"># Valeurs de Y</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Valeurs de Cb et Cr</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    
+<span class="c1"># Initialisation de l&#39;affichage</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$C_b$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$C_r$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;$Y$&#39;</span>  <span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">16</span><span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="mi">240</span><span class="o">+</span><span class="n">d</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">16</span><span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="mi">240</span><span class="o">+</span><span class="n">d</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">([</span><span class="mi">16</span><span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="mi">235</span><span class="o">+</span><span class="n">d</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zticks</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Liste contenant l&#39;ensemble des bandesx</span>
+<span class="k">for</span> <span class="n">Y</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+    
+    <span class="n">Cb</span><span class="p">,</span> <span class="n">Cr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+    
+    <span class="n">ycbcr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">ycbcr</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y</span>
+    <span class="n">ycbcr</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cb</span>
+    <span class="n">ycbcr</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">Cr</span>
+    
+    <span class="n">img</span> <span class="o">=</span> <span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">)</span>
+    
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">Cb</span><span class="p">,</span> <span class="n">Cr</span><span class="p">,</span> <span class="n">Y</span><span class="o">*</span><span class="n">z</span><span class="p">,</span> <span class="n">rcount</span><span class="o">=</span><span class="n">R</span><span class="p">,</span> <span class="n">ccount</span><span class="o">=</span><span class="n">R</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="n">img</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_4_0.png" src="../_images/tpcs4_4_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="image-originale">
+<h2>Image originale<a class="headerlink" href="#image-originale" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Comme illustration, nous utiliserons cette image :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rgb</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;puy-du-dome.jpg&#39;</span><span class="p">)</span>
+<span class="n">rgb</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">N</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">rgb</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_6_0.png" src="../_images/tpcs4_6_0.png" />
+</div>
+</div>
+<p>Les bandes RVB de cette image sont :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">[:,:,</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">([</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_8_0.png" src="../_images/tpcs4_8_0.png" />
+</div>
+</div>
+<p>Les bandes YCbCr de cette image sont :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bandes Y, Cb, Cr</span>
+<span class="n">ycbcr</span> <span class="o">=</span> <span class="n">rgb2ycbcr</span><span class="p">(</span><span class="n">rgb</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">[:,:,</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">([</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Cb&quot;</span><span class="p">,</span> <span class="s2">&quot;Cr&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_10_0.png" src="../_images/tpcs4_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="sous-echantillonnage">
+<h2>Sous-échantillonnage<a class="headerlink" href="#sous-echantillonnage" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Voici l’image qu’on obtient en sous-échantillonnant d’un facteur 10 l’une de ces bandes :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">def</span> <span class="nf">downsampleband</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">band</span><span class="p">):</span>
+    
+    <span class="c1"># Initialisation</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">shape</span>
+    
+    <span class="c1"># Sous-échantillonnage</span>
+    <span class="n">downsampled</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">rec</span><span class="p">[:,:,</span><span class="n">band</span><span class="p">],</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">F</span><span class="p">,</span> <span class="n">N</span><span class="o">/</span><span class="n">F</span><span class="p">))</span>
+    
+    <span class="c1"># Ré-échantillonnage</span>
+    <span class="n">downsampled</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">downsampled</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    
+    <span class="c1"># Nouvelle image</span>
+    <span class="n">rec</span><span class="p">[:,:,</span><span class="n">band</span><span class="p">]</span> <span class="o">=</span> <span class="n">downsampled</span>
+    
+    <span class="k">return</span> <span class="n">rec</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">downsampleband</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="si">}</span><span class="s2"> sous-échantillonnée&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Cb&quot;</span><span class="p">,</span> <span class="s2">&quot;Cr&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">downsampleband</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="si">}</span><span class="s2"> sous-échantillonnée&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_12_0.png" src="../_images/tpcs4_12_0.png" />
+<img alt="../_images/tpcs4_12_1.png" src="../_images/tpcs4_12_1.png" />
+</div>
+</div>
+<p>On constate que le même sous-échantillonnage est beaucoup plus visible sur Y que Cb et Cr.
+C’est pourquoi la compression JPEG effectue un sous-échantillonnage des chrominances mais pas de la luminance (ou très peu).</p>
+</div>
+<div class="section" id="quantification-des-coefficients-de-la-dct">
+<h2>Quantification des coefficients de la DCT<a class="headerlink" href="#quantification-des-coefficients-de-la-dct" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour l’illustration de l’effet de la quantification des coefficients, nous considérons une sous-image, dont la DCT est :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DCT sur une imagettes</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">195</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">ycbcr</span><span class="p">[</span><span class="n">r</span><span class="p">:(</span><span class="n">r</span><span class="o">+</span><span class="n">z</span><span class="p">),</span><span class="n">c</span><span class="p">:(</span><span class="n">c</span><span class="o">+</span><span class="n">z</span><span class="p">),</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dec</span> <span class="o">=</span> <span class="n">dctn</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
+<span class="n">logdec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dec</span><span class="o">+</span><span class="mf">1e-12</span><span class="p">))</span>
+
+<span class="n">logdec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">logdec</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">logdec</span> <span class="o">=</span> <span class="p">(</span><span class="n">logdec</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">15</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Sous-image&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logdec</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;DCT&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">mini</span><span class="p">,</span> <span class="n">maxi</span> <span class="o">=</span> <span class="n">logdec</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">logdec</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_15_0.png" src="../_images/tpcs4_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quantification très grossière = annulation des coefficients</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">f</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">dec</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">z</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">dec</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">z</span><span class="p">)</span>
+        
+    <span class="n">logdec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="o">+</span><span class="mf">1e-12</span><span class="p">))</span>
+    <span class="n">logdec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">logdec</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">logdec</span> <span class="o">=</span> <span class="p">(</span><span class="n">logdec</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">15</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Reconstruction</span>
+    <span class="n">rec</span> <span class="o">=</span> <span class="n">idctn</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Affichage</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logdec</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">mini</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">maxi</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;DCT quantifiée&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Image reconstruite&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/tpcs4_16_0.png" src="../_images/tpcs4_16_0.png" />
+<img alt="../_images/tpcs4_16_1.png" src="../_images/tpcs4_16_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="le-tout-combine">
+<h2>Le tout combiné…<a class="headerlink" href="#le-tout-combine" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Facteurs de compression</span>
+<span class="n">F1</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">R</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span>
+
+<span class="c1"># Image originale</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">rgb</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;puy-du-dome.jpg&#39;</span><span class="p">)</span>
+<span class="n">rgb</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">rgb</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ycbcr</span> <span class="o">=</span> <span class="n">rgb2ycbcr</span><span class="p">(</span><span class="n">rgb</span><span class="p">)</span>
+
+<span class="c1"># # Sous-échantillonnage des chrominances</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">downsampled</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">[:,:,</span><span class="n">b</span><span class="p">],</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">F1</span><span class="p">,</span> <span class="n">N</span><span class="o">/</span><span class="n">F1</span><span class="p">))</span>
+    <span class="n">ycbcr</span><span class="p">[:,:,</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">downsampled</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    
+<span class="c1"># Quantification de la DCT</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span>
+<span class="n">F2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">ravel</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">coef</span> <span class="o">=</span> <span class="n">dctn</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">[:,:,</span><span class="n">b</span><span class="p">],</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
+    <span class="n">coef</span> <span class="o">=</span> <span class="n">mask</span> <span class="o">*</span> <span class="n">coef</span>
+    <span class="n">ycbcr</span><span class="p">[:,:,</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">idctn</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">)</span>
+    
+<span class="c1"># Reconstruction RVB</span>
+<span class="n">compressed</span> <span class="o">=</span> <span class="n">ycbcr2rgb</span><span class="p">(</span><span class="n">ycbcr</span><span class="p">)</span>
+
+<span class="c1"># Taux de compression</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="n">R</span><span class="o">/</span><span class="n">F1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="n">R</span><span class="o">/</span><span class="n">F1</span><span class="p">)</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">taux</span> <span class="o">=</span> <span class="n">num</span><span class="o">/</span><span class="n">den</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Taux de compression : </span><span class="si">{</span><span class="n">taux</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Image originale&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Image compressée&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Taux de compression : 8 %
+</pre></div>
+</div>
+<img alt="../_images/tpcs4_18_2.png" src="../_images/tpcs4_18_2.png" />
 </div>
 </div>
 </div>
