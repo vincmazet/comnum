@@ -58,6 +58,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Compression d’une image couleur" href="tpcs4.html" />
+    <link rel="prev" title="Code morse et code de Huffman ternaire" href="tpcs2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -203,7 +205,7 @@
   Codage source
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../codage-source/information.html">
    Mesure de l’information
@@ -219,10 +221,37 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../codage-source/tp.html">
    Travaux pratiques
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs1.html">
+     Compression d’un texte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs2.html">
+     Code morse et code de Huffman ternaire
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Compression d’une image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs4.html">
+     Compression d’une image couleur
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -393,7 +422,7 @@ L’ensemble des pixels possibles constitue l’alphabet de la source : il y a <
 <p>L’entropie d’une source de <span class="math notranslate nohighlight">\(M\)</span> symboles équiprobables est <span class="math notranslate nohighlight">\(\mathrm{log}_2(M)\)</span>.
 Donc ici, l’entropie est <span class="math notranslate nohighlight">\(H(X) = \mathrm{log}_2(256) = 8\)</span> Sh/Symb.</p>
 <p>Cela implique que la longueur moyenne minimale d’un code est de 8 bits/symb, soit 1 octet/symb, si on interdit une perte d’information.
-Une image de 128 × 128 pixels pèse donc 16,384 ko.</p>
+Une image de 128 × 128 pixels pèse donc 131 072 bits soit 16 384 octets.</p>
 <div class="section" id="image-non-compressee">
 <h2>Image non compressée<a class="headerlink" href="#image-non-compressee" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
@@ -439,12 +468,13 @@ Dans l’exemple ci-dessous, on considère une image de taille 8×8 : il y a don
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image originale : 128×128 = 16384 symboles codés sur 8 bits = 131072 bits
-Image compressée :          8256 symboles codés sur 8 bits = 66048 bits
-soit un taux de compression : 50 %
-RSB : 27.03 dB
+Image compressée :          8001 symboles codés sur 8 bits = 64008 bits
+soit un taux de compression : 49 %
+RSB : 21.72 dB
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/miv/mazet/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:43: RuntimeWarning: divide by zero encountered in log
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/vincent/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:49: RuntimeWarning: divide by zero encountered in log
+/home/vincent/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:51: RuntimeWarning: divide by zero encountered in log
 </pre></div>
 </div>
 <img alt="../_images/tpcs3_15_2.png" src="../_images/tpcs3_15_2.png" />
@@ -611,6 +641,8 @@ RSB : 27.03 dB
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="tpcs2.html" title="previous page">Code morse et code de Huffman ternaire</a>
+    <a class='right-next' id="next-link" href="tpcs4.html" title="next page">Compression d’une image couleur</a>
 
         </div>
         

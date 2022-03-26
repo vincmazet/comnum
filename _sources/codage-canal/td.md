@@ -15,7 +15,7 @@ de sorte que le nombre de bit à 1 dans les mots du code soit pair.
 
 ## Exercice 2
 
-Les codes de Hamming sont définis ainsi dans {ref}`[Proakis 2008]<S:refs>` :
+Les codes de Hamming sont définis ainsi dans {ref}`[Proakis 2008]<P:references>` :
 
 >  Hamming codes are one of the earliest codes studied in coding theory.
    Hamming codes are linear block codes with parameters $n=2^m-1$ and $k=2^m-m-1$, for $m\geq3$.
@@ -59,9 +59,9 @@ On utilise un code à parité qui assure que le nombre de bits à 1 dans chaque 
 On remplace maintenant le code par un code à parité croisée,
 c'est-à-dire qu'en arrangeant les mots du message sous forme d'un tableau $k \times k$,
 des bits de parité sont calculés sur chaque ligne et sur chaque colonne.
-L'exemple ci-dessous donne les bits de parité pour le message `111010011` :
+L'exemple ci-dessous donne les bits de parité pour le message <code>111010011</code> :
 
-```{image} ../figs/crossparity.png
+```{image} figs/crossparity.png
 :alt: Exemple de parité croisée
 :width: 300px
 :align: center
@@ -83,7 +83,7 @@ Représentez son schéma bloc.
 
 On considère le code convolutif ci-dessous ($k=1$) :
 
-```{image} ../figs/codeconv1.png
+```{image} figs/codeconv1.png
 :alt: Code convolutif
 :width: 250px
 :align: center
@@ -93,9 +93,9 @@ On considère le code convolutif ci-dessous ($k=1$) :
 
 * Déterminez $k$, $n$, $K$. En déduire le rendement $R$.
 * Donnez les polynômes générateurs.
-* Calculez la sortie du codeur lorsque l'entrée est `01110110`.
+* Calculez la sortie du codeur lorsque l'entrée est <code>01110110</code>.
 * Représentez le diagramme en treillis.
-* (Optionnel) Décodez la séquence reçue `11001010` à l'aide de l'algorithme de Viterbi.
+* (Optionnel) Décodez la séquence reçue <code>11001010</code> à l'aide de l'algorithme de Viterbi.
 
 
 ## Exercice 7
@@ -104,7 +104,7 @@ On considère le code convolutif ci-dessous ($k=1$) :
 
 Même questions que dans l'exercice précédent pour le code convolutif ci-dessous :
 
-```{image} ../figs/codeconv2.png
+```{image} figs/codeconv2.png
 :alt: Code convolutif
 :width: 350px
 :align: center

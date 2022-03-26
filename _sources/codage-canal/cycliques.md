@@ -29,22 +29,18 @@ Les codes associés aux quatre messages possibles sont listés dans le tableau c
 |  11 | 110 |
 
 Ce code est cyclique car on peut effectuer on peut effectuer les décalages circulaires suivants :
-
-$$
-011 \rightarrow 110 \rightarrow 101 \rightarrow 011 \rightarrow \text{etc.}
-$$
-
-et un décalage circulaire sur $000$ revient à ce même mot.
+<code>011</code> → <code>110</code> → <code>101</code> → <code>011</code> → ...
+et un décalage circulaire sur <code>000</code> revient à ce même mot.
 ```
 
 
 ## Polynôme générateur
 
-Plutôt que de définir un code cyclique par des phrases ou un tableau de correspondance,
+Plutôt que de définir un code cyclique par une description, un tableau de correspondance ou une matrice génératrice,
 on le représente par un polynôme : c'est beaucoup plus court.
 C'est ce qu'on appelle un **polynôme générateur** (_generator polynomial_).
 
-Un bloc du message $m=m_{k-1}m_{k-2}\dots m_1m_0$ peut être représenté par le polynôme en $X$ dont les coefficients sont les symboles $m_k$.
+Ainsi, un bloc du message $m=m_{k-1}m_{k-2}\dots m_1m_0$ peut être représenté par un polynôme en $X$ dont les coefficients sont les symboles $m_k$.
 Ainsi, on pourra écrire le message $m$ comme le polynôme
 
 $$
@@ -64,7 +60,7 @@ $$
 g(X) = X^{n-k} + g_{n-k-1}X^{n-k-1} + \dots + g_1X + g_0.
 $$
 
-```{div} exemple
+```{div} example
 Le polynôme générateur du code à parité $C(3,2)$, dont on a vu ci-avant qu'il était cyclique, est
 
 $$
@@ -78,7 +74,7 @@ En effet :
 | $m$ | $m(X)$ |   $c(X)=m(X)g(X)$ | $c$ |
 | --- | ------ | ----------------- | --- |
 |  00 |      0 |      $0(X+1) = 0$ | 000 |
-|  01 |      1 |             $X+1$ | 011 |
+|  01 |      1 |    $1(X+1) = X+1$ | 011 |
 |  10 |    $X$ |  $X(X+1) = X^2+X$ | 110 |
 |  11 |  $X+1$ | $(X+1)^2 = X^2+1$ | 101 |
 
@@ -92,7 +88,7 @@ Notez que $2X=X+X=0$ quelle que soit la valeur de $X$
 Bref, un code cyclique est représenté par son polynôme générateur.
 Plus précisément, puisque ce sont seulement les coefficients du polynôme qui déterminent le code cyclique,
 on ne représente celui-ci que par ses coefficients.
-Et pour raccourcir encore plus leur représentation, on utilise une représentation octale qui correspond à la valeur en base 8 de groupes de trois coefficients.
+Et pour raccourcir encore plus leur représentation, on utilise une représentation octale qui correspond à la valeur en base 8 de chaque groupe de trois coefficients.
 
 Par exemple :
 * le polynôme $g(X) =       X+1$ a pour coefficients   $11_2$ soit  $3_8$ en base 8 ;
@@ -109,15 +105,16 @@ sont des codes cycliques binaires ou M-aires.
 Il en existe de plusieurs longueurs et rendements et leur décodage est simple.
 C'est pourquoi ils sont très utilisés comme codes de taille faible ou modérée,
 comme par exemple en communication satellitaire, pour les disques optiques,
-les disques durs et SSD ou les codes barres bi-dimensionnels.
+les disques durs et SSD ou les codes barres bi-dimensionnels (QR codes, datamatrix).
 
 ```{dropdown} Polynômes générateurs des codes BCH
 
-Le tableau ci-dessous donne les coefficients (en octal) des polynômes générateurs de quelques codes BCH binaires {ref}`[Proakis 2008]<S:refs>`.
+Le tableau ci-dessous donne les coefficients (en octal) des polynômes générateurs de quelques codes BCH binaires {ref}`[Proakis 2008]<P:references>`.
 Ces codes fournissent des mots de longueur $n$ à partir de blocs du message de taille $k$.
 Le code résultant, de rendement $k/n$, a un pouvoir de correction égal à $t$.
 
-Pour préciser les idées, le code BCH $(7,4)$ de coefficient $13_8=1011_2$ est donc le polynôme
+Pour préciser les idées, le code de la première ligne est
+le code BCH $(7,4)$ de coefficient $13_8=1011_2$ : il a donc comme polynôme
 
 $$
 g(X) = 1 \cdot X^3 + 0 \cdot X^2 + 1 \cdot X^1 + 1 \cdot X^0 = g(X) = X^3 + X + 1.

@@ -363,23 +363,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#interpretation-geometrique">
-   Interprétation géométrique
+  <a class="reference internal nav-link" href="#detection-d-erreur">
+   Détection d’erreur
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decodage">
-   Décodage
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pouvoir-de-detection">
-   Pouvoir de détection
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pouvoir-de-correction">
-   Pouvoir de correction
+  <a class="reference internal nav-link" href="#correction-d-erreur">
+   Correction d’erreur
   </a>
  </li>
 </ul>
@@ -400,7 +390,7 @@
 <p>Le codage en bloc consiste à associer, à chaque bloc de <span class="math notranslate nohighlight">\(k\)</span> bits du message, un bloc de <span class="math notranslate nohighlight">\(n\)</span> bits (avec <span class="math notranslate nohighlight">\(n&gt;k\)</span>).
 On définit le <strong>rendement du code</strong> comme étant <span class="math notranslate nohighlight">\(k/n\)</span>.</p>
 <p>Pour nommer un code en bloc, on utilise la notation <span class="math notranslate nohighlight">\(C(n,k)\)</span>.</p>
-<div class="exemple docutils">
+<div class="example docutils">
 <p>Dans ce chapitre, nous utiliserons comme exemple le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span>.
 Ce code est très simple puisqu’il consiste à répéter <span class="math notranslate nohighlight">\(n=3\)</span> fois chaque bloc de <span class="math notranslate nohighlight">\(k=1\)</span> bits du message.
 Il a donc un rendement de <span class="math notranslate nohighlight">\(1/3\)</span>, ce qui signifie que dans le message codé, seul un tiers n’est pas redondant.</p>
@@ -428,31 +418,38 @@ Il a donc un rendement de <span class="math notranslate nohighlight">\(1/3\)</sp
 <p>Plutôt que d’établir une table pour définir les correspondances entre les blocs du message et les mots du code,
 on utilise la <strong>matrice génératrice</strong> (<em>generator matrix</em>) <span class="math notranslate nohighlight">\(G\in\mathbb{F}_2^{k \times n}\)</span>.
 Chaque mot <span class="math notranslate nohighlight">\(c\)</span> du code est calculé à partir d’un bloc <span class="math notranslate nohighlight">\(m\)</span> du message par l’équation :</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Attention, la multiplication matricielle est également à effectuer dans <span class="math notranslate nohighlight">\(\mathbb{F}_2\)</span> !
+Donc, <span class="math notranslate nohighlight">\(1+1=0\)</span> !</p>
+</div>
 <div class="math notranslate nohighlight">
 \[
 c = mG.
 \]</div>
-<p>(Attention, la multiplication matricielle est également à effectuer dans <span class="math notranslate nohighlight">\(\mathbb{F}_2\)</span> !
-Donc en particulier, <span class="math notranslate nohighlight">\(1+1=0\)</span> !).</p>
-<div class="exemple docutils">
+<div class="example docutils">
 <p>La matrice génératrice du code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est</p>
 <div class="math notranslate nohighlight">
 \[
 G = \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix}.
 \]</div>
 <p>En effet :</p>
+<ul>
+<li><p>le code <span class="math notranslate nohighlight">\(c\)</span> associé au message <span class="math notranslate nohighlight">\(m=\begin{pmatrix}0\end{pmatrix}\)</span> est</p>
 <div class="math notranslate nohighlight">
-\[
-\begin{pmatrix}0\end{pmatrix} \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix} = \begin{pmatrix}0 &amp; 0 &amp; 0\end{pmatrix}
-\quad\text{et}\quad
-\begin{pmatrix}1\end{pmatrix} \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix} = \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix}
-\]</div>
+\[c = mG = \begin{pmatrix}0\end{pmatrix} \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix} = \begin{pmatrix}0 &amp; 0 &amp; 0\end{pmatrix}\]</div>
+</li>
+<li><p>le code <span class="math notranslate nohighlight">\(c\)</span> associé au message <span class="math notranslate nohighlight">\(m=\begin{pmatrix}1\end{pmatrix}\)</span> est</p>
+<div class="math notranslate nohighlight">
+\[c = mG = \begin{pmatrix}1\end{pmatrix} \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix} = \begin{pmatrix}1 &amp; 1 &amp; 1\end{pmatrix}\]</div>
+</li>
+</ul>
 </div>
-<p>Si les mot du code contiennent le message qui les a généré, alors le code est dit <strong>systématique</strong>
+<p>Si les mots du code contiennent le message qui les a généré, alors le code est dit <strong>systématique</strong>
 et la matrice génératrice peut s’écrire sous la forme :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-G = \begin{pmatrix} I_k &amp; | &amp; P \end{pmatrix}
+G = \begin{pmatrix} I_k &amp; P \end{pmatrix}
   = \left(
     \begin{array}{ccc|c}
       1 &amp;        &amp; 0 &amp;   \\
@@ -462,17 +459,109 @@ G = \begin{pmatrix} I_k &amp; | &amp; P \end{pmatrix}
     \right)
 \end{split}\]</div>
 <p>où <span class="math notranslate nohighlight">\(P\in\mathbb{F}_2^{k \times n-k}\)</span> est une matrice qui définit les bits à ajouter au message.</p>
-<div class="exemple docutils">
-<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est systématique et puisque <span class="math notranslate nohighlight">\(G = \begin{pmatrix}1 &amp; | &amp; 1 &amp; 1\end{pmatrix}\)</span>
-alors <span class="math notranslate nohighlight">\(P = \begin{pmatrix}1 &amp; 1\end{pmatrix}\)</span>.</p>
+<div class="example docutils">
+<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est systématique et puisque <span class="math notranslate nohighlight">\(G = \begin{pmatrix}I_1 &amp; P\end{pmatrix}\)</span>
+où <span class="math notranslate nohighlight">\(P = \begin{pmatrix}1 &amp; 1\end{pmatrix}\)</span>.</p>
 </div>
+<p><a class="exercise btn btn-light" href="td.html#exercice-1" role="button">1</a></p>
 </div>
-<div class="section" id="interpretation-geometrique">
-<h2>Interprétation géométrique<a class="headerlink" href="#interpretation-geometrique" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Les mots du code générés peuvent être considérés comme des points dans un espace à <span class="math notranslate nohighlight">\(n\)</span> dimensions.
-Dans le cas où <span class="math notranslate nohighlight">\(n \leq 3\)</span>, ces points peuvent être représentés.</p>
-<p>La figure suivante représente (avec des points bleus) les deux mots du code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span>,
-à savoir <span class="math notranslate nohighlight">\(000\)</span> et <span class="math notranslate nohighlight">\(111\)</span>.
+<div class="section" id="detection-d-erreur">
+<h2>Détection d’erreur<a class="headerlink" href="#detection-d-erreur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le code reçu par le récepteur est noté <span class="math notranslate nohighlight">\(r\)</span>.
+Il peut être différent du code émis <span class="math notranslate nohighlight">\(c\)</span> à cause des erreurs de transmission.
+On peut modéliser le code reçu <span class="math notranslate nohighlight">\(r\)</span> par :</p>
+<div class="math notranslate nohighlight">
+\[
+r = c + e
+\]</div>
+<p>où <span class="math notranslate nohighlight">\(e\)</span> est un vecteur binaire dont les <code>1</code> indiquent la présence d’une erreur.
+Par exemple, si on émet <span class="math notranslate nohighlight">\(c = \)</span><code>0101</code> et qu’on reçoit <span class="math notranslate nohighlight">\(r = \)</span><code>0110</code>, on a bien <span class="math notranslate nohighlight">\(e = \)</span><code>0011</code>.
+Ce modèle correspond à ce qu’on appelle un <strong>canal binaire symétrique</strong> (<em>binary symmetric channel</em>).</p>
+<p>Le décodage du code reçu <span class="math notranslate nohighlight">\(r\)</span> s’effectue en le multipliant par la transposée d’une matrice <span class="math notranslate nohighlight">\(H\in\mathbb{F}_2^{n-k \times n}\)</span>
+appelée <strong>matrice de contrôle de parité</strong> (<em>parity-check matrix</em>) :</p>
+<div class="math notranslate nohighlight">
+\[
+s = rH^T.
+\]</div>
+<p>Le résultat <span class="math notranslate nohighlight">\(s\)</span> de cette opération est appelé le <strong>syndrome</strong> (<em>syndrome</em>).</p>
+<p>La matrice de contrôle de parité est construite de sorte à ce que le syndrome soit nul uniquement si <span class="math notranslate nohighlight">\(r\)</span> est un mot du code.
+De manière équivalente, un syndrome non nul indique la présence d’une erreur de transmission.
+Cependant, un syndrome nul n’implique pas que la transmission se soit faite sans erreur !
+Par exemple, le code reçu peut être différent du code envoyé, tout en étant un autre mot du code !
+Mais ça, on ne peut pas le détecter simplement…</p>
+<p>Dans le cas d’un code systématique, la matrice de contrôle de parité s’écrit</p>
+<div class="math notranslate nohighlight">
+\[
+H = \begin{pmatrix} P^T &amp; I_{n-k} \end{pmatrix}.
+\]</div>
+<p>Cette définition de <span class="math notranslate nohighlight">\(H\)</span> permet, comme dit précédemment, d’obtenir un syndrome nul s’il n’y a pas d’erreur de transmission.</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Démonstration<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">D’après les définitions du syndrome <span class="math notranslate nohighlight">\(s\)</span>, du code reçu <span class="math notranslate nohighlight">\(r\)</span>, et du code émis <span class="math notranslate nohighlight">\(c\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+  s &amp;= rH^T \\
+    &amp;= (c+e)H^T \\
+    &amp;= cH^T + eH^T \\
+    &amp;= mGH^T + eH^T.
+\end{align*}
+\end{split}\]</div>
+<p class="card-text">Or, du fait des règles de l’addition dans le corps de Galois,
+et par définition des matrices <span class="math notranslate nohighlight">\(G\)</span> et <span class="math notranslate nohighlight">\(H\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+  GH^T &amp;= \begin{pmatrix} I_k &amp; P \end{pmatrix} \begin{pmatrix} P^T &amp; I_{n-k} \end{pmatrix}^T \\
+       &amp;= \begin{pmatrix} I_k &amp; P \end{pmatrix} \begin{pmatrix} P \\ I_{n-k} \end{pmatrix} \\
+       &amp;= P + P \\
+       &amp;= 0
+\end{align*}
+\end{split}\]</div>
+<p class="card-text">Ainsi, <span class="math notranslate nohighlight">\(mGH^T = 0\)</span> et donc <span class="math notranslate nohighlight">\(s = eH^T\)</span>.
+Cela implique que s’il n’y a pas d’erreur de transmission (<span class="math notranslate nohighlight">\(e=0\)</span>) alors le syndrome est nul.</p>
+</div>
+</details><div class="example docutils">
+<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> a pour matrice de contrôle de parité</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H = \left(
+    \begin{array}{c|cc}
+      1 &amp; 1 &amp; 0 \\
+      1 &amp; 0 &amp; 1 \\
+    \end{array}
+    \right)
+\end{split}\]</div>
+<p>Si on reçoit <span class="math notranslate nohighlight">\(r=\)</span><code>011</code>, il y a manifestation une erreur puisque ce mot n’est pas un triplet du même bit :
+ce n’est pas un mot du code.
+Le syndrome est effectivement non nul :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s = rH^T
+  = \begin{pmatrix} 0 &amp; 1 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}
+  = \begin{pmatrix} 1 &amp; 1 \end{pmatrix}
+  \neq 0
+\end{split}\]</div>
+<p>L’erreur de transmission est donc détectée !</p>
+</div>
+<p><a class="exercise btn btn-light" href="td.html#exercice-1" role="button">1</a></p>
+</div>
+<div class="section" id="correction-d-erreur">
+<h2>Correction d’erreur<a class="headerlink" href="#correction-d-erreur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Comment corriger le code reçu si une erreur de transmission a été détectée (syndrome non nul) ?
+Sans autre information a priori, il est logique de décider que le mot émis soit le mot le plus proche du mot reçu :
+on fait dans ce cas l’hypothèse qu’il y a le moins d’erreurs possibles.</p>
+<p>On peut interpréter géométriquement les mots d’un code.
+En effet, chaque mots du code est un point dans un espace à <span class="math notranslate nohighlight">\(n\)</span> dimensions.
+Ces points sont plus ou moins éloignés les uns des autres.</p>
+<p>Dans le cas où <span class="math notranslate nohighlight">\(n \leq 3\)</span>, ces points peuvent être représentés.
+La figure suivante représente (avec des points bleus) les deux mots du code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span>,
+à savoir <code>000</code> et <code>111</code>.
 Les trois bits de ces mots représentent les coordonnées des points dans l’espace <span class="math notranslate nohighlight">\(\mathbb{F}_2^3\)</span>.
 Tous les autres mots de trois bits sont également des points spécifiques, mais ils n’appartiennent pas au code.</p>
 <div class="cell tag_remove-input docutils container">
@@ -543,107 +632,12 @@ if (outputEl) {{
 <p>La <strong>distance de Hamming</strong> (<em>Hamming distance</em>) <span class="math notranslate nohighlight">\(d(u,v)\)</span> entre deux mots de même longueur <span class="math notranslate nohighlight">\(u\)</span> et <span class="math notranslate nohighlight">\(v\)</span>
 est le nombre de symboles différents entre <span class="math notranslate nohighlight">\(u\)</span> et <span class="math notranslate nohighlight">\(v\)</span>.
 Géométriquement, la distance de Hamming correspond au nombre de segments qui relient les deux mots.</p>
-<p>La <strong>distance minimale</strong> <span class="math notranslate nohighlight">\(d_\text{min}\)</span> d’un code est la plus petite distance qu’il existe entre deux mots du code.</p>
-<p>Dans le cas des codes linéaires, on peut montrer que <span class="math notranslate nohighlight">\(d_\text{min}\)</span> est égale au nombre minimal de symboles non nuls
-dans tous les mots du code, à l’exception du mot nul <span class="xref std std-ref">[Proakis 2008, p.414]</span>.</p>
-</div>
-<div class="section" id="decodage">
-<h2>Décodage<a class="headerlink" href="#decodage" title="Lien permanent vers ce titre">¶</a></h2>
-<p>À chaque matrice génératrice on peut associer une <strong>matrice de contrôle de parité</strong> (<em>parity-check matrix</em>) <span class="math notranslate nohighlight">\(H\in\mathbb{F}_2^{n-k \times n}\)</span>.
-Cette matrice a la particularité que <span class="math notranslate nohighlight">\(cH^T=0\)</span> pour tout mot <span class="math notranslate nohighlight">\(c\)</span> du code.
-Si le code est systématique, la matrice de contrôle de parité s’écrit</p>
-<div class="math notranslate nohighlight">
-\[
-H = \begin{pmatrix} P^T &amp; | &amp; I_{n-k} \end{pmatrix}.
-\]</div>
-<div class="exemple docutils">
-<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> a pour matrice de contrôle de parité</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-H = \left(
-    \begin{array}{c|cc}
-      1 &amp; 1 &amp; 0 \\
-      1 &amp; 0 &amp; 1 \\
-    \end{array}
-    \right)
-\end{split}\]</div>
-</div>
-<p>À cause des erreurs de transmission, le code reçu par le récepteur n’est pas forcément <span class="math notranslate nohighlight">\(c\)</span> et  peut présenter des différences.
-On peut donc considérer que le code reçu <span class="math notranslate nohighlight">\(r\)</span> est défini par :</p>
-<div class="math notranslate nohighlight">
-\[
-r = c + e
-\]</div>
-<p>où <span class="math notranslate nohighlight">\(e\)</span> est un vecteur binaire dont les <code class="docutils literal notranslate"><span class="pre">1</span></code> indiquent la présence d’une erreur.
-Par exemple, si on émet <span class="math notranslate nohighlight">\(c = 0101\)</span> et qu’on reçoit <span class="math notranslate nohighlight">\(r=0110\)</span>, on a bien <span class="math notranslate nohighlight">\(e=0011\)</span>.
-On parle de <strong>canal binaire symétrique</strong> (<em>binary symmetric channel</em>).</p>
-<p>Le décodage du code reçu <span class="math notranslate nohighlight">\(r\)</span> s’effectue en le multipliant par <span class="math notranslate nohighlight">\(H^T\)</span>.
-Le résultat est appelé <strong>syndrome</strong> (<em>syndrome</em>) <span class="math notranslate nohighlight">\(s\)</span> :</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-  s &amp;= rH^T \\
-    &amp;= (c+e)H^T \\
-    &amp;= cH^T + eH^T \\
-    &amp;= mGH^T + eH^T.
-\end{align*}
-\end{split}\]</div>
-<p>Or, du fait des règles de l’addition dans le corps de Galois,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-  GH^T &amp;= \begin{pmatrix} I_k &amp; P \end{pmatrix} \begin{pmatrix} P^T &amp; I_{n-k} \end{pmatrix}^T \\
-       &amp;= \begin{pmatrix} I_k &amp; P \end{pmatrix} \begin{pmatrix} P \\ I_{n-k} \end{pmatrix}^T \\
-       &amp;= P + P \\
-       &amp;= 0
-\end{align*}
-\end{split}\]</div>
-<p>Ainsi, <span class="math notranslate nohighlight">\(mGH^T = cH^T = 0\)</span> : on retrouve la particularité de la matrice de contrôle de parité évoquée ci-avant.
-Par ailleurs, cela implique que</p>
-<div class="math notranslate nohighlight">
-\[
-s = eH^T.
-\]</div>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Cependant, un syndrome nul n’implique pas que la transmission se soit faite sans erreur !
-Par exemple, le code reçu peut être différent du code envoyé, tout en étant un autre mot du code !
-Mais ça, on ne peut pas le détecter simplement…</p>
-</div>
-<p>S’il n’y a aucune erreur de transmission, alors <span class="math notranslate nohighlight">\(e=0\)</span> et donc le syndrome <span class="math notranslate nohighlight">\(s\)</span> est nul.
-De manière équivalente, un syndrome non nul indique la présence d’une erreur de transmission.</p>
-<div class="exemple docutils">
-<p>Avec le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span>, si on reçoit <span class="math notranslate nohighlight">\(r=011\)</span>, il y a manifestation une erreur puisque ce mot n’est pas un triplet du même bit :
-ce n’est pas un mot du code.
-Le syndrome est effectivement non nul :</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-s = rH^T
-  = \begin{pmatrix} 0 &amp; 1 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}
-  = \begin{pmatrix} 1 &amp; 1 \end{pmatrix}
-  \neq 0
-\end{split}\]</div>
-<p>L’erreur de transmission est donc détectée !</p>
-</div>
-<p>Comment, alors, corriger le code reçu si une erreur de transmission a été détectée ?
-Sans autre information a priori, il est logique de décider que le mot émis soit le mot le plus proche du mot reçu :
-on fait dans ce cas l’hypothèse qu’il y a eu le moins d’erreurs possibles.</p>
-<p>En termes géométriques, cela signifie que la règle est de rechercher le mot du code le plus proche
-(en termes de distance de Hamming) du code reçu.</p>
-</div>
-<div class="section" id="pouvoir-de-detection">
-<h2>Pouvoir de détection<a class="headerlink" href="#pouvoir-de-detection" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La <strong>distance minimale</strong> <span class="math notranslate nohighlight">\(d_\text{min}\)</span> d’un code est la plus petite distance qu’il existe entre deux mots du code.
+Dans le cas des codes linéaires, on peut montrer que <span class="math notranslate nohighlight">\(d_\text{min}\)</span> est égale au nombre minimal de symboles non nuls
+dans tous les mots du code, à l’exception du mot nul <a class="reference internal" href="../annexes/references.html#p-references"><span class="std std-ref">[Proakis 2008, p.414]</span></a>.</p>
 <p>Le <strong>pouvoir de détection</strong> d’un code est le nombre maximal d’erreurs qui peut affecter le mot transmis
 sans que l’on confonde le mot reçu avec un autre mot du code.
 On montre que le pouvoir de détection est égal à <span class="math notranslate nohighlight">\(d_\text{min}-1\)</span>.</p>
-<div class="exemple docutils">
-<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est capable de détecter jusqu’à deux erreurs,
-puisque si la transmission introduit une ou deux erreurs, alors le mot reçu n’est pas une triple répétition du bit émis.
-Cela correspond bien à <span class="math notranslate nohighlight">\(d_\text{min}-1\)</span>.</p>
-</div>
-</div>
-<div class="section" id="pouvoir-de-correction">
-<h2>Pouvoir de correction<a class="headerlink" href="#pouvoir-de-correction" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La notation <span class="math notranslate nohighlight">\(\lfloor\cdot\rfloor\)</span> désigne la partie entière.</p>
@@ -651,17 +645,25 @@ Cela correspond bien à <span class="math notranslate nohighlight">\(d_\text{min
 <p>Le <strong>pouvoir de correction</strong> d’un code est le nombre maximal d’erreurs qui peut affecter le mot transmis
 et qui peuvent être corrigées pour retrouver le mot effectivement émis.
 On montre que le pouvoir de correction est égal à <span class="math notranslate nohighlight">\(\lfloor(d_\text{min}-1)/2\rfloor\)</span>.</p>
-<div class="exemple docutils">
-<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est capable de corriger jusqu’à une erreur.
+<div class="example docutils">
+<p>Le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est capable de détecter jusqu’à deux erreurs,
+puisque si la transmission introduit une ou deux erreurs, alors le mot reçu n’est pas une triple répétition du bit émis.
+Cela correspond bien à <span class="math notranslate nohighlight">\(d_\text{min}-1\)</span>.</p>
+<p>Par ailleurs, le code à répétition <span class="math notranslate nohighlight">\(C(3,1)\)</span> est capable de corriger jusqu’à une erreur.
 En effet :</p>
 <ul class="simple">
 <li><p>si une seule erreur de transmission est intervenue, alors les deux bits non erronés permettront de prendre la bonne décision quant au bit émis
-(par exemple, si on reçoit <code class="docutils literal notranslate"><span class="pre">100</span></code> alors on suppose que c’est <code class="docutils literal notranslate"><span class="pre">0</span></code> qui a été émis) ;</p></li>
+(par exemple, si on reçoit <code>100</code> alors on suppose que c’est <code>0</code> qui a été émis) ;</p></li>
 <li><p>si deux erreurs de transmission sont intervenues, alors la décision prise sera mauvaise
-(par exemple, si on reçoit <code class="docutils literal notranslate"><span class="pre">101</span></code> alors que <code class="docutils literal notranslate"><span class="pre">0</span></code> a été émis, le récepteur supposera tout de même que c’est <code class="docutils literal notranslate"><span class="pre">1</span></code> qui a été émis).</p></li>
+(par exemple, si on reçoit <code>101</code> alors que <code>0</code> a été émis,
+le récepteur supposera tout de même que c’est <code>1</code> qui a été émis).</p></li>
 </ul>
 <p>Cela correspond bien à <span class="math notranslate nohighlight">\(\lfloor(d_\text{min}-1)/2\rfloor\)</span>.</p>
 </div>
+<p><a class="exercise btn btn-light" href="td.html#exercice-1" role="button">1</a>
+<a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a>
+<a class="exercise btn btn-light" href="td.html#exercice-3" role="button">3</a>
+<a class="exercise btn btn-light" href="td.html#exercice-4" role="button">4</a></p>
 </div>
 </div>
 

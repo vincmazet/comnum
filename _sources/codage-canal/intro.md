@@ -3,14 +3,14 @@
 
 
 Pour réduire les erreurs de transmission, l'idéal est de diminuer le bruit et les interférences dus au canal.
-Mais dans la pratique, on ne peut pas les annuler complètement car souvent le canal n'est pas entièrement configurable.
+Mais dans la pratique, on ne peut pas les annuler complètement car, souvent, le canal n'est pas entièrement configurable.
 Une autre solution pour réduire les erreurs de transmission est d'augmenter la puissance du signal émis pour augmenter le RSB du signal reçu.
-Or, cela implique une augmentation de la consommation énergétique et, parfois, d'un rayonnement plus fort.
-Une troisième possibilité est d'introduire de la rendondance dans le signal : c'est ce qu'on appelle le codage canal.
+Or, cela implique une augmentation de la consommation énergétique et provoque également un rayonnement électromagnétique plus fort.
+Une troisième possibilité est d'introduire de la rendondance dans le signal : c'est ce qu'on appelle le codage canal.
 Cependant, l'ajout de redondance aura automatiquement pour effet d'allonger la durée d'émission ou d'accroître la bande de fréquence occupée.
 
-On peut alors se demander pourquoi ajouter de la redondance alors que le bloc précédent dans la chaîne de communication
-(le codage source) avait notamment pour objectif de la réduire ?
+On peut par ailleurs se demander pourquoi ajouter de la redondance alors que le bloc précédent dans la chaîne de communication
+(le codage source) avait pour objectif de la réduire ?
 En fait, la redondance introduite par le codage canal est contrôlée et interprétable.
 Ainsi, le récepteur sera en mesure d'utiliser à bon escient cette redondance pour décoder le message et le corriger si nécessaire,
 alors que l'information supplémentaire présente dans le message avant sa compression par le codage source n'est pas utilisable.

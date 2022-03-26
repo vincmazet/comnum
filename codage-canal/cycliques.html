@@ -418,20 +418,17 @@ Les codes associés aux quatre messages possibles sont listés dans le tableau c
 </tr>
 </tbody>
 </table>
-<p>Ce code est cyclique car on peut effectuer on peut effectuer les décalages circulaires suivants :</p>
-<div class="math notranslate nohighlight">
-\[
-011 \rightarrow 110 \rightarrow 101 \rightarrow 011 \rightarrow \text{etc.}
-\]</div>
-<p>et un décalage circulaire sur <span class="math notranslate nohighlight">\(000\)</span> revient à ce même mot.</p>
+<p>Ce code est cyclique car on peut effectuer on peut effectuer les décalages circulaires suivants :
+<code>011</code> → <code>110</code> → <code>101</code> → <code>011</code> → …
+et un décalage circulaire sur <code>000</code> revient à ce même mot.</p>
 </div>
 </div>
 <div class="section" id="polynome-generateur">
 <h2>Polynôme générateur<a class="headerlink" href="#polynome-generateur" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Plutôt que de définir un code cyclique par des phrases ou un tableau de correspondance,
+<p>Plutôt que de définir un code cyclique par une description, un tableau de correspondance ou une matrice génératrice,
 on le représente par un polynôme : c’est beaucoup plus court.
 C’est ce qu’on appelle un <strong>polynôme générateur</strong> (<em>generator polynomial</em>).</p>
-<p>Un bloc du message <span class="math notranslate nohighlight">\(m=m_{k-1}m_{k-2}\dots m_1m_0\)</span> peut être représenté par le polynôme en <span class="math notranslate nohighlight">\(X\)</span> dont les coefficients sont les symboles <span class="math notranslate nohighlight">\(m_k\)</span>.
+<p>Ainsi, un bloc du message <span class="math notranslate nohighlight">\(m=m_{k-1}m_{k-2}\dots m_1m_0\)</span> peut être représenté par un polynôme en <span class="math notranslate nohighlight">\(X\)</span> dont les coefficients sont les symboles <span class="math notranslate nohighlight">\(m_k\)</span>.
 Ainsi, on pourra écrire le message <span class="math notranslate nohighlight">\(m\)</span> comme le polynôme</p>
 <div class="math notranslate nohighlight">
 \[
@@ -448,7 +445,7 @@ Ce polynôme générateur est de degré <span class="math notranslate nohighligh
 \[
 g(X) = X^{n-k} + g_{n-k-1}X^{n-k-1} + \dots + g_1X + g_0.
 \]</div>
-<div class="exemple docutils">
+<div class="example docutils">
 <p>Le polynôme générateur du code à parité <span class="math notranslate nohighlight">\(C(3,2)\)</span>, dont on a vu ci-avant qu’il était cyclique, est</p>
 <div class="math notranslate nohighlight">
 \[
@@ -472,7 +469,7 @@ g(X) = X+1.
 </tr>
 <tr class="row-odd"><td><p>01</p></td>
 <td><p>1</p></td>
-<td><p><span class="math notranslate nohighlight">\(X+1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1(X+1) = X+1\)</span></p></td>
 <td><p>011</p></td>
 </tr>
 <tr class="row-even"><td><p>10</p></td>
@@ -494,7 +491,7 @@ g(X) = X+1.
 <p>Bref, un code cyclique est représenté par son polynôme générateur.
 Plus précisément, puisque ce sont seulement les coefficients du polynôme qui déterminent le code cyclique,
 on ne représente celui-ci que par ses coefficients.
-Et pour raccourcir encore plus leur représentation, on utilise une représentation octale qui correspond à la valeur en base 8 de groupes de trois coefficients.</p>
+Et pour raccourcir encore plus leur représentation, on utilise une représentation octale qui correspond à la valeur en base 8 de chaque groupe de trois coefficients.</p>
 <p>Par exemple :</p>
 <ul class="simple">
 <li><p>le polynôme <span class="math notranslate nohighlight">\(g(X) =       X+1\)</span> a pour coefficients   <span class="math notranslate nohighlight">\(11_2\)</span> soit  <span class="math notranslate nohighlight">\(3_8\)</span> en base 8 ;</p></li>
@@ -510,7 +507,7 @@ sont des codes cycliques binaires ou M-aires.
 Il en existe de plusieurs longueurs et rendements et leur décodage est simple.
 C’est pourquoi ils sont très utilisés comme codes de taille faible ou modérée,
 comme par exemple en communication satellitaire, pour les disques optiques,
-les disques durs et SSD ou les codes barres bi-dimensionnels.</p>
+les disques durs et SSD ou les codes barres bi-dimensionnels (QR codes, datamatrix).</p>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
 Polynômes générateurs des codes BCH<div class="summary-down docutils">
@@ -518,10 +515,11 @@ Polynômes générateurs des codes BCH<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Le tableau ci-dessous donne les coefficients (en octal) des polynômes générateurs de quelques codes BCH binaires <span class="xref std std-ref">[Proakis 2008]</span>.
+<p class="card-text">Le tableau ci-dessous donne les coefficients (en octal) des polynômes générateurs de quelques codes BCH binaires <a class="reference internal" href="../annexes/references.html#p-references"><span class="std std-ref">[Proakis 2008]</span></a>.
 Ces codes fournissent des mots de longueur <span class="math notranslate nohighlight">\(n\)</span> à partir de blocs du message de taille <span class="math notranslate nohighlight">\(k\)</span>.
 Le code résultant, de rendement <span class="math notranslate nohighlight">\(k/n\)</span>, a un pouvoir de correction égal à <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p class="card-text">Pour préciser les idées, le code BCH <span class="math notranslate nohighlight">\((7,4)\)</span> de coefficient <span class="math notranslate nohighlight">\(13_8=1011_2\)</span> est donc le polynôme</p>
+<p class="card-text">Pour préciser les idées, le code de la première ligne est
+le code BCH <span class="math notranslate nohighlight">\((7,4)\)</span> de coefficient <span class="math notranslate nohighlight">\(13_8=1011_2\)</span> : il a donc comme polynôme</p>
 <div class="math notranslate nohighlight">
 \[
 g(X) = 1 \cdot X^3 + 0 \cdot X^2 + 1 \cdot X^1 + 1 \cdot X^0 = g(X) = X^3 + X + 1.
