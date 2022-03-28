@@ -89,8 +89,6 @@ On considère le code convolutif ci-dessous ($k=1$) :
 :align: center
 ```
 
-\includegraphics{figs/codeconv1}
-
 * Déterminez $k$, $n$, $K$. En déduire le rendement $R$.
 * Donnez les polynômes générateurs.
 * Calculez la sortie du codeur lorsque l'entrée est <code>01110110</code>.
