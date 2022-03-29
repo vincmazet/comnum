@@ -10,7 +10,12 @@ Dans ce TP, nous utiliserons les modules
 [komm](http://komm.readthedocs.io/).
 ```
 
-Dans ce TP, trois codages canal sont comparés sur des simulations numériques :
+```{admonition} Modules Python
+Durant le TP, vous pouvez échanger des astuces, fonctions utiles ou morceaux de code sur
+[Moodle](https://moodle.unistra.fr/mod/glossary/view.php?id=585756).
+```
+
+Trois codes canal sont comparés sur des simulations numériques :
 le code à parité (5,4), le code de Hamming (7,4) et le code convolutif de polynômes générateurs $7_8$ et $5_8$.
 Ces trois codes ont été étudiés en TD et en cours à l'exception du code à parité (5,4),
 mais ce dernier consiste, comme le code à parité (3,2), à ajouter un bit de parité à chaque bloc du message.
@@ -18,8 +23,6 @@ mais ce dernier consiste, comme le code à parité (3,2), à ajouter un bit de p
 Le codage et le décodage seront, pour ces trois codes, effectués avec le module komm.
 
 1. Cherchez dans l'aide de komm quelles instructions permettent de coder et décoder une séquence binaire.
-   N'hésitez pas à vous partager le travail et à communiquer les syntaxes que vous avez trouver dans le
-   [chat du TP](https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded).
 
 1. Testez le fonctionnement de chaque code sur une séquence binaire aléatoire (`comnumfip.randmary`).
 
@@ -36,7 +39,7 @@ il n'est pas possible pour le récepteur de demander à l'émetteur de transmett
 si une erreur a été détectée sans avoir pu être corrigée.
 
 1. Simulez la transmission via ce canal (`komm.BinarySymmetricChannel`) d'une séquence binaire aléatoire
-   sans codage canal et avec les trois codes précédents.
+   sans code canal et avec les trois codes précédents.
 
 1. Tracez la probabilité d'erreur par élément du message en fonction de la probabilité d'erreur sur le canal de transmission
    (faites plusieurs simulations avec des messages suffisamment longs).

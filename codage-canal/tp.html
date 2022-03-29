@@ -393,15 +393,18 @@
 <a class="reference external" href="https://github.com/vincmazet/comnumfip">comnumfip</a> et
 <a class="reference external" href="http://komm.readthedocs.io/">komm</a>.</p>
 </div>
-<p>Dans ce TP, trois codages canal sont comparés sur des simulations numériques :
+<div class="admonition-modules-python admonition">
+<p class="admonition-title">Modules Python</p>
+<p>Durant le TP, vous pouvez échanger des astuces, fonctions utiles ou morceaux de code sur
+<a class="reference external" href="https://moodle.unistra.fr/mod/glossary/view.php?id=585756">Moodle</a>.</p>
+</div>
+<p>Trois codes canal sont comparés sur des simulations numériques :
 le code à parité (5,4), le code de Hamming (7,4) et le code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span>.
 Ces trois codes ont été étudiés en TD et en cours à l’exception du code à parité (5,4),
 mais ce dernier consiste, comme le code à parité (3,2), à ajouter un bit de parité à chaque bloc du message.</p>
 <p>Le codage et le décodage seront, pour ces trois codes, effectués avec le module komm.</p>
 <ol class="simple">
-<li><p>Cherchez dans l’aide de komm quelles instructions permettent de coder et décoder une séquence binaire.
-N’hésitez pas à vous partager le travail et à communiquer les syntaxes que vous avez trouver dans le
-<a class="reference external" href="https://rocketchat.unistra.fr/group/moodle_unistra_Communications_num__riques_650196?layout=embedded">chat du TP</a>.</p></li>
+<li><p>Cherchez dans l’aide de komm quelles instructions permettent de coder et décoder une séquence binaire.</p></li>
 <li><p>Testez le fonctionnement de chaque code sur une séquence binaire aléatoire (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>).</p></li>
 <li><p>Vérifiez que le décodage fonctionne également en l’appliquant directement sur la séquence codée.</p></li>
 <li><p>Introduisez quelques erreurs dans la séquence pour vérifier que le décodage fonctionne bien.
@@ -415,7 +418,7 @@ il n’est pas possible pour le récepteur de demander à l’émetteur de trans
 si une erreur a été détectée sans avoir pu être corrigée.</p>
 <ol class="simple">
 <li><p>Simulez la transmission via ce canal (<code class="docutils literal notranslate"><span class="pre">komm.BinarySymmetricChannel</span></code>) d’une séquence binaire aléatoire
-sans codage canal et avec les trois codes précédents.</p></li>
+sans code canal et avec les trois codes précédents.</p></li>
 <li><p>Tracez la probabilité d’erreur par élément du message en fonction de la probabilité d’erreur sur le canal de transmission
 (faites plusieurs simulations avec des messages suffisamment longs).</p></li>
 </ol>

@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codage canal &#8212; Communications numériques</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jbvinc.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/.ipynb_checkpoints/jbvinc-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Références" href="../annexes/references.html" />
+    <link rel="prev" title="Travaux pratiques" href="../codage-canal/tp.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Communications numériques</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Avant-propos
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Généralités
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chaine.html">
+   Chaîne de communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/chiffrement.html">
+   Chiffrement
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/multiplexage.html">
+   Multiplexage
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../g%C3%A9n%C3%A9ralit%C3%A9s/canal.html">
+   Canal de transmission
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Modulation &amp; démodulation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-bb.html">
+   Modulation en bande de base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/mod-porteuse.html">
+   Modulation sur porteuse
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-canal-bruit%C3%A9.html">
+   Démodulation en présence de bruit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/demod-bande-limit%C3%A9e.html">
+   Démodulation sur un canal à bande limitée
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/diagramme-oeil.html">
+   Diagramme de l’œil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modulation/td.html">
+   Excercices
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../modulation/tp.html">
+   Travaux pratiques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage source
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/information.html">
+   Mesure de l’information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/codage.html">
+   Codage d’une source sans mémoire
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-source/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../codage-source/tp.html">
+   Travaux pratiques
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs1.html">
+     Compression d’un texte
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs2.html">
+     Code morse et code de Huffman ternaire
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs3.html">
+     Compression d’une image
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tpcs4.html">
+     Compression d’une image couleur
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Codage canal
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/bloc.html">
+   Codes en bloc
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/cycliques.html">
+   Codes cycliques
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/conv.html">
+   Codes convolutifs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../codage-canal/td.html">
+   Exercices
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../codage-canal/tp.html">
+   Travaux pratiques
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Codage canal
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://moodle.unistra.fr/course/view.php?id=5501">
+   Moodle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/references.html">
+   Références
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../annexes/licence.html">
+   Licence
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
+                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/tp/tpcc.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
+        title="Mode plein écran"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenu
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#codes-encodeur">
+   Codes &amp; encodeur
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-a-parite-5-4">
+     Code à parité (5,4)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-de-hamming-7-4">
+     Code de Hamming (7,4)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-convolutif">
+     Code convolutif
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tests-sur-des-sequences-courtes">
+   Tests sur des séquences courtes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-sur-sequence-longue">
+   Test sur séquence longue
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="codage-canal">
+<h1>Codage canal<a class="headerlink" href="#codage-canal" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="section" id="codes-encodeur">
+<h2>Codes &amp; encodeur<a class="headerlink" href="#codes-encodeur" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="code-a-parite-5-4">
+<h3>Code à parité (5,4)<a class="headerlink" href="#code-a-parite-5-4" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On commence par définir les tailles des blocs du message et du code, ainsi que la matrice génératrice :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">))</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">I</span><span class="p">,</span> <span class="n">P</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;G =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>G =
+[[1. 0. 0. 0. 1.]
+ [0. 1. 0. 0. 1.]
+ [0. 0. 1. 0. 1.]
+ [0. 0. 0. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>On définit alors un objet qui correspond au code à parité (5,4) :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code_parity</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">BlockCode</span><span class="p">(</span><span class="n">generator_matrix</span><span class="o">=</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le résultat de <code class="docutils literal notranslate"><span class="pre">BlockCode</span></code> est un objet, nommé ici <code class="docutils literal notranslate"><span class="pre">code_parity</span></code> qui possède plusieurs méthodes, notamment celle pour coder un bloc de <span class="math notranslate nohighlight">\(k\)</span> bits :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">code</span> <span class="o">=</span> <span class="n">code_parity</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Le message </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2"> est codé </span><span class="si">{</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Le message [0 1 1 0] est codé [0 1 1 0 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pour coder un message plus long, on doit le découper en blocs de <span class="math notranslate nohighlight">\(k\)</span> bits et coder chacun d’eux :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Message de plus de 4 bits</span>
+<span class="n">message</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="c1"># Initialisation du code</span>
+<span class="n">code</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+<span class="c1"># Scanne le message par blocs de k symboles</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    
+    <span class="c1"># Bloc</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">]</span>
+    
+    <span class="c1"># Ajout éventuel de 0 si m contient moins de 4 bits</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+        
+    <span class="c1"># Codage du bloc</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">code_parity</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        
+    <span class="c1"># Ajout du code</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Message : &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Code    : &quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Message :  [0 1 1 0 1 1]
+Code    :  [0 1 1 0 0 1 1 0 0 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le décodage fonctionne de façon similaire, avec la fonction <code class="docutils literal notranslate"><span class="pre">decode</span></code> :</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Le code [0 1 1 0 0] est décodé en [0 1 1 0]
+Le code [0 1 1 0 1] est décodé en [1 1 1 0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-de-hamming-7-4">
+<h3>Code de Hamming (7,4)<a class="headerlink" href="#code-de-hamming-7-4" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On procède de même que pour le code précédent, sauf que cette fois il suffit de donner la valeur de <span class="math notranslate nohighlight">\(m\)</span>, qui est défini en fonction de <span class="math notranslate nohighlight">\(k=4\)</span> et <span class="math notranslate nohighlight">\(n=7\)</span> tel que (se référer à la documentation du module komm) :</p>
+<div class="math notranslate nohighlight">
+\[
+n=2m-1
+\quad\text{et}\quad
+k=2m-m-1.
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">code_hamming</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">HammingCode</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="code-convolutif">
+<h3>Code convolutif<a class="headerlink" href="#code-convolutif" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Là encore, on définit l’objet représentant le code en lui précisant les polynômes générateurs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code_conv</span> <span class="o">=</span> <span class="n">komm</span><span class="o">.</span><span class="n">ConvolutionalCode</span><span class="p">([[</span><span class="mo">0o7</span><span class="p">,</span> <span class="mo">0o5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tests-sur-des-sequences-courtes">
+<h2>Tests sur des séquences courtes<a class="headerlink" href="#tests-sur-des-sequences-courtes" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Message :        [1 1 1 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 1]
+
+Code à parité (5,4)
+Message codé :   [1 1 1 1 0 0 0 1 0 1 0 0 0 0 0 1 0 0 0 1 1 0 0 1 0]
+Message décodé : [1 1 1 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 1]
+
+Code de Hamming (7,4) :
+Message codé :   [1 1 1 1 1 1 1 0 0 1 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 1 1 0 1 0 0 1 0 0 1]
+Message décodé : [1 1 1 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 1]
+
+Code convolutif :
+Message codé :   [1 1 0 1 1 0 1 0 0 1 1 1 1 1 1 0 1 1 0 0 0 0 0 0 1 1 1 0 1 1 0 0 1 1 1 0 1
+ 1 1 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+Message décodé : [1 1 1 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 1]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-sur-sequence-longue">
+<h2>Test sur séquence longue<a class="headerlink" href="#test-sur-sequence-longue" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une p’tite boucle sur plusieurs valeurs de <span class="math notranslate nohighlight">\(\alpha\)</span>, au sein de laquelle une grande séquence binaire est générée, puis codée, transmise sur le canal binaire symétrique et décodée, avant de calculer finalement le pourcentage d’erreur.</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Taille du message (multiple de 4 bits)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="mi">2000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Affichage grossier entre 0 et 50 % :</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/tpcc_28_0.png" src="../_images/tpcc_28_0.png" />
+</div>
+</div>
+<p>Affichage fin entre 0 et 5 % :</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/tpcc_31_0.png" src="../_images/tpcc_31_0.png" />
+</div>
+</div>
+<p>Bien évidemment, quel que soit le codage utilisé, le taux d’erreur augmente avec la probabilité d’erreur sur le canal.
+Néanmoins, l’utilisation d’un codage canal permet de diminuer le taux d’erreur.</p>
+<p>Le <strong>code de Hamming</strong> et le <strong>code convolutif</strong>,
+puisqu’ils sont capables de détecter et de corriger des erreurs, permettent de réduire les erreurs de transmission.</p>
+<p>En revanche, ce n’est pas le cas du <strong>code à parité</strong> qui produit plus d’erreurs que le canal n’en introduit.
+La raison est que le code à parité est capable de détecter des erreurs de transmission, mais pas de les corriger.
+Comme la transmission se fait ici en simplex, le récepteur, même s’il a détecté une erreur,
+n’est pas en mesure de demander à l’émetteur de renvoyer le message transmis.
+Par ailleurs, l’implémentation du décodage de la fonction <code class="docutils literal notranslate"><span class="pre">komm.BlockCode</span></code> peut introduire des erreurs, comme dans l’exemple ci-dessous :</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Message        : [0 1 1 0]
+Message codé   : [0 1 1 0 0]
+Message reçu   : [0 1 1 0 1]  (erreur de transmission sur le bit de parité)
+Message décodé : [1 1 1 0]    (introduction d&#39;une erreur dans le message)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./tp"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../codage-canal/tp.html" title="previous page">Travaux pratiques</a>
+    <a class='right-next' id="next-link" href="../annexes/references.html" title="next page">Références</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Par Vincent Mazet (Université de Strasbourg)<br/>
+        
+            &copy; droits d'auteur 2021-2022.<br/>
+          <div class="extra_footer">
+            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2022 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
