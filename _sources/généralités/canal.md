@@ -4,8 +4,8 @@
 Les canaux étant des dispositifs physiques, le signal qui y circule est toujours analogique,
 même si l'information reste codée par un message numérique. 
 La transmission est souvent perturbée par deux phénomènes qui limitent la quantité de données pouvant être transmises :
-* du bruit, qui peut être électronique (produits par les composants),
-  électromagnétique (dû aux rayons cosmiques) ou des interférences avec d'autres signaux (phénomène de diaphonie) ;
+* du bruit, qui peut être électronique (produit par les composants),
+  électromagnétique (dû aux rayons cosmiques du soleil) ou des interférences avec d'autres signaux (phénomène de diaphonie) ;
 * des distorsions dues aux limitations physiques du canal ou aux imperfections des équipements :
   - atténuation du signal,
   - distorsion d'amplitude et de phase,
@@ -16,7 +16,7 @@ Pour ces raisons, un canal et souvent modélisé, en première approche, par un 
 
 ```{figure} figs/modele-canal.svg
 ---
-width: 50%
+width: 400px
 name: F:modele-canal
 ---
 Modèle simple d'un canal.

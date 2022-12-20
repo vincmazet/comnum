@@ -6,7 +6,7 @@ qui représente la superposition de plusieurs traces du signal reçu $y(t)$.
 ```{dropdown} Animation
 Cette animation illustre le principe de construction d'un diagramme de l'œil.
 
-<div id='eyediag' class='spetsi'></div>
+<div id='eyediag' class='spetsi mathjax_process'></div>
 <script src="https://vincmazet.github.io/spetsi/js/spetsi.js" type="text/javascript"></script>
 <script src="https://vincmazet.github.io/spetsi/js/eyediag.js" type="text/javascript"></script>
 ```

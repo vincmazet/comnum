@@ -21,7 +21,7 @@ On distingue trois familles de méthodes de chiffrement.
   Ils consistent principalement à remplacer les symboles du message suivant une règle assez simple,
   comme par exemple un [décalage des lettres](https://fr.wikipedia.org/wiki/Chiffrement_par_d%C3%A9calage) dans l'alphabet pour les messages texte.
   Citons par exemple le chiffre de César qui remplace chaque lettre d'un texte par la $n$<sup>e</sup> lettre suivante dans l'alphabet.
-  Ainsi, si $n=2$, alors le mot `ECOLE` devient `GEQNG`.
+  Ainsi, si $n=2$, alors le mot « ECOLE » devient « GEQNG ».
   Pour déterminer $n$, on peut tester toutes les possibilités (force brute)
   ou observer les statistiques d'apparition de chaque lettre, sachant qu'en français la lettre « E » est la plus courante.
   

@@ -4,11 +4,13 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Modulation sur porteuse &#8212; Communications numériques</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,53 +20,68 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/jbvinc.css" />
     <link rel="stylesheet" type="text/css" href="../_static/.ipynb_checkpoints/jbvinc-checkpoint.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/translations.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
     <link rel="next" title="Démodulation en présence de bruit" href="demod-canal-bruit%C3%A9.html" />
     <link rel="prev" title="Modulation en bande de base" href="mod-bb.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="fr">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,10 +90,12 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
       
       
       <h1 class="site-logo" id="site-title">Communications numériques</h1>
@@ -84,17 +103,18 @@
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Avant-propos
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Avant-propos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Généralités
  </span>
@@ -126,7 +146,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Modulation &amp; démodulation
  </span>
@@ -167,40 +187,13 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="tp.html">
    Travaux pratiques
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod1.html">
-     Étude de quelques modulations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod2.html">
-     Transmission en bande de base sur un canal idéal
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod4.html">
-     Probabilité d’erreur en fonction du RSB
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod5.html">
-     Transmission en bande de base sur un canal à bande limitée
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Codage source
  </span>
@@ -221,40 +214,13 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="../codage-source/tp.html">
    Travaux pratiques
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs1.html">
-     Compression d’un texte
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs2.html">
-     Code morse et code de Huffman ternaire
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs3.html">
-     Compression d’une image
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs4.html">
-     Compression d’une image couleur
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Codage canal
  </span>
@@ -291,7 +257,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Annexes
  </span>
@@ -315,8 +281,13 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -324,61 +295,117 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
-                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/modulation/mod-porteuse.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/modulation/mod-porteuse.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
-        title="Mode plein écran"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenu
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#formulation">
    Formulation
@@ -406,25 +433,68 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modulation sur porteuse</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulation">
+   Formulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modulation-a-deplacement-d-amplitude">
+   Modulation à déplacement d’amplitude
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modulation-a-deplacement-de-phase">
+   Modulation à déplacement de phase
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modulation-d-amplitude-en-quadrature">
+   Modulation d’amplitude en quadrature
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-de-gray">
+   Code de Gray
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="modulation-sur-porteuse">
-<h1>Modulation sur porteuse<a class="headerlink" href="#modulation-sur-porteuse" title="Lien permanent vers ce titre">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="modulation-sur-porteuse">
+<h1>Modulation sur porteuse<a class="headerlink" href="#modulation-sur-porteuse" title="Lien permanent vers ce titre">#</a></h1>
 <p>Une modulation sur porteuse permet de générer un signal dont la bande passante est presque entièrement incluse
 dans une bande de fréquence éloignée de 0 Hz.
 Dans le cadre de ce cours, nous traiterons uniquement les modulations PAM linéaires.
 Ainsi, la modulation en déplacement de fréquence (<strong>FSK</strong> pour <em>frequency shift keying</em>),
 pour laquelle les symboles sont représentés par des sinusoïdes de fréquence différente,
 n’est pas linéaire et ne sera donc pas abordée.</p>
-<div class="section" id="formulation">
-<h2>Formulation<a class="headerlink" href="#formulation" title="Lien permanent vers ce titre">¶</a></h2>
+<section id="formulation">
+<h2>Formulation<a class="headerlink" href="#formulation" title="Lien permanent vers ce titre">#</a></h2>
 <p>Les modulations PAM linéaires sur porteuse affectent à chaque symbole du message une sinusoïde de fréquence <span class="math notranslate nohighlight">\(f_p\)</span>
 dont l’amplitude <span class="math notranslate nohighlight">\(a_k\)</span> et la phase <span class="math notranslate nohighlight">\(\varphi_k\)</span> dépendent du symbole <span class="math notranslate nohighlight">\(k\)</span> :</p>
 <div class="math notranslate nohighlight">
@@ -447,14 +517,14 @@ par des porteuses sinusoïdales de même fréquence <span class="math notranslat
 x(t) = \underbrace{ \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \cos(2\pi f_p t) }_{ \text{Composante en phase} }
      - \underbrace{ \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(2\pi f_p t) }_{ \text{Composante en quadrature} }.
 \]</div>
-<details class="sphinx-bs dropdown card mb-3">
-<summary class="summary-title card-header">
-Démonstration<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<p class="card-text">En notant l’amplitude complexe sous la forme cartésienne <span class="math notranslate nohighlight">\(A_k = \alpha_k + j\beta_k\)</span>, le signal complexe s’écrit :</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Démonstration<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">En notant l’amplitude complexe sous la forme cartésienne <span class="math notranslate nohighlight">\(A_k = \alpha_k + j\beta_k\)</span>, le signal complexe s’écrit :</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \bar{x}(t) &amp;= \sum_{k=-\infty}^{+\infty} (\alpha_k + j\beta_k) h(t-kd) \exp(j2\pi f_p t) \\
@@ -462,7 +532,7 @@ Démonstration<div class="summary-down docutils">
            &amp;= \sum_{k=-\infty}^{+\infty}     \alpha_k h(t-kd) \cos(2\pi f_p t) - \beta_k h(t-kd) \sin(2\pi f_p t) \\
            &amp;\;  + j \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \sin(2\pi f_p t) + \beta_k h(t-kd) \cos(2\pi f_p t) \\
 \end{split}\]</div>
-<p class="card-text">Le signal <span class="math notranslate nohighlight">\(x(t)\)</span> est la partie réelle de <span class="math notranslate nohighlight">\(\bar{x}(t)\)</span> et vaut bien :</p>
+<p class="sd-card-text">Le signal <span class="math notranslate nohighlight">\(x(t)\)</span> est la partie réelle de <span class="math notranslate nohighlight">\(\bar{x}(t)\)</span> et vaut bien :</p>
 <div class="math notranslate nohighlight">
 \[
 x(t) = \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \cos(2\pi f_p t) - \beta_k h(t-kd) \sin(2\pi f_p t).
@@ -534,9 +604,9 @@ En d’autres termes, plus l’espace occupé par la constellation est important
 plus l’énergie nécessaire pour générer le signal modulé est importante.</p>
 </li>
 </ul>
-</div>
-<div class="section" id="modulation-a-deplacement-d-amplitude">
-<h2>Modulation à déplacement d’amplitude<a class="headerlink" href="#modulation-a-deplacement-d-amplitude" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="modulation-a-deplacement-d-amplitude">
+<h2>Modulation à déplacement d’amplitude<a class="headerlink" href="#modulation-a-deplacement-d-amplitude" title="Lien permanent vers ce titre">#</a></h2>
 <p>Dans une modulation à déplacement d’amplitude (<strong>ASK</strong> pour <em>amplitude shift keying</em>),
 tous les symboles sont associés à une sinusoïde de même phase.</p>
 <p>Ainsi, si <span class="math notranslate nohighlight">\(\alpha_k\)</span> varie et <span class="math notranslate nohighlight">\(\beta_k=0\)</span>, alors chaque symbole est codé par un cosinus.
@@ -551,24 +621,24 @@ On parle alors de modulation 4-ASK.</p>
 <p>Le signal associé au message <code>013302</code> est donc :</p>
 <a class="reference internal image-reference" href="../_images/signal-4ask.svg"><img alt="../_images/signal-4ask.svg" class="align-center" src="../_images/signal-4ask.svg" width="600px" /></a>
 </div>
-</div>
-<div class="section" id="modulation-a-deplacement-de-phase">
-<h2>Modulation à déplacement de phase<a class="headerlink" href="#modulation-a-deplacement-de-phase" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="modulation-a-deplacement-de-phase">
+<h2>Modulation à déplacement de phase<a class="headerlink" href="#modulation-a-deplacement-de-phase" title="Lien permanent vers ce titre">#</a></h2>
 <p>Dans une modulation à déplacement de phase (<strong>PSK</strong> pour <em>phase shift keying</em>),
 tous les symboles sont associés à une sinusoïde de même ampliltude, mais de phase différente.</p>
 <p>Tous les points d’une constellation PSK sont répartis sur un cercle de centre l’origine.
 On peut le vérifier en utilisant la trigonométrie,
-mais aussi parce que l’amplitude complexe <span class="math notranslate nohighlight">\(A_k\)</span> peut s’écrire sous la forme <span class="math notranslate nohighlight">\(\rho e^{j\theta}\)</span>
-où <span class="math notranslate nohighlight">\(\rho\)</span> est constant et <span class="math notranslate nohighlight">\(\theta\)</span> varie.</p>
+mais aussi parce que l’amplitude complexe <span class="math notranslate nohighlight">\(A_k\)</span> peut s’écrire sous la forme <span class="math notranslate nohighlight">\(a_k e^{j\varphi_k}\)</span>
+où <span class="math notranslate nohighlight">\(a_k\)</span> est constant et <span class="math notranslate nohighlight">\(\varphi_k\)</span> varie.</p>
 <div class="exemple docutils">
 <p>Un exemple de modulation 4-PSK est représentée ci-dessous.</p>
 <a class="reference internal image-reference" href="../_images/code-4psk.svg"><img alt="../_images/code-4psk.svg" class="align-center" src="../_images/code-4psk.svg" width="300px" /></a>
 <p>Le signal associé au message <code>013302</code> est donc :</p>
 <a class="reference internal image-reference" href="../_images/signal-4psk.svg"><img alt="../_images/signal-4psk.svg" class="align-center" src="../_images/signal-4psk.svg" width="600px" /></a>
 </div>
-</div>
-<div class="section" id="modulation-d-amplitude-en-quadrature">
-<h2>Modulation d’amplitude en quadrature<a class="headerlink" href="#modulation-d-amplitude-en-quadrature" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="modulation-d-amplitude-en-quadrature">
+<h2>Modulation d’amplitude en quadrature<a class="headerlink" href="#modulation-d-amplitude-en-quadrature" title="Lien permanent vers ce titre">#</a></h2>
 <p>Lorsque le nombre de symboles <span class="math notranslate nohighlight">\(M\)</span> devient grand, les modulations ASK et PSK ne sont plus satisfaisantes
 pour utiliser efficacement l’énergie émise : elles occupent un espace trop important.
 En effet, si les points sont éloignés les uns des autres, alors l’énergie nécessaire pour fabriquer le signal augmente.
@@ -579,12 +649,14 @@ On ne peut donc plus se retreindre à organiser les points sur une ligne (comme 
 ou un cercle (comme la modulation PSK).</p>
 <p>La modulation d’amplitude en quadrature (<strong>QAM</strong> pour <em>quadrature amplitude modulation</em>) répond de façon simple à cette question.
 La <a class="reference internal" href="#f-qam"><span class="std std-numref">Fig. 8</span></a> donne quelques exemples de modulation QAM.</p>
-<div class="figure align-default" id="f-qam">
-<img alt="../_images/code-qam.svg" src="../_images/code-qam.svg" /><p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Exemples de modulations QAM.</span><a class="headerlink" href="#f-qam" title="Lien permanent vers cette image">¶</a></p>
-</div>
-</div>
-<div class="section" id="code-de-gray">
-<h2>Code de Gray<a class="headerlink" href="#code-de-gray" title="Lien permanent vers ce titre">¶</a></h2>
+<figure class="align-default" id="f-qam">
+<img alt="../_images/code-qam.svg" src="../_images/code-qam.svg" /><figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Exemples de modulations QAM.</span><a class="headerlink" href="#f-qam" title="Lien permanent vers cette image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="code-de-gray">
+<h2>Code de Gray<a class="headerlink" href="#code-de-gray" title="Lien permanent vers ce titre">#</a></h2>
 <p>Le code de Gray est un code binaire où seul un bit change d’un nombre à l’autre, par exemple :</p>
 <table class="colwidths-auto table">
 <thead>
@@ -631,20 +703,22 @@ La <a class="reference internal" href="#f-qam"><span class="std std-numref">Fig.
 <p>L’utilisation d’un code de Gray pour numéroter les symboles des constellations permet de limiter les erreurs de transmission.
 En effet, les perturbations du canal peuvent produire à la réception des erreurs sur l’amplitude et la phase du signal reçu,
 comme l’illustre la <a class="reference internal" href="#f-constellation-reception"><span class="std std-numref">Fig. 9</span></a>.</p>
-<div class="figure align-default" id="f-constellation-reception">
+<figure class="align-default" id="f-constellation-reception">
 <a class="reference internal image-reference" href="../_images/constellation-reception.svg"><img alt="../_images/constellation-reception.svg" src="../_images/constellation-reception.svg" width="600px" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Constellations 8-PSK des messages émis (à gauche) et reçus (à droite).
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Constellations 8-PSK des messages émis (à gauche) et reçus (à droite).
 Les symboles sont numérotés selon un code binaire classique (en bleu) ou de Gray (en vert).
-Quel est le symbole associé au point rouge ?</span><a class="headerlink" href="#f-constellation-reception" title="Lien permanent vers cette image">¶</a></p>
-</div>
+Quel est le symbole associé au point rouge ?</span><a class="headerlink" href="#f-constellation-reception" title="Lien permanent vers cette image">#</a></p>
+</figcaption>
+</figure>
 <p>Dans l’exemple de la <a class="reference internal" href="#f-constellation-reception"><span class="std std-numref">Fig. 9</span></a>, et en considérant un code binaire classique,
 le point rouge peut être soit <span class="math notranslate nohighlight">\(111\)</span>, soit <span class="math notranslate nohighlight">\(000\)</span> ce qui potentiellement aboutit à trois bits erronés !
 En revanche, avec un code de Gray, le point rouge est soit <span class="math notranslate nohighlight">\(100\)</span>, soit <span class="math notranslate nohighlight">\(000\)</span> ce qui réduit le nombre d’erreur à 1…</p>
 <p><a class="exercise btn btn-light" href="td.html#exercice-3" role="button">3</a>
 <a class="exercise btn btn-light" href="td.html#exercice-4" role="button">4</a>
 <a class="exercise btn btn-light" href="td.html#exercice-5" role="button">5</a></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -668,37 +742,51 @@ En revanche, avec un code de Gray, le point rouge est soit <span class="math not
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="mod-bb.html" title="previous page">Modulation en bande de base</a>
-    <a class='right-next' id="next-link" href="demod-canal-bruit%C3%A9.html" title="next page">Démodulation en présence de bruit</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="mod-bb.html" title="précédent page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">précédent</p>
+            <p class="prev-next-title">Modulation en bande de base</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="demod-canal-bruit%C3%A9.html" title="suivant page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Démodulation en présence de bruit</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          Par Vincent Mazet (Université de Strasbourg)<br/>
-        
-            &copy; droits d'auteur 2021-2022.<br/>
-          <div class="extra_footer">
-            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2022 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
-          </div>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Vincent Mazet (Université de Strasbourg)<br/>
+  
+      &copy; Copyright 2022-2023.<br/>
+    <div class="extra_footer">
+      Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2020-2023 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

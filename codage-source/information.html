@@ -4,11 +4,13 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Mesure de l’information &#8212; Communications numériques</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,53 +20,68 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/jbvinc.css" />
     <link rel="stylesheet" type="text/css" href="../_static/.ipynb_checkpoints/jbvinc-checkpoint.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/translations.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
     <link rel="next" title="Codage d’une source sans mémoire" href="codage.html" />
-    <link rel="prev" title="Transmission en bande de base sur un canal à bande limitée" href="../tp/tpmod5.html" />
+    <link rel="prev" title="Travaux pratiques" href="../modulation/tp.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="fr">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,10 +90,12 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
       
       
       <h1 class="site-logo" id="site-title">Communications numériques</h1>
@@ -84,17 +103,18 @@
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Rechercher dans ce livre ..." aria-label="Rechercher dans ce livre ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
-   Avant-propos
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Avant-propos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Généralités
  </span>
@@ -126,7 +146,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Modulation &amp; démodulation
  </span>
@@ -167,40 +187,13 @@
    Excercices
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod1.html">
-     Étude de quelques modulations
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod2.html">
-     Transmission en bande de base sur un canal idéal
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod4.html">
-     Probabilité d’erreur en fonction du RSB
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpmod5.html">
-     Transmission en bande de base sur un canal à bande limitée
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Codage source
  </span>
@@ -221,40 +214,13 @@
    Exercices
   </a>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="tp.html">
    Travaux pratiques
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs1.html">
-     Compression d’un texte
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs2.html">
-     Code morse et code de Huffman ternaire
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs3.html">
-     Compression d’une image
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../tp/tpcs4.html">
-     Compression d’une image couleur
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Codage canal
  </span>
@@ -291,7 +257,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Annexes
  </span>
@@ -315,8 +281,13 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -324,61 +295,117 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Basculer la navigation" aria-controls="site-navigation"
-                title="Basculer la navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Téléchargez cette page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/codage-source/information.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Télécharger le fichier source" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Imprimer au format PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/codage-source/information.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Mode plein écran"
-        title="Mode plein écran"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenu
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#qu-est-ce-que-l-information">
    Qu’est-ce que l’information ?
@@ -426,21 +453,84 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Mesure de l’information</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qu-est-ce-que-l-information">
+   Qu’est-ce que l’information ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caractere-aleatoire-du-message">
+   Caractère aléatoire du message
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#auto-information">
+   Auto-information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#entropie">
+   Entropie
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debit-source">
+   Débit source
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taux-d-emission">
+   Taux d’émission
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debit-canal">
+   Débit canal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#capacite-canal">
+   Capacité canal
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theoreme-du-codage-canal">
+   Théorème du codage canal
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="mesure-de-l-information">
-<span id="p-codage-source-information"></span><h1>Mesure de l’information<a class="headerlink" href="#mesure-de-l-information" title="Lien permanent vers ce titre">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mesure-de-l-information">
+<span id="p-codage-source-information"></span><h1>Mesure de l’information<a class="headerlink" href="#mesure-de-l-information" title="Lien permanent vers ce titre">#</a></h1>
 <p>Le codage source convertit un message numérique en une séquence de symboles.
 Très souvent, on souhaite que cette séquence soit la plus petite possible : le code source peut alors effectuer une compression du message.</p>
-<div class="section" id="qu-est-ce-que-l-information">
-<h2>Qu’est-ce que l’information ?<a class="headerlink" href="#qu-est-ce-que-l-information" title="Lien permanent vers ce titre">¶</a></h2>
+<section id="qu-est-ce-que-l-information">
+<h2>Qu’est-ce que l’information ?<a class="headerlink" href="#qu-est-ce-que-l-information" title="Lien permanent vers ce titre">#</a></h2>
 <p>Pour être sûr que l’information que porte le message initial soit bien transcrite dans la séquence de symboles obtenue après le codage source,
 il faut d’abord définir et savoir mesurer l’information contenue dans un message.
 Claude Shannon a répondu à ces questions dans ces travaux à la fin des années 1940,
@@ -453,63 +543,64 @@ De même, un émetteur binaire qui serait conçu pour n’envoyer que des bits �
 <p>Ainsi, la quantité d’information portée par un message est liée à l’utilité de transmettre le message plutôt qu’à sa signification.
 Dit autrement, l’information (au sens de Shannon) ne tient pas compte du contenu sémantique du message,
 mais du caractère inattendu de celui-ci.</p>
-</div>
-<div class="section" id="caractere-aleatoire-du-message">
-<h2>Caractère aléatoire du message<a class="headerlink" href="#caractere-aleatoire-du-message" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="caractere-aleatoire-du-message">
+<h2>Caractère aléatoire du message<a class="headerlink" href="#caractere-aleatoire-du-message" title="Lien permanent vers ce titre">#</a></h2>
 <!-- attention notation : remplacer x qui est le signal émis ! Par m ou s ? -->
-<!-- attention notation : remplacer K par N ? -->
-<p>On appelle <span class="math notranslate nohighlight">\(X\)</span> une source et <span class="math notranslate nohighlight">\(\{x_1, x_2,\dots,x_M\}\)</span> son alphabet où chaque <span class="math notranslate nohighlight">\(x_m\)</span> est un symbole.
-Le modèle mathématique d’une source <span class="math notranslate nohighlight">\(X\)</span> tel que proposé par Shannon considère que la source produit un message aléatoire.
-Donc, chaque symbole <span class="math notranslate nohighlight">\(x_m\)</span> a une probabilité <span class="math notranslate nohighlight">\(p_m\)</span> d’être émis.
-Cela signifie que pour un message contenant <span class="math notranslate nohighlight">\(K\)</span> symboles, il y aura statistiquement <span class="math notranslate nohighlight">\(K \times p_m\)</span> occurrences du symbole <span class="math notranslate nohighlight">\(x_m\)</span>.</p>
-</div>
-<div class="section" id="auto-information">
-<h2>Auto-information<a class="headerlink" href="#auto-information" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On appelle <span class="math notranslate nohighlight">\(S\)</span> une source et <span class="math notranslate nohighlight">\(\{s_1, s_2,\dots,s_M\}\)</span> son alphabet où chaque <span class="math notranslate nohighlight">\(s_m\)</span> est un symbole.
+Le modèle mathématique d’une source <span class="math notranslate nohighlight">\(S\)</span> tel que proposé par Shannon considère que la source produit un message aléatoire.
+Donc, chaque symbole <span class="math notranslate nohighlight">\(s_m\)</span> a une probabilité <span class="math notranslate nohighlight">\(p_m\)</span> d’être émis.
+Cela signifie que pour un message contenant <span class="math notranslate nohighlight">\(N\)</span> symboles, il y aura statistiquement <span class="math notranslate nohighlight">\(N \times p_m\)</span> occurrences du symbole <span class="math notranslate nohighlight">\(s_m\)</span>.</p>
+</section>
+<section id="auto-information">
+<h2>Auto-information<a class="headerlink" href="#auto-information" title="Lien permanent vers ce titre">#</a></h2>
 <p>L”<strong>auto-information</strong> (<em>self information</em>), parfois appelée information propre,
-correspond à l’information <span class="math notranslate nohighlight">\(I(x_m)\)</span> associée au symbole <span class="math notranslate nohighlight">\(x_m\)</span>.
+correspond à l’information <span class="math notranslate nohighlight">\(I(s_m)\)</span> associée au symbole <span class="math notranslate nohighlight">\(s_m\)</span>.
 En suivant le principe évoqué ci-avant, l’auto-information devrait donc respecter les deux règles suivantes :</p>
 <ul class="simple">
-<li><p>l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> est nulle si <span class="math notranslate nohighlight">\(p_m=1\)</span>.
-En effet, on est dans ce cas en présence d’une source déterministe qui n’émet que le symbole <span class="math notranslate nohighlight">\(x_m\)</span>.
+<li><p>l’auto-information <span class="math notranslate nohighlight">\(I(s_m)\)</span> est nulle si <span class="math notranslate nohighlight">\(p_m=1\)</span>.
+En effet, on est dans ce cas en présence d’une source déterministe qui n’émet que le symbole <span class="math notranslate nohighlight">\(s_m\)</span>.
 Comme on l’a vu précédemment, ce message n’a pas besoin d’être envoyé : il ne contient pas d’information.</p></li>
-<li><p>À l’inverse, l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> tend vers l’infini si <span class="math notranslate nohighlight">\(p_m\)</span> tend vers zéro,
+<li><p>À l’inverse, l’auto-information <span class="math notranslate nohighlight">\(I(s_m)\)</span> tend vers l’infini si <span class="math notranslate nohighlight">\(p_m\)</span> tend vers zéro,
 car plus un symbole est rare, plus il est inattendu et donc porte beaucoup d’information.</p></li>
 </ul>
-<p>Par ailleurs, il serait logique que l’information portée par un message constitué des deux symboles <span class="math notranslate nohighlight">\(x_m\)</span> et <span class="math notranslate nohighlight">\(x_n\)</span>
-soit la somme des auto-informations des deux symboles : <span class="math notranslate nohighlight">\(I(x_mx_n) = I(x_m) + I(x_n)\)</span>.</p>
-<p>Ainsi, la définition retenue pour l’auto-information <span class="math notranslate nohighlight">\(I(x_m)\)</span> est :</p>
+<p>Par ailleurs, il serait logique que l’information portée par un message constitué des deux symboles <span class="math notranslate nohighlight">\(s_m\)</span> et <span class="math notranslate nohighlight">\(s_n\)</span>
+soit la somme des auto-informations des deux symboles : <span class="math notranslate nohighlight">\(I(s_ms_n) = I(s_m) + I(s_n)\)</span>.</p>
+<p>Ainsi, la définition retenue pour l’auto-information <span class="math notranslate nohighlight">\(I(s_m)\)</span> est :</p>
 <div class="math notranslate nohighlight">
 \[
-I(x_m) = - \log_2(p_m)
+I(s_m) = - \log_2(p_m)
 \]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>On rappelle que :</p>
 <div class="math notranslate nohighlight">
 \[
 \log_2 x = \frac{\log x}{\log 2} = \frac{\ln x}{\ln 2}.
 \]</div>
-</div>
+</aside>
 <p>où <span class="math notranslate nohighlight">\(\log_2\)</span> est le logarithme à base 2 ; l’utilisation d’un logarithme fait que l’information portée deux symboles
-est la somme des auto-informations des symboles (en supposant les symboles indépendants : <span class="math notranslate nohighlight">\(p(x_m,x_n)=p(x_m)p(x_n)\)</span>).
+est la somme des auto-informations des symboles (en supposant les symboles indépendants : <span class="math notranslate nohighlight">\(p(s_m,s_n)=p(s_m)p(s_n)\)</span>).
 L’auto-information s’exprime en shannon (abbréviation : Sh),
 et sa représentation graphique est donnée <a class="reference internal" href="#f-auto-information"><span class="std std-numref">Fig. 15</span></a> :
 c’est bien une courbe qui décroit avec la probabilité d’apparition du symbole.</p>
-<div class="figure align-default" id="f-auto-information">
-<img alt="../_images/auto-information.svg" src="../_images/auto-information.svg" /><p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Auto-information.</span><a class="headerlink" href="#f-auto-information" title="Lien permanent vers cette image">¶</a></p>
-</div>
+<figure class="align-default" id="f-auto-information">
+<img alt="../_images/auto-information.svg" src="../_images/auto-information.svg" /><figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Auto-information.</span><a class="headerlink" href="#f-auto-information" title="Lien permanent vers cette image">#</a></p>
+</figcaption>
+</figure>
 <p><a class="exercise btn btn-light" href="td.html#exercice-1" role="button">1</a></p>
-</div>
-<div class="section" id="entropie">
-<h2>Entropie<a class="headerlink" href="#entropie" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="entropie">
+<h2>Entropie<a class="headerlink" href="#entropie" title="Lien permanent vers ce titre">#</a></h2>
 <p>L”<strong>entropie</strong> (<em>entropy</em>) d’une source <span class="math notranslate nohighlight">\(X\)</span> est la moyenne des auto-informations de chaque symbole
 pondérées par leur probabilité :</p>
 <div class="math notranslate nohighlight">
 \[
-H(X) = \sum_{m=1}^M p_m I(x_m) = - \sum_{m=1}^M p_m \log_2 p_m.
+H(X) = \sum_{m=1}^M p_m I(s_m) = - \sum_{m=1}^M p_m \log_2 p_m.
 \]</div>
 <p>L’entropie s’exprime en shannon par symbole (Sh/symb).</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Il paraît que le terme « entropie » a été choisi par Shannon alors qu’il demandait à von Neumann comment l’appeler.
 Celui-ci aurait répondu :
@@ -518,7 +609,7 @@ D’abord parce que c’est la même formule qu’en mécanique statistique,
 mais aussi parce que personne ne sait ce qu’est l’entropie,
 dont dans une discussion tu auras toujours l’avantage ! »
 (voir par exemple <a class="reference external" href="http://www.spatialcomplexity.info/what-von-neumann-said-to-shannon">ici</a>).</p>
-</div>
+</aside>
 <!-- Proakis, problème 3-5 -->
 <p>On peut montrer que l’entropie est bornée :</p>
 <div class="math notranslate nohighlight">
@@ -532,28 +623,30 @@ Ainsi, l’entropie d’une source est maximale lorsque ces symboles sont équip
 <p>Une source binaire émet le symbole <code>0</code> avec une probabilité <span class="math notranslate nohighlight">\(\alpha\)</span> et le symbole <code>1</code> avec une probabilité <span class="math notranslate nohighlight">\(1-\alpha\)</span>.
 L’entropie de cette source a donc pour expression <span class="math notranslate nohighlight">\(H(X) = - \alpha \log_2 \alpha - (1-\alpha) \log_2 (1-\alpha)\)</span>
 et elle est représentée <a class="reference internal" href="#f-entropie"><span class="std std-numref">Fig. 16</span></a>.</p>
-<div class="figure align-default" id="f-entropie">
-<img alt="../_images/entropie.svg" src="../_images/entropie.svg" /><p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Entropie d’une source binaire en fonction de la probabilité d’un des symboles.</span><a class="headerlink" href="#f-entropie" title="Lien permanent vers cette image">¶</a></p>
-</div>
+<figure class="align-default" id="f-entropie">
+<img alt="../_images/entropie.svg" src="../_images/entropie.svg" /><figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Entropie d’une source binaire en fonction de la probabilité d’un des symboles.</span><a class="headerlink" href="#f-entropie" title="Lien permanent vers cette image">#</a></p>
+</figcaption>
+</figure>
 </div>
 <p><a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a></p>
-</div>
-<div class="section" id="debit-source">
-<h2>Débit source<a class="headerlink" href="#debit-source" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="debit-source">
+<h2>Débit source<a class="headerlink" href="#debit-source" title="Lien permanent vers ce titre">#</a></h2>
 <p>Le <strong>débit source</strong>, noté <span class="math notranslate nohighlight">\(D_S\)</span>, est le nombre de symboles émis par la source en une seconde ;
 il s’exprime donc en symb/s.</p>
-</div>
-<div class="section" id="taux-d-emission">
-<h2>Taux d’émission<a class="headerlink" href="#taux-d-emission" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="taux-d-emission">
+<h2>Taux d’émission<a class="headerlink" href="#taux-d-emission" title="Lien permanent vers ce titre">#</a></h2>
 <p>Considérons une source <span class="math notranslate nohighlight">\(X\)</span>, d’entropie <span class="math notranslate nohighlight">\(H(X)\)</span> et de débit source <span class="math notranslate nohighlight">\(D_S\)</span>.
 La quantité d’information produite par cette source est appelée le <strong>taux d’émission</strong> <span class="math notranslate nohighlight">\(T_S\)</span> et s’exprime en Sh/s :</p>
 <div class="math notranslate nohighlight">
 \[
 T_S = D_S \times H(X).
 \]</div>
-</div>
-<div class="section" id="debit-canal">
-<h2>Débit canal<a class="headerlink" href="#debit-canal" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="debit-canal">
+<h2>Débit canal<a class="headerlink" href="#debit-canal" title="Lien permanent vers ce titre">#</a></h2>
 <p>Les symboles du message ne sont généralement pas identiques aux symboles qui transitent par le canal.
 Par exemple, un message textuel, dont l’alphabet est constitué de plusieurs dizaines de symboles,
 peut être transmis sur un câble électrique en Morse dont l’alphabet est constitué des trois symboles (trait, point et silence).
@@ -563,9 +656,9 @@ Le débit canal est équivalent à la rapidité de modulation exprimée en bauds
 <p>Le débit canal est donc similaire au débit source mais peut avoir une valeur différente.
 D’ailleurs, les unités des débit source et débit canal sont différentes car elles s’expriment respectivement
 en symboles <em>de la source</em> par seconde et en symboles <em>du canal</em> par seconde.</p>
-</div>
-<div class="section" id="capacite-canal">
-<h2>Capacité canal<a class="headerlink" href="#capacite-canal" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="capacite-canal">
+<h2>Capacité canal<a class="headerlink" href="#capacite-canal" title="Lien permanent vers ce titre">#</a></h2>
 <p>En notant <span class="math notranslate nohighlight">\(N\)</span> la taille de l’alphabet du canal et <span class="math notranslate nohighlight">\(D_C\)</span> le débit canal,
 on définit la <strong>capacité canal</strong> qui s’exprime en Sh/s par :</p>
 <div class="math notranslate nohighlight">
@@ -573,9 +666,9 @@ on définit la <strong>capacité canal</strong> qui s’exprime en Sh/s par :</p
 C_C = D_C \times \log_2(N).
 \]</div>
 <p>La capacité canal correspond à la quantité d’information que peut transmettre le canal en une seconde.</p>
-</div>
-<div class="section" id="theoreme-du-codage-canal">
-<h2>Théorème du codage canal<a class="headerlink" href="#theoreme-du-codage-canal" title="Lien permanent vers ce titre">¶</a></h2>
+</section>
+<section id="theoreme-du-codage-canal">
+<h2>Théorème du codage canal<a class="headerlink" href="#theoreme-du-codage-canal" title="Lien permanent vers ce titre">#</a></h2>
 <p>Le théorème du codage canal porte également les noms de second théorème de Shannon ou <em>noisy channel coding theorem</em>.
 Il est lié à la transmission de l’information et dit que :</p>
 <blockquote>
@@ -583,8 +676,8 @@ Il est lié à la transmission de l’information et dit que :</p>
 </div></blockquote>
 <p>Autrement dit, si <span class="math notranslate nohighlight">\(T_S &gt; C_C\)</span>, alors l’acheminement de la totalité de l’information émise par la source au travers du canal est impossible sans erreur.</p>
 <p><a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -608,37 +701,51 @@ Il est lié à la transmission de l’information et dit que :</p>
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../tp/tpmod5.html" title="previous page">Transmission en bande de base sur un canal à bande limitée</a>
-    <a class='right-next' id="next-link" href="codage.html" title="next page">Codage d’une source sans mémoire</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../modulation/tp.html" title="précédent page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">précédent</p>
+            <p class="prev-next-title">Travaux pratiques</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="codage.html" title="suivant page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Codage d’une source sans mémoire</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          Par Vincent Mazet (Université de Strasbourg)<br/>
-        
-            &copy; droits d'auteur 2021-2022.<br/>
-          <div class="extra_footer">
-            Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2022 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
-          </div>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Vincent Mazet (Université de Strasbourg)<br/>
+  
+      &copy; Copyright 2022-2023.<br/>
+    <div class="extra_footer">
+      Communications numériques &mdash; Vincent Mazet (Université de Strasbourg), 2020-2023 &mdash; <a href='annexes/licence.html'>CC BY-NC 4.0</a>.
     </div>
-  </footer>
-</main>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

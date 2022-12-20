@@ -32,7 +32,7 @@ Schématiquement, la démodulation est représentée {numref}`F:demodulation-bru
 ```{figure} figs/demodulation-bruit-bb.svg
 ---
 name: F:demodulation-bruit-bb
-width: 60%
+width: 500px
 ---
 Démodulation d'un signal en bande de base avec un canal idéal.
 ```
@@ -55,15 +55,15 @@ $$
 w(t) &= y(t) \cos(2\pi f_p t) \\
      &= \left[
           \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \cos(2\pi f_p t)
-        + \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(2\pi f_p t)
+        - \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(2\pi f_p t)
         + b(t)
        \right] \cos(2\pi f_p t) \\
-     &=    \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \frac{1}{2} \left(1+\cos(4\pi f_p t)\right)
-        + \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \frac{1}{2} \sin(4\pi f_p t)
+     &=   \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \frac{1}{2} \left(1+\cos(4\pi f_p t)\right)
+        - \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \frac{1}{2} \sin(4\pi f_p t)
         + b(t) \cos(2\pi f_p t) \\
      &=   \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) }_{\text{basse fréquence}}
         + \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \alpha_k h(t-kd) \cos(4\pi f_p t) }_{\text{haute fréquence}}
-        + \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(4\pi f_p t) }_{\text{haute fréquence}}
+        - \underbrace{ \frac{1}{2} \sum_{k=-\infty}^{+\infty} \beta_k  h(t-kd) \sin(4\pi f_p t) }_{\text{haute fréquence}}
         + \underbrace{ b(t) \cos(2\pi f_p t) }_{\text{bruit}}
 $$
 ```

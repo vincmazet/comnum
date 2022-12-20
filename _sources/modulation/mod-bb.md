@@ -19,10 +19,11 @@ c'est-à-dire que pour chaque symbole de l'alphabet correspond une amplitude par
 
 Le code NRZ (non retour à zéro) bipolaire est défini par la table de correspondance et la forme d'onde ci-dessous :
 
-````{panels}
 
-Forme d'onde
-^^^
+::::{grid} 1 1 1 2
+:gutter: 3
+
+:::{grid-item-card} Forme d'onde
 $$
 h(t) =
 \begin{cases}
@@ -35,27 +36,26 @@ $$
 :width: 70%
 :align: center
 ```
+:::
 
----
-
-Amplitudes
-^^^
+:::{grid-item-card} Amplitudes
 | $m_k$ | $\alpha_k$ |
 | ----- | ---------- |
 | $0$   | $-1$       |
 | $1$   | $+1$       |
+:::
 
-````
+::::
 
 
 ## Code Manchester
 
 Le code Manchester est utilisé pour le protocole Ethernet.
 
-````{panels}
+::::{grid} 1 1 1 2
+:gutter: 3
 
-Forme d'onde
-^^^
+:::{grid-item-card} Forme d'onde
 $$
 h(t) =
 \begin{cases}
@@ -69,27 +69,26 @@ $$
 :width: 70%
 :align: center
 ```
+:::
 
----
-
-Amplitudes
-^^^
+:::{grid-item-card} Amplitudes
 | $m_k$ | $\alpha_k$ |
 | ----- | ---------- |
 | $0$   | $-1$       |
 | $1$   | $+1$       |
+:::
 
-````
+::::
 
 
 ## Code AMI
 
 Le code AMI (_alternate mark inversion_) a été utilisé dans certaines communications téléphoniques.
 
-````{panels}
+::::{grid} 1 1 1 2
+:gutter: 3
 
-Forme d'onde
-^^^
+:::{grid-item-card} Forme d'onde
 $$
 h(t) =
 \begin{cases}
@@ -102,16 +101,15 @@ $$
 :width: 70%
 :align: center
 ```
+:::
 
----
-
-Amplitudes
-^^^
+:::{grid-item-card} Amplitudes
 | $m_k$ | $\alpha_k$ |
 | ----- | ---------- |
 | $0$   | $0$        |
 | $1$   | $\pm1$ alternativement |
+:::
 
-````
+::::
 
 <a class="exercise btn btn-light" href="td.html#exercice-2" role="button">2</a>

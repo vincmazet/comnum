@@ -27,34 +27,33 @@ mais du caractère inattendu de celui-ci.
 ## Caractère aléatoire du message
 
 <!-- attention notation : remplacer x qui est le signal émis ! Par m ou s ? -->
-<!-- attention notation : remplacer K par N ? -->
 
-On appelle $X$ une source et $\{x_1, x_2,\dots,x_M\}$ son alphabet où chaque $x_m$ est un symbole.
-Le modèle mathématique d'une source $X$ tel que proposé par Shannon considère que la source produit un message aléatoire.
-Donc, chaque symbole $x_m$ a une probabilité $p_m$ d'être émis.
-Cela signifie que pour un message contenant $K$ symboles, il y aura statistiquement $K \times p_m$ occurrences du symbole $x_m$.
+On appelle $S$ une source et $\{s_1, s_2,\dots,s_M\}$ son alphabet où chaque $s_m$ est un symbole.
+Le modèle mathématique d'une source $S$ tel que proposé par Shannon considère que la source produit un message aléatoire.
+Donc, chaque symbole $s_m$ a une probabilité $p_m$ d'être émis.
+Cela signifie que pour un message contenant $N$ symboles, il y aura statistiquement $N \times p_m$ occurrences du symbole $s_m$.
 
 
 ## Auto-information
 
 L'**auto-information** (_self information_), parfois appelée information propre,
-correspond à l'information $I(x_m)$ associée au symbole $x_m$.
+correspond à l'information $I(s_m)$ associée au symbole $s_m$.
 En suivant le principe évoqué ci-avant, l'auto-information devrait donc respecter les deux règles suivantes :
 
-* l'auto-information $I(x_m)$ est nulle si $p_m=1$.
-  En effet, on est dans ce cas en présence d'une source déterministe qui n'émet que le symbole $x_m$.
+* l'auto-information $I(s_m)$ est nulle si $p_m=1$.
+  En effet, on est dans ce cas en présence d'une source déterministe qui n'émet que le symbole $s_m$.
   Comme on l'a vu précédemment, ce message n'a pas besoin d'être envoyé : il ne contient pas d'information.
   
-* À l'inverse, l'auto-information $I(x_m)$ tend vers l'infini si $p_m$ tend vers zéro,
+* À l'inverse, l'auto-information $I(s_m)$ tend vers l'infini si $p_m$ tend vers zéro,
   car plus un symbole est rare, plus il est inattendu et donc porte beaucoup d'information.
   
-Par ailleurs, il serait logique que l'information portée par un message constitué des deux symboles $x_m$ et $x_n$
-soit la somme des auto-informations des deux symboles : $I(x_mx_n) = I(x_m) + I(x_n)$.
+Par ailleurs, il serait logique que l'information portée par un message constitué des deux symboles $s_m$ et $s_n$
+soit la somme des auto-informations des deux symboles : $I(s_ms_n) = I(s_m) + I(s_n)$.
 
-Ainsi, la définition retenue pour l'auto-information $I(x_m)$ est :
+Ainsi, la définition retenue pour l'auto-information $I(s_m)$ est :
 
 $$
-I(x_m) = - \log_2(p_m)
+I(s_m) = - \log_2(p_m)
 $$
 
 ```{margin}
@@ -66,7 +65,7 @@ $$
 ```
 
 où $\log_2$ est le logarithme à base 2 ; l'utilisation d'un logarithme fait que l'information portée deux symboles
-est la somme des auto-informations des symboles (en supposant les symboles indépendants : $p(x_m,x_n)=p(x_m)p(x_n)$).
+est la somme des auto-informations des symboles (en supposant les symboles indépendants : $p(s_m,s_n)=p(s_m)p(s_n)$).
 L'auto-information s'exprime en shannon (abbréviation : Sh),
 et sa représentation graphique est donnée {numref}`F:auto-information` :
 c'est bien une courbe qui décroit avec la probabilité d'apparition du symbole.
@@ -87,7 +86,7 @@ L'**entropie** (_entropy_) d'une source $X$ est la moyenne des auto-informations
 pondérées par leur probabilité :
 
 $$
-H(X) = \sum_{m=1}^M p_m I(x_m) = - \sum_{m=1}^M p_m \log_2 p_m.
+H(X) = \sum_{m=1}^M p_m I(s_m) = - \sum_{m=1}^M p_m \log_2 p_m.
 $$
 
 L'entropie s'exprime en shannon par symbole (Sh/symb).

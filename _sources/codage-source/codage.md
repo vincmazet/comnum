@@ -1,6 +1,6 @@
 # Codage d'une source sans mémoire
 
-Un code source associe à chaque symbole $x_m$ de la source un « mot » formé de $l_m$ symboles issus de l'alphabet du canal.
+Un code source associe à chaque symbole $s_m$ de la source un « mot » formé de $l_m$ symboles issus de l'alphabet du canal.
 Par exemple, le symbole <code>A</code> d'une source texte pourra être codé par le mot <code>01000001</code>
 formé de 8 symboles du canal (en l'occurrence, des bits).
 
@@ -57,22 +57,22 @@ La procédure pour construire un code de Huffman dans le cas binaire est la suiv
 1. ordonner les symboles dans l'ordre des probabilités décroissantes :
 
    $$
-   x_1,\dots,x_M
+   s_1,\dots,s_M
    \quad\text{tel que}\quad
-   p(x_1) \geq \dots \geq p(x_M),
+   p(s_1) \geq \dots \geq p(s_M),
    $$
 
-2. affecter au symbole de plus faible probabilité $x_M$ le bit <code>0</code>,
+2. affecter au symbole de plus faible probabilité $s_M$ le bit <code>0</code>,
 
-3. affecter au deuxième symbole de plus faible probabilité $x_{M-1}$ le bit <code>1</code>,
+3. affecter au deuxième symbole de plus faible probabilité $s_{M-1}$ le bit <code>1</code>,
 
-4. combiner $x_M$ et $x_{M-1}$ pour former un nouveau symbole de probabilité $p(x_M)+p(x_{M-1})$,
+4. combiner $s_M$ et $s_{M-1}$ pour former un nouveau symbole de probabilité $p(s_M)+p(s_{M-1})$,
 
 5. retourner à l'étape 2 tant qu'il reste plus de un seul symbole.
 
 Un exemple de codage de Huffman est représenté dans l'animation ci-dessous.
 
-<div id='huffman' class='spetsi'></div>
+<div id='huffman' class='spetsi mathjax_process'></div>
 <script src="https://vincmazet.github.io/spetsi/js/spetsi.js" type="text/javascript"></script>
 <script src="https://vincmazet.github.io/spetsi/js/huffman.js" type="text/javascript"></script>
 

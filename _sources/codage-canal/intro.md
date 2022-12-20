@@ -41,11 +41,11 @@ Les opérations de codage et décodage se font, mathématiquement, à l'aide d'a
 (ou, plus généralement, en $M$-aire).
 L'addition et la multiplication sont définies de la façon suivante.
 
-````{panels}
 
-Addition
-^^^
+::::{grid} 1 1 1 2
+:gutter: 3
 
+:::{grid-item-card} Addition
 L'opération $+$ est équivalente à un « ou exclusif ».
 
 $$
@@ -54,13 +54,10 @@ $$
 1 + 0 = 1 \\
 1 + 1 = 0
 $$
+:::
 
----
-
-Multiplication
-^^^
+:::{grid-item-card} Multiplication
 L'opération $\cdot$ est équivalente à un « et ».
-
 
 $$
 0 \cdot 0 = 0 \\
@@ -68,8 +65,9 @@ $$
 1 \cdot 0 = 0 \\
 1 \cdot 1 = 1
 $$
+:::
 
-````
+::::
 
 L'ensemble $\{0,1\}$ muni de cette addition et de cette multiplication est noté $\mathbb{F}_2$
 et s'appelle le corps de [Galois](https://fr.wikipedia.org/wiki/%C3%89variste_Galois) de cardinal 2.

@@ -39,7 +39,7 @@ width: 700px
 ---
 Interférences entre symboles.
 Le signal bleu (première ligne) ne contient qu'un symbole autour de $t=0$.
-Le signal orange (seconde ligne) contient trois symboles différents en $-d$, $0$ et $d$.
+Le signal orange (seconde ligne) contient cinq symboles différents sur $\{-2d,-d,0,+d,+2d\}$.
 À cause des interférences entre symboles, les amplitudes aux instants d'échantillonnage (représentés par les points)
 dépendent des symboles voisins.
 ```
@@ -57,8 +57,6 @@ u(kd) =
   0 &\text{si } k \neq 0
 \end{cases}
 $$
-
-<!-- Illustration ? -->
 
 On montre que cette condition est équivalente à {ref}`[Madhow 2008, p. 50]<P:references>` :
 
@@ -126,7 +124,7 @@ La décroissance plus rapide du cosinus surélevé par rapport au sinus cardinal
 
 Le critère de Nyquist s'applique sur le filtre global $u=h*g*r$.
 Mais comment vérifier le critère de Nyquist lorsque le filtre du canal $g$ n'est pas contrôlable ?
-Typiquement, c'est le filtre constitué de la forme d'onde (ou filtre d'émission) et du filtre de réception
-qui vérifient le critère de Nyquist, et les IES introduites par le canal sont traitées séparément le cas échéant.
+Typiquement, c'est le filtre constitué de la forme d'onde $h$ (ou filtre d'émission) et du filtre de réception $r$
+qui vérifie le critère de Nyquist, et les IES introduites par le canal sont traitées séparément le cas échéant.
 Cela signifie que, dans le domaine fréquentiel, $HR$ est la transformée de Fourier d'un cosinus surélevé.
 On dit alors que $h$ et $r$ sont des **filtres en racine de cosinus surélevé** (_root-raised-cosine filter_).

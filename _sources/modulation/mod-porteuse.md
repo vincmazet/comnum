@@ -136,8 +136,8 @@ tous les symboles sont associés à une sinusoïde de même ampliltude, mais de 
 
 Tous les points d'une constellation PSK sont répartis sur un cercle de centre l'origine.
 On peut le vérifier en utilisant la trigonométrie,
-mais aussi parce que l'amplitude complexe $A_k$ peut s'écrire sous la forme $\rho e^{j\theta}$
-où $\rho$ est constant et $\theta$ varie.
+mais aussi parce que l'amplitude complexe $A_k$ peut s'écrire sous la forme $a_k e^{j\varphi_k}$
+où $a_k$ est constant et $\varphi_k$ varie.
 
 ````{div} exemple
 

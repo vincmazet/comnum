@@ -1,8 +1,8 @@
 (P:chaine)=
 # Chaîne de communication
 
-Une chaîne de communication numérique représente les différentes étapes de traitement de l'information.
-Il relie l'émetteur au récepteur par l'intermédiaire d'un **canal de transmission** (_channel_).
+La chaîne de communication numérique représente les différentes étapes de traitement de l'information.
+Elle relie l'émetteur au récepteur par l'intermédiaire d'un **canal de transmission** (_channel_).
 Le canal est le milieu dans lequel est transmis ou stocké l'information du message (comme un câble électrique ou une fibre optique).
 
 Ainsi, comme indiqué dans la {numref}`F:chaine`, le message $m$, qu'il soit analogique ($m(t)$) ou déjà sous forme numérique ($m[n]$),
@@ -13,12 +13,14 @@ qu'on espère être exactement le message émis.
 
 <br />
 
+````{div} full-width
 ```{figure} figs/chaine.svg
 ---
 name: F:chaine
 ---
 Chaîne de communications numériques. Les deux lignes de la chaîne correspondent respectivement à l'émetteur et au récepteur.
 ```
+````
 
 <br />
 

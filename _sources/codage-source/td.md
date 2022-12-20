@@ -36,11 +36,11 @@ pouvant transmettre sans erreur 95 bits par seconde.
 
 ## Exercice 4
 
-On considère une source qui émet quatre symboles, par exemple 😀, ☹️, 😛, 😎 avec les probabilités
+On considère une source qui émet quatre symboles, par exemple 😀, 😂, 😛, 😎 avec les probabilités
 
 $$
 p(😀) = 0,4 \quad
-p(☹️) = 0,3 \quad
+p(😂) = 0,3 \quad
 p(😛) = 0,2 \quad
 p(😎) = 0,1
 $$
@@ -48,7 +48,7 @@ $$
 1. Calculez l'entropie de le source.
 2. Pour chacun des codes ci-dessous, indiquez quelles propriétés ils vérifient et calculez leur longueur moyenne.
 
-|        |   😀 |    ☹️ |   😛 |   😎 |
+|        |   😀 |   😂 |   😛 |   😎 |
 | ------ | ---- | ---- | ---- | ---- |
 | Code 1 |   00 |   01 |   10 |   11 |
 | Code 2 |    0 |    1 |   10 |   11 |

@@ -4,7 +4,7 @@
 
 <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Vincent Mazet</span>,
 « <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Communications numériques</span> »,
-Université de Strasbourg, 2022.
+Université de Strasbourg, 2020-2023.
 
 * </a>Cette œuvre (à l'exception des codes Javascript) est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale 4.0 International</a>.
 
