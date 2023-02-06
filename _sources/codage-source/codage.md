@@ -22,7 +22,7 @@ dans cet optique, on veillera à utiliser des codes de longueur moyenne la plus 
 Ce théorème est aussi appelé premier théorème de Shannon ou _noiseless coding theorem_ et dit que :
 
 > La longueur moyenne $L$ d'un code associé à une source $X$ d'entropie $H(X)$
-  doit être supérieur à $H(X)$ pour que la transmission se fasse à un taux d'erreur arbitrairement petit.
+  doit être supérieure à $H(X)$ pour que la transmission se fasse à un taux d'erreur arbitrairement petit.
 
 Cela signifie que la condition $L \geq H(X)$ doit être respectée si on veut avoir une chance de transmettre un message sans erreur.
 La longueur minimale d'un code est donc égale à l'entropie.
