@@ -97,7 +97,7 @@ Celui-ci aurait répondu :
 « tu devrais l'appeler entropie pour deux raisons.
 D'abord parce que c'est la même formule qu'en mécanique statistique,
 mais aussi parce que personne ne sait ce qu'est l'entropie,
-dont dans une discussion tu auras toujours l'avantage ! »
+donc dans une discussion tu auras toujours l'avantage ! »
 (voir par exemple [ici](http://www.spatialcomplexity.info/what-von-neumann-said-to-shannon)).
 ```
 

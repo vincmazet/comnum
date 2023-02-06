@@ -47,7 +47,8 @@ Ces modulations sont étudiées et comparées à la fois dans le domaine tempore
 * Identifiez les modulations en bande de base et les modulations sur porteuse.
 
 * Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
-  de téléalimentation possible, d'inversion de la polarité et de détection d'interruption de la transmission.
+  <!--de téléalimentation possible, -->
+  d'inversion de la polarité et de détection d'interruption de la transmission.
 
 * D'après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?
   * bus informatique (I2C, SATA...) ou de terrain (ASI, Modbus...) ;

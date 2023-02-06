@@ -494,7 +494,7 @@ mais également
 <li><p>16-QAM (<em>quadrature amplitude modulation</em>).</p></li>
 </ul>
 <p>Ces modulations sont étudiées et comparées à la fois dans le domaine temporel et dans le domaine fréquentiel.</p>
-<ul class="simple">
+<ul>
 <li><p>Créez une séquence binaire aléatoire <span class="math notranslate nohighlight">\(x_2\)</span> de <span class="math notranslate nohighlight">\(N\)</span> bits (<code class="docutils literal notranslate"><span class="pre">comnumfip.randmary</span></code>)
 et convertissez-la en séquence hexadécimale <span class="math notranslate nohighlight">\(x_{16}\)</span> (<code class="docutils literal notranslate"><span class="pre">comnumfip.bin2mary</span></code>) :
 vous disposez donc du même message disponible sous deux représentations différentes.
@@ -508,10 +508,12 @@ En choisissant un message suffisamment long (<span class="math notranslate nohig
 représentez la densité spectrale de puissance de chaque modulation en échelle décimale en utilisant la méthode du périodogramme
 (<code class="docutils literal notranslate"><span class="pre">scipy.signal.periodogram</span></code>, en fixant la fréquence d’échantillonnage égale à <span class="math notranslate nohighlight">\(100/d\)</span> où <span class="math notranslate nohighlight">\(d\)</span> est la durée d’un bit).</p></li>
 <li><p>Identifiez les modulations en bande de base et les modulations sur porteuse.</p></li>
-<li><p>Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,
-de téléalimentation possible, d’inversion de la polarité et de détection d’interruption de la transmission.</p></li>
+<li><p>Comparez les codes en termes de largeur de bande, de simplicité de mise en œuvre, de robustesse au bruit, de synchronisation du récepteur,</p>
+<!--de téléalimentation possible, -->
+<p>d’inversion de la polarité et de détection d’interruption de la transmission.</p>
+</li>
 <li><p>D’après vos conclusions, quel type de modulation est le plus adapté aux communications suivantes ?</p>
-<ul>
+<ul class="simple">
 <li><p>bus informatique (I2C, SATA…) ou de terrain (ASI, Modbus…) ;</p></li>
 <li><p>liaison Wi-Fi ;</p></li>
 <li><p>périphérique USB et ordinateur ;</p></li>
