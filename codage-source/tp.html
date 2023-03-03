@@ -187,10 +187,37 @@ const thebe_selector_output = ".output, .cell_output"
    Excercices
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../modulation/tp.html">
    Travaux pratiques
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod1.html">
+     Étude de quelques modulations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod2.html">
+     Transmission en bande de base sur un canal idéal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod4.html">
+     Probabilité d’erreur en fonction du RSB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tp/tpmod5.html">
+     Transmission en bande de base sur un canal à bande limitée
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -584,8 +611,8 @@ Pour cela, vous disposez des images non compressées suivantes : smiley.png, sch
 <li><p>Quelle est la taille de l’alphabet de la source ?</p></li>
 <li><p>Les symboles de la source peuvent-ils être considérés comme équiprobables ?</p></li>
 <li><p>Calculez l’entropie de la source.</p></li>
-<li><p>En déduire la longueur moyenne Nminimale d’un code dans le cas d’une compression sans perte, puis la taille d’une image en bits.</p></li>
-<li><p>Chargez (<code class="docutils literal notranslate"><span class="pre">skimage.io.imread</span></code>) l’une des images précédentes puis affichez-la (<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow</span></code>).</p></li>
+<li><p>En déduire la longueur moyenne minimale d’un code dans le cas d’une compression sans perte, puis la taille d’une image en bits.</p></li>
+<li><p>Chargez l’une des images (<code class="docutils literal notranslate"><span class="pre">skimage.io.imread</span></code>) puis affichez-la (<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow</span></code>).</p></li>
 </ul>
 <section id="compression-sans-perte">
 <h3>Compression sans perte<a class="headerlink" href="#compression-sans-perte" title="Lien permanent vers ce titre">#</a></h3>
@@ -599,6 +626,7 @@ Par exemple, le message</p>
 <blockquote>
 <div><p>6, 255, 4, 0, 3, 133, 1, 0.</p>
 </div></blockquote>
+<p>Ainsi, alors que le message initial nécessitait 14 octets, le message codé en a besoin de 8 seulement.</p>
 <ul>
 <li><p>Appliquez la compression RLE à l’image (<code class="docutils literal notranslate"><span class="pre">comnumfip.rleenc</span></code>).</p></li>
 <li><p>Vous pouvez ensuite appliquez la décompression RLE (<code class="docutils literal notranslate"><span class="pre">comnumfip.rledec</span></code>) et vérifier que vous retrouvez l’image initiale, sans défaut.</p></li>

@@ -80,9 +80,9 @@ Pour cela, vous disposez des images non compressées suivantes : smiley.png, sch
 
 * Calculez l'entropie de la source.
 
-* En déduire la longueur moyenne Nminimale d'un code dans le cas d'une compression sans perte, puis la taille d'une image en bits.
+* En déduire la longueur moyenne minimale d'un code dans le cas d'une compression sans perte, puis la taille d'une image en bits.
 
-* Chargez (`skimage.io.imread`) l'une des images précédentes puis affichez-la (`matplotlib.pyplot.imshow`).
+* Chargez l'une des images (`skimage.io.imread`) puis affichez-la (`matplotlib.pyplot.imshow`).
 
 
 ### Compression sans perte
@@ -90,11 +90,14 @@ Pour cela, vous disposez des images non compressées suivantes : smiley.png, sch
 Le codage par plage (RLE : _run length encoding_, utilisé par exemple pour le format BMP) est une technique de compression sans perte.
 Le principe est de remplacer toute séquence consécutive d'un même symbole par la taille de cette séquence suivi du symbole.
 Par exemple, le message
+
 > 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 133, 133, 133, 0
 
 sera codé :
 
 > 6, 255, 4, 0, 3, 133, 1, 0.
+
+Ainsi, alors que le message initial nécessitait 14 octets, le message codé en a besoin de 8 seulement.
 
 * Appliquez la compression RLE à l'image (`comnumfip.rleenc`).
 
