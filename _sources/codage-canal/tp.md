@@ -10,15 +10,9 @@ Dans ce TP, nous utiliserons les modules
 [komm](http://komm.readthedocs.io/).
 ```
 
-```{admonition} Modules Python
-Durant le TP, vous pouvez échanger des astuces, fonctions utiles ou morceaux de code sur
-[Moodle](https://moodle.unistra.fr/mod/glossary/view.php?id=585756).
-```
-
 Trois codes canal sont comparés sur des simulations numériques :
 le code à parité (5,4), le code de Hamming (7,4) et le code convolutif de polynômes générateurs $7_8$ et $5_8$.
-Ces trois codes ont été étudiés en TD et en cours à l'exception du code à parité (5,4),
-mais ce dernier consiste, comme le code à parité (3,2), à ajouter un bit de parité à chaque bloc du message.
+Le code à parité (5,4) consiste, comme le code à parité (3,2), à ajouter un bit de parité à chaque bloc du message.
 
 Le codage et le décodage seront, pour ces trois codes, effectués avec le module komm.
 

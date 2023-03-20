@@ -23,7 +23,8 @@ Les codes de Hamming sont définis ainsi dans {ref}`[Proakis 2008]<P:references
    $(n-k) \times n = m \times (2^m-1)$ matrix.
    The $2^m-1$ columns of $H$ consist of all possible binary vectors of length $m$ excluding the all-zero vector.
   
-Dans cet exercice, on considère le code de Hamming (7, 4).
+Dans cet exercice, on considère le code de Hamming (7, 4),
+et plus spécifiquement sa version systématique.
 
 * Donnez le rendement de ce code.
 * Donnez les matrices génératrice et de contrôle de parité.

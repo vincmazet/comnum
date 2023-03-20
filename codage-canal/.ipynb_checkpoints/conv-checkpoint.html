@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Exercices &#8212; Communications numériques</title>
+    <title>Codes convolutifs &#8212; Communications numériques</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
-    <link rel="next" title="Travaux pratiques" href="tp.html" />
-    <link rel="prev" title="Codes convolutifs" href="conv.html" />
+    <link rel="next" title="Exercices" href="td.html" />
+    <link rel="prev" title="Codes cycliques" href="cycliques.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="fr">
     
@@ -268,13 +268,13 @@ const thebe_selector_output = ".output, .cell_output"
    Codes cycliques
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="conv.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Codes convolutifs
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="td.html">
    Exercices
   </a>
  </li>
@@ -374,7 +374,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/codage-canal/td.md"
+        <a href="../_sources/codage-canal/conv.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -434,38 +434,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-1">
-   Exercice 1
+  <a class="reference internal nav-link" href="#principe">
+   Principe
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-2">
-   Exercice 2
+  <a class="reference internal nav-link" href="#representation-en-treillis">
+   Représentation en treillis
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-3">
-   Exercice 3
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-4">
-   Exercice 4
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-5">
-   Exercice 5
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-6">
-   Exercice 6
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-7">
-   Exercice 7
+  <a class="reference internal nav-link" href="#decodage">
+   Décodage
   </a>
  </li>
 </ul>
@@ -477,7 +457,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Exercices</h1>
+                <h1>Codes convolutifs</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -488,38 +468,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-1">
-   Exercice 1
+  <a class="reference internal nav-link" href="#principe">
+   Principe
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-2">
-   Exercice 2
+  <a class="reference internal nav-link" href="#representation-en-treillis">
+   Représentation en treillis
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-3">
-   Exercice 3
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-4">
-   Exercice 4
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-5">
-   Exercice 5
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-6">
-   Exercice 6
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercice-7">
-   Exercice 7
+  <a class="reference internal nav-link" href="#decodage">
+   Décodage
   </a>
  </li>
 </ul>
@@ -532,95 +492,64 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="exercices">
-<h1>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">#</a></h1>
-<section id="exercice-1">
-<h2>Exercice 1<a class="headerlink" href="#exercice-1" title="Lien permanent vers ce titre">#</a></h2>
-<p>Le principe du code à parité (3, 2) est de rajouter à chaque bloc du message un « bit de parité »
-de sorte que le nombre de bit à 1 dans les mots du code soit pair.</p>
-<ol class="simple">
-<li><p>Donnez le rendement de ce code.</p></li>
-<li><p>Donnez l’ensemble des mots du code. Est-ce un code systématique ?</p></li>
-<li><p>Donnez les matrices génératrice et de contrôle de parité.</p></li>
-<li><p>Représentez géométriquement dans <span class="math notranslate nohighlight">\(\mathbb{F}_2^3\)</span> les mots du code.</p></li>
-<li><p>Calculez la distance minimale. En déduire les pouvoirs de détection et de correction du code.</p></li>
-</ol>
-</section>
-<section id="exercice-2">
-<h2>Exercice 2<a class="headerlink" href="#exercice-2" title="Lien permanent vers ce titre">#</a></h2>
-<p>Les codes de Hamming sont définis ainsi dans <a class="reference internal" href="../annexes/references.html#p-references"><span class="std std-ref">[Proakis 2008]</span></a> :</p>
-<blockquote>
-<div><p>Hamming codes are one of the earliest codes studied in coding theory.
-Hamming codes are linear block codes with parameters <span class="math notranslate nohighlight">\(n=2^m-1\)</span> and <span class="math notranslate nohighlight">\(k=2^m-m-1\)</span>, for <span class="math notranslate nohighlight">\(m\geq3\)</span>.
-Hamming codes are best described in terms of their parity check matrix <span class="math notranslate nohighlight">\(H\)</span> which is an
-<span class="math notranslate nohighlight">\((n-k) \times n = m \times (2^m-1)\)</span> matrix.
-The <span class="math notranslate nohighlight">\(2^m-1\)</span> columns of <span class="math notranslate nohighlight">\(H\)</span> consist of all possible binary vectors of length <span class="math notranslate nohighlight">\(m\)</span> excluding the all-zero vector.</p>
-</div></blockquote>
-<p>Dans cet exercice, on considère le code de Hamming (7, 4),
-et plus spécifiquement sa version systématique.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="codes-convolutifs">
+<span id="s-codage-canal-conv"></span><h1>Codes convolutifs<a class="headerlink" href="#codes-convolutifs" title="Lien permanent vers ce titre">#</a></h1>
+<section id="principe">
+<h2>Principe<a class="headerlink" href="#principe" title="Lien permanent vers ce titre">#</a></h2>
+<p>La sortie d’un codeur convolutif est calculée en appliquant une fenêtre glissante sur la totalité du message.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Les notations utilisées ne sont pas très élégantes, mais je n’y peux rien : ce sont les notations de la littérature. 💩</p>
+</aside>
+<p>Cette fenêtre glissante est constituée de <span class="math notranslate nohighlight">\(K\)</span> groupes de <span class="math notranslate nohighlight">\(k\)</span> bits chacun : elle est donc de taille <span class="math notranslate nohighlight">\(Kk\)</span>.
+<span class="math notranslate nohighlight">\(K\)</span> est appelée <strong>longeur de contrainte</strong> (<em>constraint length</em>).
+À chaque cycle d’horloge, la fenêtre avance d’un groupe de bits,
+et donc <span class="math notranslate nohighlight">\(k\)</span> nouveaux bits rentrent dans la fenêtre tandis que les <span class="math notranslate nohighlight">\(k\)</span> plus anciens bits en ressortent.
+Des opérations sur les bits présents la fenêtre (toujours en respectant les règle du corps de Galois)
+permettent alors d’obtenir les bits de sortie.
+On note <span class="math notranslate nohighlight">\(n\)</span> le nombre de bits de sortie, ils sont ajoutés au code déjà produit.</p>
+<p>Les bits utilisés par les additions sont représentés par des polynômes générateurs ;
+il y a donc autant de polynômes que de bits de sortie.
+Par exemple, le polynôme générateur <span class="math notranslate nohighlight">\(g = 15_8\)</span> a pour représentation binaire <span class="math notranslate nohighlight">\(001101_2\)</span> :
+l’addition qu’il représente s’effectue donc entre les bits 1, 3 et 4.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/code-conv.gif"><img alt="../_images/code-conv.gif" src="../_images/code-conv.gif" style="width: 568px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Exemple de code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span> appliqué sur le message <code>10110011</code>.
+La sortie <span class="math notranslate nohighlight">\(u\)</span> du codeur est représentée par la séquence rouge.</span><a class="headerlink" href="#id1" title="Lien permanent vers cette image">#</a></p>
+</figcaption>
+</figure>
+<p>Remarques :</p>
 <ul class="simple">
-<li><p>Donnez le rendement de ce code.</p></li>
-<li><p>Donnez les matrices génératrice et de contrôle de parité.</p></li>
-<li><p>Donnez l’ensemble des mots du code.</p></li>
-<li><p>Calculez la distance minimale. En déduire les pouvoirs de détection et de correction du code.</p></li>
+<li><p>Le rendement d’un code convolutif est, comme pour les codes en bloc, <span class="math notranslate nohighlight">\(k/n\)</span>.</p></li>
+<li><p>Traditionnellement, le registre est initialisé à zéro.</p></li>
+<li><p>Contrairement aux codes en bloc, les <span class="math notranslate nohighlight">\(n\)</span> bits de sortie ne dépendent pas seulement des <span class="math notranslate nohighlight">\(k\)</span> bits d’entrée
+mais également des <span class="math notranslate nohighlight">\(K-1\)</span> blocs précédents : il y a donc un effet de mémoire.</p></li>
+<li><p>Les codes convolutifs sont appelés ainsi car chacune des <span class="math notranslate nohighlight">\(n\)</span> sortie du codeur correspond
+au produit de convolution de l’entrée avec le polynôme générateur correspondant (toujours dans le corps de Galois !).</p></li>
 </ul>
-<!--
-On reçoit la séquence binaire \bs{10001111110010010100011010111011111}.
-Trouvez le message émis sachant qu'un code de Hamming~(7,4) a été utilisé.
-Solution : 1 0 0 0  1 0 1 0  0 1 1 1  1 1 0 1  1 1 1 1
--->
+<p><a class="exercise btn btn-light" href="td.html#exercice-5" role="button">5</a></p>
 </section>
-<section id="exercice-3">
-<h2>Exercice 3<a class="headerlink" href="#exercice-3" title="Lien permanent vers ce titre">#</a></h2>
-<!-- Wilson, ex. 5.0.1 -->
-<p>On suppose un canal binaire où les erreurs de transmissions se traduisent par une suppression de certains bits
-(et non une modification de leur état).
-Le récepteur sait quels sont les bits manquants mais ne connaît pas leurs valeurs.
-Expliquez comment un code de Hamming (7,4) peut trouver les bits manquants lorsque un ou deux bits consécutifs ont été supprimés.</p>
+<section id="representation-en-treillis">
+<h2>Représentation en treillis<a class="headerlink" href="#representation-en-treillis" title="Lien permanent vers ce titre">#</a></h2>
+<p>Lorsqu’un code convolutif est suffisamment simple, il peut être représenté sous forme d’un <strong>treillis</strong>.
+Il s’agit d’une représentation graphique en deux dimension, où chaque état du codeur est représenté par un point.
+L’état d’un codeur correspond aux valeurs des bits de la fenêtre, à l’exception des bits qui viennent de rentrer à l’instant correspondant.
+L’axe horizontal représente le temps, et l’axe vertical les différents états possibles.
+Enfin, des flèches indiquent les valeurs du ou des bits d’entrée du codeur.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/treillis.png"><img alt="../_images/treillis.png" src="../_images/treillis.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Représentation en treillis du code convolutif de polynômes générateurs <span class="math notranslate nohighlight">\(7_8\)</span> et <span class="math notranslate nohighlight">\(5_8\)</span>.
+Les quatre états du codeur sont en bleu, les flèches pleines et en pointillés représentent respectivement l’entrée d’un bit à 0 ou à 1.</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">#</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="exercice-4">
-<h2>Exercice 4<a class="headerlink" href="#exercice-4" title="Lien permanent vers ce titre">#</a></h2>
-<p>Les mots du message à coder sont de longueur <span class="math notranslate nohighlight">\(k=3\)</span> bits.
-On utilise un code à parité qui assure que le nombre de bits à 1 dans chaque mot du code est pair.</p>
-<ul class="simple">
-<li><p>Donnez la taille <span class="math notranslate nohighlight">\(n\)</span> d’un mot du code.</p></li>
-<li><p>Donnez la matrice génératrice.</p></li>
-<li><p>Calculez la distance minimale du code.</p></li>
-</ul>
-<p>On remplace maintenant le code par un code à parité croisée,
-c’est-à-dire qu’en arrangeant les mots du message sous forme d’un tableau <span class="math notranslate nohighlight">\(k \times k\)</span>,
-des bits de parité sont calculés sur chaque ligne et sur chaque colonne.
-L’exemple ci-dessous donne les bits de parité pour le message <code>111010011</code> :</p>
-<a class="reference internal image-reference" href="../_images/crossparity.png"><img alt="Exemple de parité croisée" class="align-center" src="../_images/crossparity.png" style="width: 300px;" /></a>
-<p>Répondez aux questions précédentes en considérant le code à parité croisée.
-Concluez sur l’intérêt d’un code à parité croisée par rapport à un code à parité simple.</p>
-</section>
-<section id="exercice-5">
-<h2>Exercice 5<a class="headerlink" href="#exercice-5" title="Lien permanent vers ce titre">#</a></h2>
-<p>Le meilleur code convolutif de rendement <span class="math notranslate nohighlight">\(1/2\)</span> (avec <span class="math notranslate nohighlight">\(k=1\)</span>) et de longueur de contrainte <span class="math notranslate nohighlight">\(4\)</span> a comme polynômes générateurs <span class="math notranslate nohighlight">\(15_8\)</span> et <span class="math notranslate nohighlight">\(17_8\)</span>.
-Représentez son schéma bloc.</p>
-<!-- Déterminer sa distance minimale $d_\mathrm{min}$ (solution : dmin = 6 : cf tableau 3 dans Sari) -->
-</section>
-<section id="exercice-6">
-<h2>Exercice 6<a class="headerlink" href="#exercice-6" title="Lien permanent vers ce titre">#</a></h2>
-<p>On considère le code convolutif ci-dessous (<span class="math notranslate nohighlight">\(k=1\)</span>) :</p>
-<a class="reference internal image-reference" href="../_images/codeconv1.png"><img alt="Code convolutif" class="align-center" src="../_images/codeconv1.png" style="width: 250px;" /></a>
-<ul class="simple">
-<li><p>Déterminez <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(K\)</span>. En déduire le rendement <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
-<li><p>Donnez les polynômes générateurs.</p></li>
-<li><p>Calculez la sortie du codeur lorsque l’entrée est <code>01110110</code>.</p></li>
-<li><p>Représentez le diagramme en treillis.</p></li>
-<li><p>(Optionnel) Décodez la séquence reçue <code>11001010</code> à l’aide de l’algorithme de Viterbi.</p></li>
-</ul>
-</section>
-<section id="exercice-7">
-<h2>Exercice 7<a class="headerlink" href="#exercice-7" title="Lien permanent vers ce titre">#</a></h2>
-<!-- Codeur de la fig 8.27 du Proakis -->
-<p>Même questions que dans l’exercice précédent pour le code convolutif ci-dessous :</p>
-<a class="reference internal image-reference" href="../_images/codeconv2.png"><img alt="Code convolutif" class="align-center" src="../_images/codeconv2.png" style="width: 350px;" /></a>
-<!-- Un code en treillis dont les mots sont de longueur $n=2$ a pour réponse impulsionnelle \bs{11011010}.
-Déterminer la réponse du codeur à l'entrée \bs{10001101}. -->
-<!-- sur les codes barres EAN 13 ? -->
+<section id="decodage">
+<h2>Décodage<a class="headerlink" href="#decodage" title="Lien permanent vers ce titre">#</a></h2>
+<p>Le décodage d’un code convolutif s’effectue avec l’algorithme de Viterbi, qui est illustré dans <a class="reference external" href="https://vincmazet.github.io/comnum/_static/viterbi.pdf">ce document</a>.</p>
+<p><a class="exercise btn btn-light" href="td.html#exercice-6" role="button">6</a>
+<a class="exercise btn btn-light" href="td.html#exercice-7" role="button">7</a></p>
 </section>
 </section>
 
@@ -651,17 +580,17 @@ Déterminer la réponse du codeur à l'entrée \bs{10001101}. -->
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="conv.html" title="précédent page">
+    <a class='left-prev' id="prev-link" href="cycliques.html" title="précédent page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">précédent</p>
-            <p class="prev-next-title">Codes convolutifs</p>
+            <p class="prev-next-title">Codes cycliques</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="tp.html" title="suivant page">
+    <a class='right-next' id="next-link" href="td.html" title="suivant page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">suivant</p>
-        <p class="prev-next-title">Travaux pratiques</p>
+        <p class="prev-next-title">Exercices</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
